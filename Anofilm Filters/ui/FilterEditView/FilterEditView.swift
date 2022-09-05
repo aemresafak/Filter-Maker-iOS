@@ -39,22 +39,27 @@ struct FilterEditView: View {
                 editName: "Brightness",
                 value: Binding(get: { filterEditViewModel.getBrightness() }, set: { filterEditViewModel.setBrightness($0) }),
                 range: -1...1,
-                resetValue: 0,
-                onChange: { filterEditViewModel.setBrightness($0) }
+                resetValue: 0
             )
         case .contrast:
             createEditViewWithSlider(
                 editName: "Contrast",
                 value: Binding(get: { filterEditViewModel.getContrast() }, set: { filterEditViewModel.setContrast($0) }),
                 range: 0...2,
-                resetValue: 1) { filterEditViewModel.setContrast($0) }
+                resetValue: 1)
         case .saturation:
             createEditViewWithSlider(
                 editName: "Saturation",
-                value: Binding(get: {filterEditViewModel.getSaturation() }, set: { filterEditViewModel.setSaturation($0)}),
+                value: Binding(get: { filterEditViewModel.getSaturation() }, set: { filterEditViewModel.setSaturation($0) }),
                 range: 0...2,
-                resetValue: 1,
-                onChange: { filterEditViewModel.setSaturation($0) }
+                resetValue: 1
+            )
+        case .exposure:
+            createEditViewWithSlider(
+                editName: "Exposure",
+                value: Binding(get: { filterEditViewModel.getExposure() }, set: { filterEditViewModel.setExposure($0) }),
+                range: -0.45...0.45,
+                resetValue: 0
             )
         }
     }
@@ -63,8 +68,7 @@ struct FilterEditView: View {
         editName: String,
         value: Binding<Float>,
         range: ClosedRange<Float>,
-        resetValue: Float,
-        onChange: @escaping (Float) -> Void
+        resetValue: Float
     ) -> some View {
         VStack {
             HStack {
@@ -75,7 +79,6 @@ struct FilterEditView: View {
                 }
             }
             Slider(value: value, in: range)
-                .onChange(of: value.wrappedValue, perform: onChange)
         }.padding()
 
     }

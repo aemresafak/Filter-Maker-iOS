@@ -47,6 +47,14 @@ class FilterEditViewModel: ObservableObject {
 
     func getSaturation() -> Float { filter.getSaturation() }
     func resetSaturation() { filter.resetSaturation() }
+    
+    func setExposure(_ value: Float) {
+        filter.setExposure(value)
+        updateOutputImage()
+    }
+
+    func getExposure() -> Float { filter.getExposure() }
+    func resetExposure() { filter.resetExposure() }
 
 
     private func updateOutputImage() {
