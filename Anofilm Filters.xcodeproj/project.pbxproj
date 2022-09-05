@@ -11,9 +11,13 @@
 		E49ED07728C6560F00C68007 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49ED07628C6560F00C68007 /* ContentView.swift */; };
 		E49ED07928C6562500C68007 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E49ED07828C6562500C68007 /* Assets.xcassets */; };
 		E49ED07C28C6562500C68007 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E49ED07B28C6562500C68007 /* Preview Assets.xcassets */; };
+		F03A8599F8D64D64830792C6 /* Pods_Anofilm_Filters.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57F1A861853C4533DC978AD9 /* Pods_Anofilm_Filters.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		18D5368CF37AEE06F0451A1F /* Pods-Anofilm Filters.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Anofilm Filters.release.xcconfig"; path = "Target Support Files/Pods-Anofilm Filters/Pods-Anofilm Filters.release.xcconfig"; sourceTree = "<group>"; };
+		57F1A861853C4533DC978AD9 /* Pods_Anofilm_Filters.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Anofilm_Filters.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F3B343EFBA4362D8EE2BA58 /* Pods-Anofilm Filters.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Anofilm Filters.debug.xcconfig"; path = "Target Support Files/Pods-Anofilm Filters/Pods-Anofilm Filters.debug.xcconfig"; sourceTree = "<group>"; };
 		E49ED07128C6560F00C68007 /* Anofilm Filters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Anofilm Filters.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E49ED07428C6560F00C68007 /* Anofilm_FiltersApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anofilm_FiltersApp.swift; sourceTree = "<group>"; };
 		E49ED07628C6560F00C68007 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -26,17 +30,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F03A8599F8D64D64830792C6 /* Pods_Anofilm_Filters.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		06367687CD4DAAA1AACC1C7B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				57F1A861853C4533DC978AD9 /* Pods_Anofilm_Filters.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		563E06979B411A0741B88966 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6F3B343EFBA4362D8EE2BA58 /* Pods-Anofilm Filters.debug.xcconfig */,
+				18D5368CF37AEE06F0451A1F /* Pods-Anofilm Filters.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		E49ED06828C6560F00C68007 = {
 			isa = PBXGroup;
 			children = (
 				E49ED07328C6560F00C68007 /* Anofilm Filters */,
 				E49ED07228C6560F00C68007 /* Products */,
+				563E06979B411A0741B88966 /* Pods */,
+				06367687CD4DAAA1AACC1C7B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -74,9 +99,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E49ED07F28C6562500C68007 /* Build configuration list for PBXNativeTarget "Anofilm Filters" */;
 			buildPhases = (
+				1F238FDBE5FB4632739F276C /* [CP] Check Pods Manifest.lock */,
 				E49ED06D28C6560F00C68007 /* Sources */,
 				E49ED06E28C6560F00C68007 /* Frameworks */,
 				E49ED06F28C6560F00C68007 /* Resources */,
+				72CC5DA3F0ED745BE3623B9A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -131,6 +158,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1F238FDBE5FB4632739F276C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Anofilm Filters-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		72CC5DA3F0ED745BE3623B9A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Anofilm Filters/Pods-Anofilm Filters-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Anofilm Filters/Pods-Anofilm Filters-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Anofilm Filters/Pods-Anofilm Filters-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E49ED06D28C6560F00C68007 /* Sources */ = {
@@ -263,6 +332,7 @@
 		};
 		E49ED08028C6562500C68007 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6F3B343EFBA4362D8EE2BA58 /* Pods-Anofilm Filters.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -292,6 +362,7 @@
 		};
 		E49ED08128C6562500C68007 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 18D5368CF37AEE06F0451A1F /* Pods-Anofilm Filters.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
