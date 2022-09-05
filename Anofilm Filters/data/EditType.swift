@@ -7,6 +7,9 @@
 
 import Foundation
 
-enum EditType {
-    case brightness
+enum EditType : String, CaseIterable, Identifiable {
+    var id : Self {
+        self
+    }
+    case brightness, contrast
 }

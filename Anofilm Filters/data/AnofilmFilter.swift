@@ -11,6 +11,7 @@ import MetalPetal
 struct AnofilmFilter {
 
     private var brightness = MTIBrightnessFilter()
+    private var contrast = MTIContrastFilter()
 
 
     /// value of brightness in range of -1 to 1 with 0 being default
@@ -25,6 +26,21 @@ struct AnofilmFilter {
     func resetBrightness() {
         brightness.brightness = 0
     }
+    
+    func setContrast(_ value: Float) {
+        contrast.contrast = value
+    }
+    
+    func getContrast() -> Float {
+        contrast.contrast
+    }
+    
+    func resetContrast() {
+        contrast.contrast = 0
+    }
+    
+    
+    
 
     /// returns filtered version of image
     func filterImage(image: MTIImage?) -> MTIImage? {
@@ -33,7 +49,7 @@ struct AnofilmFilter {
         }
 
         let output = FilterGraph.makeImage(builder: { output in
-            image => brightness => output
+            image => brightness => contrast => output
         })
         return output
     }

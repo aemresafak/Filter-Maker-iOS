@@ -11,7 +11,9 @@ import SwiftUI
 struct Anofilm_FiltersApp: App {
     var body: some Scene {
         WindowGroup {
-            FilterEditView()
+            NavigationView {
+                FilterEditView()
+            }
         }
     }
 }
