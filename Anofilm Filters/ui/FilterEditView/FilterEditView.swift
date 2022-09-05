@@ -30,10 +30,30 @@ struct FilterEditView: View {
     @ViewBuilder private var editContent: some View {
         switch filterEditViewModel.editType {
         case .brightness:
-            Text("Brightness")
+            adjustBrightnessView
         default:
             Text("default")
         }
+    }
+
+
+    @State private var brightness: Float = 0
+    private var adjustBrightnessView: some View {
+        VStack {
+            HStack {
+                Text("Brightness: \(filterEditViewModel.getBrightness())")
+                Spacer()
+                Button(action: { brightness = 0 }) {
+                    Image(systemName: "arrow.uturn.backward")
+                }
+            }
+            Slider(value: $brightness, in: -1...1)
+                .onChange(of: brightness) { newValue in
+                    filterEditViewModel.setBrightness(newValue)
+                }
+        }.padding()
+
+
     }
 
     private var toolbarContent: some View {

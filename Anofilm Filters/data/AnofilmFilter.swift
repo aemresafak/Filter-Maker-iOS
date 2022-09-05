@@ -14,8 +14,16 @@ struct AnofilmFilter {
 
 
     /// value of brightness in range of -1 to 1 with 0 being default
-    func adjustBrightness(_ value: Float) {
+    func setBrightness(_ value: Float) {
         brightness.brightness = value
+    }
+    
+    func getBrightness() -> Float {
+        brightness.brightness
+    }
+    
+    func resetBrightness() {
+        brightness.brightness = 0
     }
 
     /// returns filtered version of image
