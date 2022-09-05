@@ -40,18 +40,22 @@ struct FilterEditView: View {
                 value: Binding(get: { filterEditViewModel.getBrightness() }, set: { filterEditViewModel.setBrightness($0) }),
                 range: -1...1,
                 resetValue: 0,
-                onChange: { newValue in
-                    filterEditViewModel.setBrightness(newValue)
-                }
+                onChange: { filterEditViewModel.setBrightness($0) }
             )
         case .contrast:
             createEditViewWithSlider(
-                editName: "contrast",
+                editName: "Contrast",
                 value: Binding(get: { filterEditViewModel.getContrast() }, set: { filterEditViewModel.setContrast($0) }),
                 range: 0...2,
-                resetValue: 1) { newValue in
-                filterEditViewModel.setContrast(newValue)
-            }
+                resetValue: 1) { filterEditViewModel.setContrast($0) }
+        case .saturation:
+            createEditViewWithSlider(
+                editName: "Saturation",
+                value: Binding(get: {filterEditViewModel.getSaturation() }, set: { filterEditViewModel.setSaturation($0)}),
+                range: 0...2,
+                resetValue: 1,
+                onChange: { filterEditViewModel.setSaturation($0) }
+            )
         }
     }
 
