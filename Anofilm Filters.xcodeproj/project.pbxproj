@@ -11,6 +11,7 @@
 		E49ED07728C6560F00C68007 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49ED07628C6560F00C68007 /* ContentView.swift */; };
 		E49ED07928C6562500C68007 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E49ED07828C6562500C68007 /* Assets.xcassets */; };
 		E49ED07C28C6562500C68007 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E49ED07B28C6562500C68007 /* Preview Assets.xcassets */; };
+		E49ED08428C6577C00C68007 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49ED08328C6577C00C68007 /* ImagePicker.swift */; };
 		F03A8599F8D64D64830792C6 /* Pods_Anofilm_Filters.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57F1A861853C4533DC978AD9 /* Pods_Anofilm_Filters.framework */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +24,7 @@
 		E49ED07628C6560F00C68007 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E49ED07828C6562500C68007 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E49ED07B28C6562500C68007 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E49ED08328C6577C00C68007 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,7 +53,6 @@
 				6F3B343EFBA4362D8EE2BA58 /* Pods-Anofilm Filters.debug.xcconfig */,
 				18D5368CF37AEE06F0451A1F /* Pods-Anofilm Filters.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -76,6 +77,7 @@
 		E49ED07328C6560F00C68007 /* Anofilm Filters */ = {
 			isa = PBXGroup;
 			children = (
+				E49ED08228C6576400C68007 /* ui */,
 				E49ED07428C6560F00C68007 /* Anofilm_FiltersApp.swift */,
 				E49ED07628C6560F00C68007 /* ContentView.swift */,
 				E49ED07828C6562500C68007 /* Assets.xcassets */,
@@ -90,6 +92,22 @@
 				E49ED07B28C6562500C68007 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E49ED08228C6576400C68007 /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				E49ED08528C6578100C68007 /* utils */,
+			);
+			path = ui;
+			sourceTree = "<group>";
+		};
+		E49ED08528C6578100C68007 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				E49ED08328C6577C00C68007 /* ImagePicker.swift */,
+			);
+			path = utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -206,6 +224,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E49ED08428C6577C00C68007 /* ImagePicker.swift in Sources */,
 				E49ED07728C6560F00C68007 /* ContentView.swift in Sources */,
 				E49ED07528C6560F00C68007 /* Anofilm_FiltersApp.swift in Sources */,
 			);
