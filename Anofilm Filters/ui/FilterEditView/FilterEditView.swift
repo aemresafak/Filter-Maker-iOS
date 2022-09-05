@@ -11,6 +11,8 @@ struct FilterEditView: View {
 
     @StateObject private var filterEditViewModel = FilterEditViewModel()
     @State private var showFiltersSheet = false
+    @State private var showImagePickerSheet = false
+    @State private var imageChosen: UIImage?
 
 
     var body: some View {
@@ -27,6 +29,10 @@ struct FilterEditView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar(content: createToolbarContent)
             .sheet(isPresented: $showFiltersSheet, onDismiss: nil, content: createFiltersList)
+            .sheet(isPresented: $showImagePickerSheet, onDismiss: nil, content: createImagePicker)
+            .onChange(of: imageChosen, perform: {
+                filterEditViewModel.changeOriginalImage(with: $0)
+            })
 
     }
 
@@ -93,6 +99,12 @@ struct FilterEditView: View {
             } label: {
                 Image(systemName: "camera.filters")
             }
+            Button {
+                showImagePickerSheet = true
+            } label: {
+                Image(systemName: "photo")
+            }
+
         }
     }
 
@@ -115,7 +127,9 @@ struct FilterEditView: View {
                 .padding()
             Spacer()
         }
-
+    }
+    private func createImagePicker() -> some View {
+        ImagePicker(uiImage: $imageChosen)
     }
 
 

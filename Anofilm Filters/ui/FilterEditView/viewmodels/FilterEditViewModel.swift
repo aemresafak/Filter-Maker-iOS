@@ -7,6 +7,7 @@
 
 import Foundation
 import MetalPetal
+import UIKit
 
 
 class FilterEditViewModel: ObservableObject {
@@ -16,10 +17,7 @@ class FilterEditViewModel: ObservableObject {
     @Published var outputImage: MTIImage?
     @Published var editType = EditType.brightness
 
-    init(originalImage: MTIImage? = nil) {
-        if let originalImage = originalImage {
-            self.originalImage = originalImage
-        }
+    init() {
         outputImage = self.originalImage
     }
 
@@ -68,6 +66,13 @@ class FilterEditViewModel: ObservableObject {
 
     private func updateOutputImage() {
         outputImage = filter.filterImage(image: originalImage)
+    }
+    
+    func changeOriginalImage(with image: UIImage?) {
+        if let image = image, let cgImage = image.cgImage{
+            originalImage = MTIImage(cgImage: cgImage).unpremultiplyingAlpha()
+            updateOutputImage()
+        }
     }
 
 
