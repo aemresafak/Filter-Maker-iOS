@@ -38,28 +38,31 @@ struct FilterEditView: View {
             createEditViewWithSlider(
                 editName: "Brightness",
                 value: Binding(get: { filterEditViewModel.getBrightness() }, set: { filterEditViewModel.setBrightness($0) }),
-                range: -1...1,
-                resetValue: 0
+                range: -1...1
             )
         case .contrast:
             createEditViewWithSlider(
                 editName: "Contrast",
                 value: Binding(get: { filterEditViewModel.getContrast() }, set: { filterEditViewModel.setContrast($0) }),
-                range: 0...2,
-                resetValue: 1)
+                range: 0...2
+            )
         case .saturation:
             createEditViewWithSlider(
                 editName: "Saturation",
                 value: Binding(get: { filterEditViewModel.getSaturation() }, set: { filterEditViewModel.setSaturation($0) }),
-                range: 0...2,
-                resetValue: 1
+                range: 0...2
             )
         case .exposure:
             createEditViewWithSlider(
                 editName: "Exposure",
                 value: Binding(get: { filterEditViewModel.getExposure() }, set: { filterEditViewModel.setExposure($0) }),
-                range: -0.45...0.45,
-                resetValue: 0
+                range: -0.45...0.45
+            )
+        case .vibrance:
+            createEditViewWithSlider(
+                editName: "Vibrance",
+                value: Binding(get: { filterEditViewModel.getVibrance() }, set: { filterEditViewModel.setVibrance($0) }),
+                range: -1...1
             )
         }
     }
@@ -67,14 +70,13 @@ struct FilterEditView: View {
     private func createEditViewWithSlider(
         editName: String,
         value: Binding<Float>,
-        range: ClosedRange<Float>,
-        resetValue: Float
+        range: ClosedRange<Float>
     ) -> some View {
         VStack {
             HStack {
                 Text("\(editName): \(value.wrappedValue, specifier: "%.2f")")
                 Spacer()
-                Button(action: { value.wrappedValue = resetValue }) {
+                Button(action: { value.wrappedValue = (range.lowerBound + range.upperBound) / 2 }) {
                     Image(systemName: "arrow.uturn.backward")
                 }
             }
@@ -109,8 +111,9 @@ struct FilterEditView: View {
                     Text(editType.rawValue.capitalized)
                 }
             }
-                .pickerStyle(.wheel)
+            .pickerStyle(.wheel)
                 .padding()
+            Spacer()
         }
 
     }

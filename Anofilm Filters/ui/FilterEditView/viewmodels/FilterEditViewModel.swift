@@ -55,6 +55,15 @@ class FilterEditViewModel: ObservableObject {
 
     func getExposure() -> Float { filter.getExposure() }
     func resetExposure() { filter.resetExposure() }
+    
+    func setVibrance(_ value: Float) {
+        filter.setVibrance(value)
+        updateOutputImage()
+    }
+
+    func getVibrance() -> Float { filter.getVibrance() }
+    func resetVibrance() { filter.resetVibrance() }
+
 
 
     private func updateOutputImage() {

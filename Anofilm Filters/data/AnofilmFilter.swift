@@ -14,6 +14,7 @@ struct AnofilmFilter {
     private var contrast = MTIContrastFilter()
     private var saturation = MTISaturationFilter()
     private var exposure = MTIExposureFilter()
+    private var vibrance = MTIVibranceFilter()
 
 
     /// value of brightness in range of -1 to 1 with 0 being default
@@ -32,6 +33,10 @@ struct AnofilmFilter {
     func setExposure(_ value: Float) { exposure.exposure = value }
     func getExposure() -> Float { exposure.exposure }
     func resetExposure() { exposure.exposure = 0 }
+    
+    func setVibrance(_ value: Float) { vibrance.amount = value }
+    func getVibrance() -> Float { vibrance.amount }
+    func resetVibrance() { vibrance.amount = 0 }
 
 
 
@@ -43,7 +48,7 @@ struct AnofilmFilter {
 
         let output = FilterGraph.makeImage(builder: { output in
             image => brightness => contrast => saturation =>
-            exposure => output
+            exposure => vibrance => output
         })
         return output
     }
