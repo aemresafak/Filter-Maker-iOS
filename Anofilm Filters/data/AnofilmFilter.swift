@@ -22,6 +22,7 @@ struct AnofilmFilter {
     private var highlightsAndShadows = MTIHighlightsAndShadowsFilter()
     private var sepiaTone = MTISepiaToneFilter()
     private var tint = MTICustomColorMatrixFilter(matrix: MTICustomColorMatrixFilter.noColorMatrix)
+    private var highlightShadowTint = MTIHighlightShadowTintFilter()
 
     /// value of brightness in range of -1 to 1 with 0 being default
     func setBrightness(_ value: Float) { brightness.brightness = value }
@@ -85,7 +86,19 @@ struct AnofilmFilter {
     func resetTintIntensity() { tint.intensity = 0 }
     
     
+    func setHighlightTintIntensity(_ value: Float) { highlightShadowTint.highlightTintIntensity = value }
+    func getHighlightTintIntensity() -> Float { highlightShadowTint.highlightTintIntensity }
+    func resetHighlightTintIntensity() { highlightShadowTint.highlightTintIntensity = 0 }
+    
+    func setShadowTintIntensity(_ value: Float) { highlightShadowTint.shadowTintIntensity = value }
+    func getShadowTintIntensity() -> Float { highlightShadowTint.shadowTintIntensity }
+    func resetShadowTintIntensity() { highlightShadowTint.shadowTintIntensity = 0 }
 
+    func setHighlightTintColor(_ color: Color) { highlightShadowTint.highlightTintColor = color.createFloat3() }
+    func getHighlightTintColor() -> Color { Color.createFrom(vector: highlightShadowTint.highlightTintColor) }
+    
+    func setShadowTintColor(_ color: Color) { highlightShadowTint.shadowTintColor = color.createFloat3() }
+    func getShadowTintColor() -> Color { Color.createFrom(vector: highlightShadowTint.shadowTintColor) }
 
     /// returns filtered version of image
     func filterImage(image: MTIImage?) -> MTIImage? {
@@ -104,7 +117,7 @@ struct AnofilmFilter {
 
         let output = FilterGraph.makeImage { output in
             intermediateOutput => whiteBalance => gamma => haze =>
-            highlightsAndShadows => sepiaTone => tint => output
+            highlightsAndShadows => sepiaTone => tint => highlightShadowTint => output
         }
         
         

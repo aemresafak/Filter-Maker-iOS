@@ -12,4 +12,5 @@ enum EditType : String, CaseIterable, Identifiable {
         self
     }
     case brightness, contrast, saturation, exposure, vibrance, whiteBalance = "White Balance", gamma, haze, highlightsAndShadows = "Highlights and Shadows", sepiaTone = "Sepia Tone", tint
+    case highlightTint = "Highlight Tint", shadowTint = "Shadow Tint"
 }

@@ -138,7 +138,31 @@ class FilterEditViewModel: ObservableObject {
     func getTintIntensity() -> Float { filter.getTintIntensity() }
     func resetTintIntensity() { filter.resetTintIntensity() }
 
+    func setHighlightTintIntensity(_ value: Float) {
+        filter.setHighlightTintIntensity(value)
+        updateOutputImage()
+    }
+    func getHighlightTintIntensity() -> Float { filter.getHighlightTintIntensity() }
+    func resetHighlightTintIntenstity() { filter.resetHighlightTintIntensity() }
 
+    func setShadowTintIntensity(_ value: Float) {
+        filter.setShadowTintIntensity(value)
+        updateOutputImage()
+    }
+    func getShadowTintIntensity() -> Float { filter.getShadowTintIntensity() }
+    func resetShadowTintIntensity() { filter.resetShadowTintIntensity() }
+
+    func setHighlightTintColor(_ color: Color) {
+        filter.setHighlightTintColor(color)
+        updateOutputImage()
+    }
+    func getHighlightTintColor() -> Color { filter.getHighlightTintColor() }
+
+    func setShadowTintColor(_ color: Color) {
+        filter.setShadowTintColor(color)
+        updateOutputImage()
+    }
+    func getShadowTintColor() -> Color { filter.getShadowTintColor() }
 
 
 
