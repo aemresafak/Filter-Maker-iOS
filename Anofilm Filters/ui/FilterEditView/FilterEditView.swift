@@ -60,6 +60,8 @@ struct FilterEditView: View {
             editHighlightsAndShadowsView
         case .sepiaTone:
             editSepiaToneView
+        case .tint:
+            editTintView
         }
     }
 
@@ -82,12 +84,12 @@ struct FilterEditView: View {
 
     }
 
-   
 
 
 
 
-    
+
+
     private var editBrightnessView: some View {
         createEditViewWithSlider(
             editName: "Brightness",
@@ -95,7 +97,7 @@ struct FilterEditView: View {
             range: -1...1
         )
     }
-    
+
     private var editContrastView: some View {
         createEditViewWithSlider(
             editName: "Contrast",
@@ -103,7 +105,7 @@ struct FilterEditView: View {
             range: 0...2
         )
     }
-    
+
     private var editSaturationView: some View {
         createEditViewWithSlider(
             editName: "Saturation",
@@ -118,7 +120,7 @@ struct FilterEditView: View {
             range: -0.45...0.45
         )
     }
-    
+
     private var editVibranceView: some View {
         createEditViewWithSlider(
             editName: "Vibrance",
@@ -127,7 +129,7 @@ struct FilterEditView: View {
         )
     }
 
-    private var editGammaView : some View {
+    private var editGammaView: some View {
         createEditViewWithSlider(
             editName: "Gamma",
             value: Binding(get: { filterEditViewModel.getGamma() }, set: { filterEditViewModel.setGamma($0) }),
@@ -135,7 +137,7 @@ struct FilterEditView: View {
             resetValue: 1
         )
     }
-    
+
     private var editWhiteBalanceView: some View {
         VStack {
             createEditViewWithSlider(
@@ -150,7 +152,7 @@ struct FilterEditView: View {
             )
         }.padding()
     }
-    
+
     private var editHazeView: some View {
         VStack {
             createEditViewWithSlider(
@@ -165,7 +167,7 @@ struct FilterEditView: View {
             )
         }.padding()
     }
-    
+
     private var editHighlightsAndShadowsView: some View {
         VStack {
             createEditViewWithSlider(
@@ -182,16 +184,38 @@ struct FilterEditView: View {
             )
         }
     }
-    
+
     private var editSepiaToneView: some View {
         createEditViewWithSlider(
             editName: "Sepia Tone",
-            value: Binding(get: {filterEditViewModel.getSepiaTone()}, set: {filterEditViewModel.setSepiaTone($0)}),
+            value: Binding(get: { filterEditViewModel.getSepiaTone() }, set: { filterEditViewModel.setSepiaTone($0) }),
             range: 0...1,
             resetValue: 0
         )
     }
-    
+
+    private var editTintView: some View {
+        VStack {
+                ColorPicker(
+                    "Pick color",
+                    selection: Binding(get: { filterEditViewModel.getTintColor() }, set: { filterEditViewModel.setTintColor($0) })
+                )
+
+            
+            createEditViewWithSlider(
+                editName: "Tint Intensity",
+                value: Binding(get: { filterEditViewModel.getTintIntensity() }, set: { filterEditViewModel.setTintIntensity($0) }),
+                range: 0...1,
+                resetValue: 0
+            )
+
+
+
+
+
+        }.padding()
+    }
+
 
 
     private func createToolbarContent() -> some View {
@@ -234,6 +258,8 @@ struct FilterEditView: View {
     private func createImagePicker() -> some View {
         ImagePicker(uiImage: $imageChosen)
     }
+
+ 
 
 
 

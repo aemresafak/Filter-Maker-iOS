@@ -12,6 +12,7 @@
 		E42D3DF928C7AC190018C9FE /* MTICustomColorMatrixFilter.metal in Sources */ = {isa = PBXBuildFile; fileRef = E42D3DF828C7AC190018C9FE /* MTICustomColorMatrixFilter.metal */; };
 		E42D3DFB28C7ACE90018C9FE /* MTICustomColorMatrixFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42D3DFA28C7ACE90018C9FE /* MTICustomColorMatrixFilter.swift */; };
 		E42D3DFD28C7ADA30018C9FE /* MTISepiaToneFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42D3DFC28C7ADA30018C9FE /* MTISepiaToneFilter.swift */; };
+		E42D3E0028C7C5DD0018C9FE /* MTICustomColorFilterExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42D3DFF28C7C5DD0018C9FE /* MTICustomColorFilterExtensions.swift */; };
 		E49ED07528C6560F00C68007 /* Anofilm_FiltersApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49ED07428C6560F00C68007 /* Anofilm_FiltersApp.swift */; };
 		E49ED07728C6560F00C68007 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49ED07628C6560F00C68007 /* ContentView.swift */; };
 		E49ED07928C6562500C68007 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E49ED07828C6562500C68007 /* Assets.xcassets */; };
@@ -40,6 +41,7 @@
 		E42D3DF828C7AC190018C9FE /* MTICustomColorMatrixFilter.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = MTICustomColorMatrixFilter.metal; sourceTree = "<group>"; };
 		E42D3DFA28C7ACE90018C9FE /* MTICustomColorMatrixFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTICustomColorMatrixFilter.swift; sourceTree = "<group>"; };
 		E42D3DFC28C7ADA30018C9FE /* MTISepiaToneFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTISepiaToneFilter.swift; sourceTree = "<group>"; };
+		E42D3DFF28C7C5DD0018C9FE /* MTICustomColorFilterExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTICustomColorFilterExtensions.swift; sourceTree = "<group>"; };
 		E49ED07128C6560F00C68007 /* Anofilm Filters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Anofilm Filters.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E49ED07428C6560F00C68007 /* Anofilm_FiltersApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anofilm_FiltersApp.swift; sourceTree = "<group>"; };
 		E49ED07628C6560F00C68007 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -88,6 +90,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		E42D3DFE28C7C5CD0018C9FE /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E42D3DFF28C7C5DD0018C9FE /* MTICustomColorFilterExtensions.swift */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
 		E49ED06828C6560F00C68007 = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +119,7 @@
 		E49ED07328C6560F00C68007 /* Anofilm Filters */ = {
 			isa = PBXGroup;
 			children = (
+				E42D3DFE28C7C5CD0018C9FE /* extensions */,
 				E49ED08728C657E200C68007 /* data */,
 				E49ED08228C6576400C68007 /* ui */,
 				E49ED07428C6560F00C68007 /* Anofilm_FiltersApp.swift */,
@@ -321,6 +332,7 @@
 				E42D3DFB28C7ACE90018C9FE /* MTICustomColorMatrixFilter.swift in Sources */,
 				E42D3DF328C79EFE0018C9FE /* MTIHighlightsAndShadowsFilter.swift in Sources */,
 				E49ED0A828C76BED00C68007 /* MTIGammaFilter.metal in Sources */,
+				E42D3E0028C7C5DD0018C9FE /* MTICustomColorFilterExtensions.swift in Sources */,
 				E42D3DFD28C7ADA30018C9FE /* MTISepiaToneFilter.swift in Sources */,
 				E49ED08C28C6588300C68007 /* FilterEditView.swift in Sources */,
 			);

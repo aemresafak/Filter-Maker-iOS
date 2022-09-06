@@ -8,6 +8,7 @@
 import Foundation
 import MetalPetal
 import UIKit
+import SwiftUI
 
 
 class FilterEditViewModel: ObservableObject {
@@ -122,6 +123,20 @@ class FilterEditViewModel: ObservableObject {
     func getSepiaTone() -> Float { filter.getSepiaTone() }
     func resetSepiaTone() { filter.resetSepiaTone() }
 
+    func setTintColor(_ color: Color) {
+        filter.setTintColor(color)
+        updateOutputImage()
+    }
+    func getTintColor() -> Color { filter.getTintColor() }
+    func resetTintColor() { filter.resetTintColor() }
+
+    func setTintIntensity(_ value: Float) {
+        filter.setTintIntensity(value)
+        updateOutputImage()
+    }
+
+    func getTintIntensity() -> Float { filter.getTintIntensity() }
+    func resetTintIntensity() { filter.resetTintIntensity() }
 
 
 

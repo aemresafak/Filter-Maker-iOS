@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 import MetalPetal
 
 struct AnofilmFilter {
@@ -20,7 +21,7 @@ struct AnofilmFilter {
     private var haze = MTIHazeFilter()
     private var highlightsAndShadows = MTIHighlightsAndShadowsFilter()
     private var sepiaTone = MTISepiaToneFilter()
-
+    private var tint = MTICustomColorMatrixFilter(matrix: MTICustomColorMatrixFilter.noColorMatrix)
 
     /// value of brightness in range of -1 to 1 with 0 being default
     func setBrightness(_ value: Float) { brightness.brightness = value }
@@ -75,6 +76,14 @@ struct AnofilmFilter {
     func getSepiaTone() -> Float { sepiaTone.intensity }
     func resetSepiaTone() { sepiaTone.intensity = 0 }
     
+    func setTintColor(_ color: Color) { tint.matrix = MTICustomColorMatrixFilter.createMatrix(from: color) }
+    func getTintColor() -> Color { MTICustomColorMatrixFilter.createColor(from: tint.matrix) }
+    func resetTintColor() { tint.matrix = MTICustomColorMatrixFilter.noColorMatrix }
+    
+    func setTintIntensity(_ value: Float) { tint.intensity = value }
+    func getTintIntensity() -> Float { tint.intensity }
+    func resetTintIntensity() { tint.intensity = 0 }
+    
     
 
 
@@ -95,7 +104,7 @@ struct AnofilmFilter {
 
         let output = FilterGraph.makeImage { output in
             intermediateOutput => whiteBalance => gamma => haze =>
-            highlightsAndShadows => sepiaTone => output
+            highlightsAndShadows => sepiaTone => tint => output
         }
         
         
