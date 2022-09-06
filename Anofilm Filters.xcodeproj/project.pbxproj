@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E42D3DF128C79DF80018C9FE /* MTIHighlightsAndShadows.metal in Sources */ = {isa = PBXBuildFile; fileRef = E42D3DF028C79DF80018C9FE /* MTIHighlightsAndShadows.metal */; };
+		E42D3DF328C79EFE0018C9FE /* MTIHighlightsAndShadowsFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42D3DF228C79EFE0018C9FE /* MTIHighlightsAndShadowsFilter.swift */; };
 		E49ED07528C6560F00C68007 /* Anofilm_FiltersApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49ED07428C6560F00C68007 /* Anofilm_FiltersApp.swift */; };
 		E49ED07728C6560F00C68007 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49ED07628C6560F00C68007 /* ContentView.swift */; };
 		E49ED07928C6562500C68007 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E49ED07828C6562500C68007 /* Assets.xcassets */; };
@@ -30,6 +32,8 @@
 		18D5368CF37AEE06F0451A1F /* Pods-Anofilm Filters.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Anofilm Filters.release.xcconfig"; path = "Target Support Files/Pods-Anofilm Filters/Pods-Anofilm Filters.release.xcconfig"; sourceTree = "<group>"; };
 		57F1A861853C4533DC978AD9 /* Pods_Anofilm_Filters.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Anofilm_Filters.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F3B343EFBA4362D8EE2BA58 /* Pods-Anofilm Filters.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Anofilm Filters.debug.xcconfig"; path = "Target Support Files/Pods-Anofilm Filters/Pods-Anofilm Filters.debug.xcconfig"; sourceTree = "<group>"; };
+		E42D3DF028C79DF80018C9FE /* MTIHighlightsAndShadows.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = MTIHighlightsAndShadows.metal; sourceTree = "<group>"; };
+		E42D3DF228C79EFE0018C9FE /* MTIHighlightsAndShadowsFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTIHighlightsAndShadowsFilter.swift; sourceTree = "<group>"; };
 		E49ED07128C6560F00C68007 /* Anofilm Filters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Anofilm Filters.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E49ED07428C6560F00C68007 /* Anofilm_FiltersApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anofilm_FiltersApp.swift; sourceTree = "<group>"; };
 		E49ED07628C6560F00C68007 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -170,6 +174,8 @@
 				E49ED0A728C76BED00C68007 /* MTIGammaFilter.metal */,
 				E49ED0A928C76CBD00C68007 /* MTIGammaFilter.swift */,
 				E49ED0AD28C77A6300C68007 /* MTIHazeFilter.swift */,
+				E42D3DF028C79DF80018C9FE /* MTIHighlightsAndShadows.metal */,
+				E42D3DF228C79EFE0018C9FE /* MTIHighlightsAndShadowsFilter.swift */,
 				E49ED0AB28C7797800C68007 /* MTIHazeFilter.metal */,
 			);
 			path = customfilters;
@@ -291,6 +297,7 @@
 			files = (
 				E49ED09128C659E200C68007 /* EditType.swift in Sources */,
 				E49ED0A228C71D2C00C68007 /* MTIWhiteBalanceFilter.swift in Sources */,
+				E42D3DF128C79DF80018C9FE /* MTIHighlightsAndShadows.metal in Sources */,
 				E49ED0AA28C76CBD00C68007 /* MTIGammaFilter.swift in Sources */,
 				E49ED0AC28C7797800C68007 /* MTIHazeFilter.metal in Sources */,
 				E49ED0A028C71CDA00C68007 /* MTIWhiteBalanceFilter.metal in Sources */,
@@ -301,6 +308,7 @@
 				E49ED09328C65DA200C68007 /* FilterImageView.swift in Sources */,
 				E49ED08928C657EF00C68007 /* AnofilmFilter.swift in Sources */,
 				E49ED07528C6560F00C68007 /* Anofilm_FiltersApp.swift in Sources */,
+				E42D3DF328C79EFE0018C9FE /* MTIHighlightsAndShadowsFilter.swift in Sources */,
 				E49ED0A828C76BED00C68007 /* MTIGammaFilter.metal in Sources */,
 				E49ED08C28C6588300C68007 /* FilterEditView.swift in Sources */,
 			);
