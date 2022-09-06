@@ -200,19 +200,12 @@ struct FilterEditView: View {
                     "Pick color",
                     selection: Binding(get: { filterEditViewModel.getTintColor() }, set: { filterEditViewModel.setTintColor($0) })
                 )
-
-            
             createEditViewWithSlider(
                 editName: "Tint Intensity",
                 value: Binding(get: { filterEditViewModel.getTintIntensity() }, set: { filterEditViewModel.setTintIntensity($0) }),
                 range: 0...1,
                 resetValue: 0
             )
-
-
-
-
-
         }.padding()
     }
 
