@@ -8,7 +8,7 @@
 import Foundation
 import MetalPetal
 
-class MTIHighlightsAndShadows: MTIUnaryImageRenderingFilter {
+class MTIHighlightsAndShadowsFilter: MTIUnaryImageRenderingFilter {
     var highlights: Float = 1
     var shadows: Float = 0
     

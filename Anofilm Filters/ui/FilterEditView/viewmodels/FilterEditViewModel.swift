@@ -100,8 +100,20 @@ class FilterEditViewModel: ObservableObject {
     }
     func getHazeSlope() -> Float { filter.getHazeSlope() }
     func resetHazeSlope() { filter.resetHazeSlope() }
+    
+    func setHighlights(_ value: Float) {
+        filter.setHighlights(value)
+        updateOutputImage()
+    }
+    func getHighlights() -> Float { filter.getHighlights() }
+    func resetHighlights() { filter.resetHighlights() }
 
-
+    func setShadows(_ value: Float) {
+        filter.setShadows(value)
+        updateOutputImage()
+    }
+    func getShadows() -> Float { filter.getShadows() }
+    func resetShadows() { filter.resetShadows() }
 
 
 

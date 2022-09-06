@@ -41,46 +41,23 @@ struct FilterEditView: View {
     @ViewBuilder private var editContent: some View {
         switch filterEditViewModel.editType {
         case .brightness:
-            createEditViewWithSlider(
-                editName: "Brightness",
-                value: Binding(get: { filterEditViewModel.getBrightness() }, set: { filterEditViewModel.setBrightness($0) }),
-                range: -1...1
-            )
+            editBrightnessView
         case .contrast:
-            createEditViewWithSlider(
-                editName: "Contrast",
-                value: Binding(get: { filterEditViewModel.getContrast() }, set: { filterEditViewModel.setContrast($0) }),
-                range: 0...2
-            )
+            editContrastView
         case .saturation:
-            createEditViewWithSlider(
-                editName: "Saturation",
-                value: Binding(get: { filterEditViewModel.getSaturation() }, set: { filterEditViewModel.setSaturation($0) }),
-                range: 0...2
-            )
+            editSaturationView
         case .exposure:
-            createEditViewWithSlider(
-                editName: "Exposure",
-                value: Binding(get: { filterEditViewModel.getExposure() }, set: { filterEditViewModel.setExposure($0) }),
-                range: -0.45...0.45
-            )
+            editExposureView
         case .vibrance:
-            createEditViewWithSlider(
-                editName: "Vibrance",
-                value: Binding(get: { filterEditViewModel.getVibrance() }, set: { filterEditViewModel.setVibrance($0) }),
-                range: -1...1
-            )
+            editVibranceView
         case .whiteBalance:
             editWhiteBalanceView
         case .gamma:
-            createEditViewWithSlider(
-                editName: "Gamma",
-                value: Binding(get: { filterEditViewModel.getGamma() }, set: { filterEditViewModel.setGamma($0) }),
-                range: 0...3,
-                resetValue: 1
-            )
+            editGammaView
         case .haze:
             editHazeView
+        case .highlightsAndShadows:
+            editHighlightsAndShadowsView
         }
     }
 
@@ -102,56 +79,108 @@ struct FilterEditView: View {
         }.padding()
 
     }
+
+   
+
+
+
+
     
-    private var editHazeView : some View {
-        VStack {
-            HStack {
-                Text("Haze Distance: \(filterEditViewModel.getHazeDistance())")
-                Spacer()
-                Button {
-                    filterEditViewModel.resetHazeDistance()
-                } label: {
-                    Image(systemName: "arrow.uturn.backward")
-                }
-            }
-            Slider(value: Binding(get: { filterEditViewModel.getHazeDistance() }, set: { filterEditViewModel.setHazeDistance($0) }), in: -3...3)
-            HStack {
-                Text("Haze Slope: \(filterEditViewModel.getHazeSlope())")
-                Spacer()
-                Button {
-                    filterEditViewModel.resetHazeSlope()
-                } label: {
-                    Image(systemName: "arrow.uturn.backward")
-                }
-            }
-            Slider(value: Binding(get: { filterEditViewModel.getHazeSlope() }, set: { filterEditViewModel.setHazeSlope($0) }), in: -3...3)
-        }.padding()
+    private var editBrightnessView: some View {
+        createEditViewWithSlider(
+            editName: "Brightness",
+            value: Binding(get: { filterEditViewModel.getBrightness() }, set: { filterEditViewModel.setBrightness($0) }),
+            range: -1...1
+        )
+    }
+    
+    private var editContrastView: some View {
+        createEditViewWithSlider(
+            editName: "Contrast",
+            value: Binding(get: { filterEditViewModel.getContrast() }, set: { filterEditViewModel.setContrast($0) }),
+            range: 0...2
+        )
+    }
+    
+    private var editSaturationView: some View {
+        createEditViewWithSlider(
+            editName: "Saturation",
+            value: Binding(get: { filterEditViewModel.getSaturation() }, set: { filterEditViewModel.setSaturation($0) }),
+            range: 0...2
+        )
+    }
+    private var editExposureView: some View {
+        createEditViewWithSlider(
+            editName: "Exposure",
+            value: Binding(get: { filterEditViewModel.getExposure() }, set: { filterEditViewModel.setExposure($0) }),
+            range: -0.45...0.45
+        )
+    }
+    
+    private var editVibranceView: some View {
+        createEditViewWithSlider(
+            editName: "Vibrance",
+            value: Binding(get: { filterEditViewModel.getVibrance() }, set: { filterEditViewModel.setVibrance($0) }),
+            range: -1...1
+        )
+    }
+
+    private var editGammaView : some View {
+        createEditViewWithSlider(
+            editName: "Gamma",
+            value: Binding(get: { filterEditViewModel.getGamma() }, set: { filterEditViewModel.setGamma($0) }),
+            range: 0...3,
+            resetValue: 1
+        )
     }
     
     private var editWhiteBalanceView: some View {
         VStack {
-            HStack {
-                Text("Temperature: \(filterEditViewModel.getWhiteBalanceTemperature())")
-                Spacer()
-                Button {
-                    filterEditViewModel.resetWhiteBalanceTemperature()
-                } label: {
-                    Image(systemName: "arrow.uturn.backward")
-                }
-            }
-            Slider(value: Binding(get: { filterEditViewModel.getWhiteBalanceTemperature() }, set: { filterEditViewModel.setWhiteBalanceTemperature($0) }), in: -1...1)
-            HStack {
-                Text("Hue: \(filterEditViewModel.getWhiteBalanceHue())")
-                Spacer()
-                Button {
-                    filterEditViewModel.resetWhiteBalanceHue()
-                } label: {
-                    Image(systemName: "arrow.uturn.backward")
-                }
-            }
-            Slider(value: Binding(get: { filterEditViewModel.getWhiteBalanceHue() }, set: { filterEditViewModel.setWhiteBalanceHue($0) }), in: -1...1)
+            createEditViewWithSlider(
+                editName: "Temperature",
+                value: Binding(get: { filterEditViewModel.getWhiteBalanceTemperature() }, set: { filterEditViewModel.setWhiteBalanceTemperature($0) }),
+                range: -1...1
+            )
+            createEditViewWithSlider(
+                editName: "Hue",
+                value: Binding(get: { filterEditViewModel.getWhiteBalanceHue() }, set: { filterEditViewModel.setWhiteBalanceHue($0) }),
+                range: -1...1
+            )
         }.padding()
     }
+    
+    private var editHazeView: some View {
+        VStack {
+            createEditViewWithSlider(
+                editName: "Haze Distance",
+                value: Binding(get: { filterEditViewModel.getHazeDistance() }, set: { filterEditViewModel.setHazeDistance($0) }),
+                range: -3...3
+            )
+            createEditViewWithSlider(
+                editName: "Haze slope",
+                value: Binding(get: { filterEditViewModel.getHazeSlope() }, set: { filterEditViewModel.setHazeSlope($0) }),
+                range: -3...3
+            )
+        }.padding()
+    }
+    
+    private var editHighlightsAndShadowsView: some View {
+        VStack {
+            createEditViewWithSlider(
+                editName: "Highlights",
+                value: Binding(get: { filterEditViewModel.getHighlights() }, set: { filterEditViewModel.setHighlights($0) }),
+                range: 0...1,
+                resetValue: 1
+            )
+            createEditViewWithSlider(
+                editName: "Shadows",
+                value: Binding(get: { filterEditViewModel.getShadows() }, set: { filterEditViewModel.setShadows($0) }),
+                range: 0...1,
+                resetValue: 0
+            )
+        }
+    }
+    
 
 
     private func createToolbarContent() -> some View {

@@ -173,10 +173,10 @@
 				E49ED0A128C71D2C00C68007 /* MTIWhiteBalanceFilter.swift */,
 				E49ED0A728C76BED00C68007 /* MTIGammaFilter.metal */,
 				E49ED0A928C76CBD00C68007 /* MTIGammaFilter.swift */,
+				E49ED0AB28C7797800C68007 /* MTIHazeFilter.metal */,
 				E49ED0AD28C77A6300C68007 /* MTIHazeFilter.swift */,
 				E42D3DF028C79DF80018C9FE /* MTIHighlightsAndShadows.metal */,
 				E42D3DF228C79EFE0018C9FE /* MTIHighlightsAndShadowsFilter.swift */,
-				E49ED0AB28C7797800C68007 /* MTIHazeFilter.metal */,
 			);
 			path = customfilters;
 			sourceTree = "<group>";
