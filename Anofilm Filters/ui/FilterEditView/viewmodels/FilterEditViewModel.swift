@@ -29,7 +29,7 @@ class FilterEditViewModel: ObservableObject {
 
     func getBrightness() -> Float { filter.getBrightness() }
     func resetBrightness() { filter.resetBrightness() }
-    
+
     func setContrast(_ value: Float) {
         filter.setContrast(value)
         updateOutputImage()
@@ -37,7 +37,7 @@ class FilterEditViewModel: ObservableObject {
 
     func getContrast() -> Float { filter.getContrast() }
     func resetContrast() { filter.resetContrast() }
-    
+
     func setSaturation(_ value: Float) {
         filter.setSaturation(value)
         updateOutputImage()
@@ -45,7 +45,7 @@ class FilterEditViewModel: ObservableObject {
 
     func getSaturation() -> Float { filter.getSaturation() }
     func resetSaturation() { filter.resetSaturation() }
-    
+
     func setExposure(_ value: Float) {
         filter.setExposure(value)
         updateOutputImage()
@@ -53,7 +53,7 @@ class FilterEditViewModel: ObservableObject {
 
     func getExposure() -> Float { filter.getExposure() }
     func resetExposure() { filter.resetExposure() }
-    
+
     func setVibrance(_ value: Float) {
         filter.setVibrance(value)
         updateOutputImage()
@@ -61,7 +61,7 @@ class FilterEditViewModel: ObservableObject {
 
     func getVibrance() -> Float { filter.getVibrance() }
     func resetVibrance() { filter.resetVibrance() }
-    
+
     func setWhiteBalanceTemperature(_ value: Float) {
         filter.setWhiteBalanceTemperature(value)
         updateOutputImage()
@@ -69,7 +69,7 @@ class FilterEditViewModel: ObservableObject {
 
     func getWhiteBalanceTemperature() -> Float { filter.getWhiteBalanceTemperature() }
     func resetWhiteBalanceTemperature() { filter.resetWhiteBalanceTemperature() }
-    
+
     func setWhiteBalanceHue(_ value: Float) {
         filter.setWhiteBalanceHue(value)
         updateOutputImage()
@@ -77,8 +77,17 @@ class FilterEditViewModel: ObservableObject {
 
     func getWhiteBalanceHue() -> Float { filter.getWhiteBalanceHue() }
     func resetWhiteBalanceHue() { filter.resetWhiteBalanceHue() }
-    
-    
+
+    func setGamma(_ value: Float) {
+         filter.setGamma(value)
+         updateOutputImage()
+     }
+
+     func getGamma() -> Float { filter.getGamma() }
+     func resetGamma() { filter.resetGamma() }
+
+
+
 
 
 
@@ -87,9 +96,9 @@ class FilterEditViewModel: ObservableObject {
     private func updateOutputImage() {
         outputImage = filter.filterImage(image: originalImage)
     }
-    
+
     func changeOriginalImage(with image: UIImage?) {
-        if let image = image, let cgImage = image.cgImage{
+        if let image = image, let cgImage = image.cgImage {
             originalImage = MTIImage(cgImage: cgImage).unpremultiplyingAlpha()
             updateOutputImage()
         }

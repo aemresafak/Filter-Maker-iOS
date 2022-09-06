@@ -72,19 +72,27 @@ struct FilterEditView: View {
             )
         case .whiteBalance:
             editWhiteBalanceView
+        case .gamma:
+            createEditViewWithSlider(
+                editName: "Gamma",
+                value: Binding(get: { filterEditViewModel.getGamma() }, set: { filterEditViewModel.setGamma($0) }),
+                range: 0...3,
+                resetValue: 1
+            )
         }
     }
 
     private func createEditViewWithSlider(
         editName: String,
         value: Binding<Float>,
-        range: ClosedRange<Float>
+        range: ClosedRange<Float>,
+        resetValue: Float? = nil
     ) -> some View {
         VStack {
             HStack {
                 Text("\(editName): \(value.wrappedValue, specifier: "%.2f")")
                 Spacer()
-                Button(action: { value.wrappedValue = (range.lowerBound + range.upperBound) / 2 }) {
+                Button(action: { value.wrappedValue = resetValue == nil ? (range.lowerBound + range.upperBound) / 2 : resetValue! }) {
                     Image(systemName: "arrow.uturn.backward")
                 }
             }
