@@ -19,6 +19,7 @@ struct AnofilmFilter {
     private var gamma = MTIGammaFilter()
     private var haze = MTIHazeFilter()
     private var highlightsAndShadows = MTIHighlightsAndShadowsFilter()
+    private var sepiaTone = MTISepiaToneFilter()
 
 
     /// value of brightness in range of -1 to 1 with 0 being default
@@ -70,6 +71,10 @@ struct AnofilmFilter {
     func getShadows() -> Float { highlightsAndShadows.shadows }
     func resetShadows() { highlightsAndShadows.shadows = 0 }
     
+    func setSepiaTone(_ value: Float) { sepiaTone.intensity = value }
+    func getSepiaTone() -> Float { sepiaTone.intensity }
+    func resetSepiaTone() { sepiaTone.intensity = 0 }
+    
     
 
 
@@ -90,7 +95,7 @@ struct AnofilmFilter {
 
         let output = FilterGraph.makeImage { output in
             intermediateOutput => whiteBalance => gamma => haze =>
-            highlightsAndShadows => output
+            highlightsAndShadows => sepiaTone => output
         }
         
         

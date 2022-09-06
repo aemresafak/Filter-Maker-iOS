@@ -58,6 +58,8 @@ struct FilterEditView: View {
             editHazeView
         case .highlightsAndShadows:
             editHighlightsAndShadowsView
+        case .sepiaTone:
+            editSepiaToneView
         }
     }
 
@@ -179,6 +181,15 @@ struct FilterEditView: View {
                 resetValue: 0
             )
         }
+    }
+    
+    private var editSepiaToneView: some View {
+        createEditViewWithSlider(
+            editName: "Sepia Tone",
+            value: Binding(get: {filterEditViewModel.getSepiaTone()}, set: {filterEditViewModel.setSepiaTone($0)}),
+            range: 0...1,
+            resetValue: 0
+        )
     }
     
 
