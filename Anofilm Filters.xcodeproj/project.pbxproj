@@ -19,6 +19,8 @@
 		E49ED09328C65DA200C68007 /* FilterImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49ED09228C65DA200C68007 /* FilterImageView.swift */; };
 		E49ED0A028C71CDA00C68007 /* MTIWhiteBalanceFilter.metal in Sources */ = {isa = PBXBuildFile; fileRef = E49ED09F28C71CDA00C68007 /* MTIWhiteBalanceFilter.metal */; };
 		E49ED0A228C71D2C00C68007 /* MTIWhiteBalanceFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49ED0A128C71D2C00C68007 /* MTIWhiteBalanceFilter.swift */; };
+		E49ED0A828C76BED00C68007 /* MTIGammaFilter.metal in Sources */ = {isa = PBXBuildFile; fileRef = E49ED0A728C76BED00C68007 /* MTIGammaFilter.metal */; };
+		E49ED0AA28C76CBD00C68007 /* MTIGammaFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49ED0A928C76CBD00C68007 /* MTIGammaFilter.swift */; };
 		F03A8599F8D64D64830792C6 /* Pods_Anofilm_Filters.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57F1A861853C4533DC978AD9 /* Pods_Anofilm_Filters.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +41,8 @@
 		E49ED09228C65DA200C68007 /* FilterImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterImageView.swift; sourceTree = "<group>"; };
 		E49ED09F28C71CDA00C68007 /* MTIWhiteBalanceFilter.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = MTIWhiteBalanceFilter.metal; sourceTree = "<group>"; };
 		E49ED0A128C71D2C00C68007 /* MTIWhiteBalanceFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTIWhiteBalanceFilter.swift; sourceTree = "<group>"; };
+		E49ED0A728C76BED00C68007 /* MTIGammaFilter.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = MTIGammaFilter.metal; sourceTree = "<group>"; };
+		E49ED0A928C76CBD00C68007 /* MTIGammaFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTIGammaFilter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +163,8 @@
 			children = (
 				E49ED09F28C71CDA00C68007 /* MTIWhiteBalanceFilter.metal */,
 				E49ED0A128C71D2C00C68007 /* MTIWhiteBalanceFilter.swift */,
+				E49ED0A728C76BED00C68007 /* MTIGammaFilter.metal */,
+				E49ED0A928C76CBD00C68007 /* MTIGammaFilter.swift */,
 			);
 			path = customfilters;
 			sourceTree = "<group>";
@@ -279,6 +285,7 @@
 			files = (
 				E49ED09128C659E200C68007 /* EditType.swift in Sources */,
 				E49ED0A228C71D2C00C68007 /* MTIWhiteBalanceFilter.swift in Sources */,
+				E49ED0AA28C76CBD00C68007 /* MTIGammaFilter.swift in Sources */,
 				E49ED0A028C71CDA00C68007 /* MTIWhiteBalanceFilter.metal in Sources */,
 				E49ED08F28C6589A00C68007 /* FilterEditViewModel.swift in Sources */,
 				E49ED08428C6577C00C68007 /* ImagePicker.swift in Sources */,
@@ -286,6 +293,7 @@
 				E49ED09328C65DA200C68007 /* FilterImageView.swift in Sources */,
 				E49ED08928C657EF00C68007 /* AnofilmFilter.swift in Sources */,
 				E49ED07528C6560F00C68007 /* Anofilm_FiltersApp.swift in Sources */,
+				E49ED0A828C76BED00C68007 /* MTIGammaFilter.metal in Sources */,
 				E49ED08C28C6588300C68007 /* FilterEditView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
