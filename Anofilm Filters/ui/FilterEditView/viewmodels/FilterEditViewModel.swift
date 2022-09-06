@@ -79,12 +79,27 @@ class FilterEditViewModel: ObservableObject {
     func resetWhiteBalanceHue() { filter.resetWhiteBalanceHue() }
 
     func setGamma(_ value: Float) {
-         filter.setGamma(value)
-         updateOutputImage()
-     }
+        filter.setGamma(value)
+        updateOutputImage()
+    }
 
-     func getGamma() -> Float { filter.getGamma() }
-     func resetGamma() { filter.resetGamma() }
+    func getGamma() -> Float { filter.getGamma() }
+    func resetGamma() { filter.resetGamma() }
+
+    func setHazeDistance(_ value: Float) {
+        filter.setHazeDistance(value)
+        updateOutputImage()
+    }
+
+    func getHazeDistance() -> Float { filter.getHazeDistance() }
+    func resetHazeDistance() { filter.resetHazeDistance() }
+
+    func setHazeSlope(_ value: Float) {
+        filter.setHazeSlope(value)
+        updateOutputImage()
+    }
+    func getHazeSlope() -> Float { filter.getHazeSlope() }
+    func resetHazeSlope() { filter.resetHazeSlope() }
 
 
 

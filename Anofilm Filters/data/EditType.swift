@@ -11,5 +11,5 @@ enum EditType : String, CaseIterable, Identifiable {
     var id : Self {
         self
     }
-    case brightness, contrast, saturation, exposure, vibrance, whiteBalance, gamma
+    case brightness, contrast, saturation, exposure, vibrance, whiteBalance, gamma, haze
 }

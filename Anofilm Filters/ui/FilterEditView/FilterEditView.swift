@@ -79,6 +79,8 @@ struct FilterEditView: View {
                 range: 0...3,
                 resetValue: 1
             )
+        case .haze:
+            editHazeView
         }
     }
 
@@ -100,7 +102,32 @@ struct FilterEditView: View {
         }.padding()
 
     }
-
+    
+    private var editHazeView : some View {
+        VStack {
+            HStack {
+                Text("Haze Distance: \(filterEditViewModel.getHazeDistance())")
+                Spacer()
+                Button {
+                    filterEditViewModel.resetHazeDistance()
+                } label: {
+                    Image(systemName: "arrow.uturn.backward")
+                }
+            }
+            Slider(value: Binding(get: { filterEditViewModel.getHazeDistance() }, set: { filterEditViewModel.setHazeDistance($0) }), in: -3...3)
+            HStack {
+                Text("Haze Slope: \(filterEditViewModel.getHazeSlope())")
+                Spacer()
+                Button {
+                    filterEditViewModel.resetHazeSlope()
+                } label: {
+                    Image(systemName: "arrow.uturn.backward")
+                }
+            }
+            Slider(value: Binding(get: { filterEditViewModel.getHazeSlope() }, set: { filterEditViewModel.setHazeSlope($0) }), in: -3...3)
+        }.padding()
+    }
+    
     private var editWhiteBalanceView: some View {
         VStack {
             HStack {

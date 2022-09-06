@@ -17,6 +17,7 @@ struct AnofilmFilter {
     private var vibrance = MTIVibranceFilter()
     private var whiteBalance = MTIWhiteBalanceFilter()
     private var gamma = MTIGammaFilter()
+    private var haze = MTIHazeFilter()
 
 
     /// value of brightness in range of -1 to 1 with 0 being default
@@ -51,6 +52,16 @@ struct AnofilmFilter {
     func setGamma(_ value: Float) { gamma.gamma = value }
     func getGamma() -> Float { gamma.gamma }
     func resetGamma() { gamma.gamma = 1.0 }
+    
+    func setHazeSlope(_ value: Float) { haze.slope = value }
+    func getHazeSlope() -> Float { haze.slope }
+    func resetHazeSlope() { haze.slope = 0 }
+    
+    func setHazeDistance(_ value: Float) { haze.hazeDistance = value }
+    func getHazeDistance() -> Float { haze.hazeDistance }
+    func resetHazeDistance() { haze.hazeDistance = 0 }
+    
+    
 
 
     /// returns filtered version of image
@@ -59,10 +70,20 @@ struct AnofilmFilter {
             return nil
         }
 
-        let output = FilterGraph.makeImage(builder: { output in
-            image => brightness => contrast => saturation =>
-            exposure => vibrance => whiteBalance => gamma => output
+        let intermediateOutput = FilterGraph.makeImage(builder: { output in
+            image => brightness => contrast =>
+            saturation => exposure => vibrance => output
         })
+        
+        guard let intermediateOutput = intermediateOutput else {
+            return nil
+        }
+
+        let output = FilterGraph.makeImage { output in
+            intermediateOutput => whiteBalance => gamma => haze => output
+        }
+        
+        
         return output
     }
 }
