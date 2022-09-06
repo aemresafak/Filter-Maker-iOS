@@ -21,7 +21,7 @@ struct FilterEditView: View {
                 FilterImageView(imageToDisplay: $filterEditViewModel.outputImage)
                 editContent.frame(
                     width: geometry.size.width,
-                    height: geometry.size.height * 0.2,
+                    height: geometry.size.height * 0.3,
                     alignment: .center
                 )
             }
@@ -31,8 +31,8 @@ struct FilterEditView: View {
             .sheet(isPresented: $showFiltersSheet, onDismiss: nil, content: createFiltersList)
             .sheet(isPresented: $showImagePickerSheet, onDismiss: nil, content: createImagePicker)
             .onChange(of: imageChosen, perform: {
-                filterEditViewModel.changeOriginalImage(with: $0)
-            })
+            filterEditViewModel.changeOriginalImage(with: $0)
+        })
 
     }
 
@@ -70,6 +70,8 @@ struct FilterEditView: View {
                 value: Binding(get: { filterEditViewModel.getVibrance() }, set: { filterEditViewModel.setVibrance($0) }),
                 range: -1...1
             )
+        case .whiteBalance:
+            editWhiteBalanceView
         }
     }
 
@@ -89,6 +91,31 @@ struct FilterEditView: View {
             Slider(value: value, in: range)
         }.padding()
 
+    }
+
+    private var editWhiteBalanceView: some View {
+        VStack {
+            HStack {
+                Text("Temperature: \(filterEditViewModel.getWhiteBalanceTemperature())")
+                Spacer()
+                Button {
+                    filterEditViewModel.resetWhiteBalanceTemperature()
+                } label: {
+                    Image(systemName: "arrow.uturn.backward")
+                }
+            }
+            Slider(value: Binding(get: { filterEditViewModel.getWhiteBalanceTemperature() }, set: { filterEditViewModel.setWhiteBalanceTemperature($0) }), in: -1...1)
+            HStack {
+                Text("Hue: \(filterEditViewModel.getWhiteBalanceHue())")
+                Spacer()
+                Button {
+                    filterEditViewModel.resetWhiteBalanceHue()
+                } label: {
+                    Image(systemName: "arrow.uturn.backward")
+                }
+            }
+            Slider(value: Binding(get: { filterEditViewModel.getWhiteBalanceHue() }, set: { filterEditViewModel.setWhiteBalanceHue($0) }), in: -1...1)
+        }.padding()
     }
 
 
@@ -123,11 +150,12 @@ struct FilterEditView: View {
                     Text(editType.rawValue.capitalized)
                 }
             }
-            .pickerStyle(.wheel)
+                .pickerStyle(.wheel)
                 .padding()
             Spacer()
         }
     }
+
     private func createImagePicker() -> some View {
         ImagePicker(uiImage: $imageChosen)
     }

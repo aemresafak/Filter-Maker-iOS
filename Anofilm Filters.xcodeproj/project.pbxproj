@@ -17,6 +17,8 @@
 		E49ED08F28C6589A00C68007 /* FilterEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49ED08E28C6589A00C68007 /* FilterEditViewModel.swift */; };
 		E49ED09128C659E200C68007 /* EditType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49ED09028C659E200C68007 /* EditType.swift */; };
 		E49ED09328C65DA200C68007 /* FilterImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49ED09228C65DA200C68007 /* FilterImageView.swift */; };
+		E49ED0A028C71CDA00C68007 /* MTIWhiteBalanceFilter.metal in Sources */ = {isa = PBXBuildFile; fileRef = E49ED09F28C71CDA00C68007 /* MTIWhiteBalanceFilter.metal */; };
+		E49ED0A228C71D2C00C68007 /* MTIWhiteBalanceFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49ED0A128C71D2C00C68007 /* MTIWhiteBalanceFilter.swift */; };
 		F03A8599F8D64D64830792C6 /* Pods_Anofilm_Filters.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57F1A861853C4533DC978AD9 /* Pods_Anofilm_Filters.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +37,8 @@
 		E49ED08E28C6589A00C68007 /* FilterEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterEditViewModel.swift; sourceTree = "<group>"; };
 		E49ED09028C659E200C68007 /* EditType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditType.swift; sourceTree = "<group>"; };
 		E49ED09228C65DA200C68007 /* FilterImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterImageView.swift; sourceTree = "<group>"; };
+		E49ED09F28C71CDA00C68007 /* MTIWhiteBalanceFilter.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = MTIWhiteBalanceFilter.metal; sourceTree = "<group>"; };
+		E49ED0A128C71D2C00C68007 /* MTIWhiteBalanceFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTIWhiteBalanceFilter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +129,7 @@
 		E49ED08728C657E200C68007 /* data */ = {
 			isa = PBXGroup;
 			children = (
+				E49ED09E28C71CA700C68007 /* customfilters */,
 				E49ED08828C657EF00C68007 /* AnofilmFilter.swift */,
 				E49ED09028C659E200C68007 /* EditType.swift */,
 			);
@@ -147,6 +152,15 @@
 				E49ED08E28C6589A00C68007 /* FilterEditViewModel.swift */,
 			);
 			path = viewmodels;
+			sourceTree = "<group>";
+		};
+		E49ED09E28C71CA700C68007 /* customfilters */ = {
+			isa = PBXGroup;
+			children = (
+				E49ED09F28C71CDA00C68007 /* MTIWhiteBalanceFilter.metal */,
+				E49ED0A128C71D2C00C68007 /* MTIWhiteBalanceFilter.swift */,
+			);
+			path = customfilters;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,6 +278,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E49ED09128C659E200C68007 /* EditType.swift in Sources */,
+				E49ED0A228C71D2C00C68007 /* MTIWhiteBalanceFilter.swift in Sources */,
+				E49ED0A028C71CDA00C68007 /* MTIWhiteBalanceFilter.metal in Sources */,
 				E49ED08F28C6589A00C68007 /* FilterEditViewModel.swift in Sources */,
 				E49ED08428C6577C00C68007 /* ImagePicker.swift in Sources */,
 				E49ED07728C6560F00C68007 /* ContentView.swift in Sources */,
@@ -415,6 +431,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				MTL_HEADER_SEARCH_PATHS = "${PODS_CONFIGURATION_BUILD_DIR}/MetalPetal/MetalPetal.framework/Headers";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.anofilm.filters.Anofilm-Filters";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -445,6 +462,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				MTL_HEADER_SEARCH_PATHS = "${PODS_CONFIGURATION_BUILD_DIR}/MetalPetal/MetalPetal.framework/Headers";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.anofilm.filters.Anofilm-Filters";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

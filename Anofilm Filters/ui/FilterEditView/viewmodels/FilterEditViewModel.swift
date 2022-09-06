@@ -61,6 +61,26 @@ class FilterEditViewModel: ObservableObject {
 
     func getVibrance() -> Float { filter.getVibrance() }
     func resetVibrance() { filter.resetVibrance() }
+    
+    func setWhiteBalanceTemperature(_ value: Float) {
+        filter.setWhiteBalanceTemperature(value)
+        updateOutputImage()
+    }
+
+    func getWhiteBalanceTemperature() -> Float { filter.getWhiteBalanceTemperature() }
+    func resetWhiteBalanceTemperature() { filter.resetWhiteBalanceTemperature() }
+    
+    func setWhiteBalanceHue(_ value: Float) {
+        filter.setWhiteBalanceHue(value)
+        updateOutputImage()
+    }
+
+    func getWhiteBalanceHue() -> Float { filter.getWhiteBalanceHue() }
+    func resetWhiteBalanceHue() { filter.resetWhiteBalanceHue() }
+    
+    
+
+
 
 
 
