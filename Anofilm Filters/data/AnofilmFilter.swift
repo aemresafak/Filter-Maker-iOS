@@ -23,6 +23,7 @@ struct AnofilmFilter {
     private var sepiaTone = MTISepiaToneFilter()
     private var tint = MTICustomColorMatrixFilter(matrix: MTICustomColorMatrixFilter.noColorMatrix)
     private var highlightShadowTint = MTIHighlightShadowTintFilter()
+    private var vignette = MTIVignetteFilter()
 
     /// value of brightness in range of -1 to 1 with 0 being default
     func setBrightness(_ value: Float) { brightness.brightness = value }
@@ -99,7 +100,26 @@ struct AnofilmFilter {
     
     func setShadowTintColor(_ color: Color) { highlightShadowTint.shadowTintColor = color.createFloat3() }
     func getShadowTintColor() -> Color { Color.createFrom(vector: highlightShadowTint.shadowTintColor) }
-
+    
+    func setVignetteCenterX(_ value: Float) { vignette.vignetteCenter.x = value }
+    func getVignetteCenterX() -> Float { vignette.vignetteCenter.x }
+    func resetVignetteCenterX() { vignette.vignetteCenter.x = 0.5}
+    
+    func setVignetteCenterY(_ value: Float) { vignette.vignetteCenter.y = value }
+    func getVignetteCenterY() -> Float { vignette.vignetteCenter.y }
+    func resetVignetteCenterY() { vignette.vignetteCenter.y = 0.5}
+    
+    func setVignetteColor(_ color: Color) { vignette.vignetteColor = color.createFloat3() }
+    func getVignetteColor() -> Color { Color.createFrom(vector: vignette.vignetteColor) }
+    
+    func setVignetteStart(_ value: Float) { vignette.vignetteStart = value }
+    func getVignetteStart() -> Float { vignette.vignetteStart }
+    func resetVignetteStart() { vignette.vignetteStart = 0.5 }
+    
+    func setVignetteEnd(_ value: Float) { vignette.vignetteEnd = value }
+    func getVignetteEnd() -> Float { vignette.vignetteEnd }
+    func resetVignetteEnd() { vignette.vignetteEnd = 0.75 }
+    
     /// returns filtered version of image
     func filterImage(image: MTIImage?) -> MTIImage? {
         guard let image = image else {
@@ -107,7 +127,7 @@ struct AnofilmFilter {
         }
 
         let intermediateOutput = FilterGraph.makeImage(builder: { output in
-            image => brightness => contrast =>
+            image => brightness => contrast => vignette =>
             saturation => exposure => vibrance => output
         })
         

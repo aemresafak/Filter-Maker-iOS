@@ -164,6 +164,40 @@ class FilterEditViewModel: ObservableObject {
     }
     func getShadowTintColor() -> Color { filter.getShadowTintColor() }
 
+    func setVignetteCenterX(_ value: Float) {
+        filter.setVignetteCenterX(value)
+        updateOutputImage()
+    }
+    func getVignetteCenterX() -> Float { filter.getVignetteCenterX() }
+    func resetVignetteCenterX() { filter.resetVignetteCenterX() }
+
+
+    func setVignetteCenterY(_ value: Float) {
+        filter.setVignetteCenterY(value)
+        updateOutputImage()
+    }
+    func getVignetteCenterY() -> Float { filter.getVignetteCenterY() }
+    func resetVignetteCenterY() { filter.resetVignetteCenterY() }
+
+    func setVignetteColor(_ color: Color) {
+        filter.setVignetteColor(color)
+        updateOutputImage()
+    }
+    func getVignetteColor() -> Color { filter.getVignetteColor() }
+
+    func setVignetteStart(_ value: Float) {
+        filter.setVignetteStart(value)
+        updateOutputImage()
+    }
+    func getVignetteStart() -> Float { filter.getVignetteStart() }
+    func resetVignetteStart() { filter.resetVignetteStart() }
+
+    func setVignetteEnd(_ value: Float) {
+        filter.setVignetteEnd(value)
+        updateOutputImage()
+    }
+    func getVignetteEnd() -> Float { filter.getVignetteEnd() }
+    func resetVignetteEnd() { filter.resetVignetteEnd() }
 
 
     private func updateOutputImage() {

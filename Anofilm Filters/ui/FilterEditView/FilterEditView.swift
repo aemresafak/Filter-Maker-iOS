@@ -66,6 +66,8 @@ struct FilterEditView: View {
             editHighlightTintView
         case .shadowTint:
             editShadowTintView
+        case .vignette:
+            editVignetteView
         }
     }
 
@@ -200,10 +202,10 @@ struct FilterEditView: View {
 
     private var editTintView: some View {
         VStack {
-                ColorPicker(
-                    "Pick color for Tint",
-                    selection: Binding(get: { filterEditViewModel.getTintColor() }, set: { filterEditViewModel.setTintColor($0) })
-                )
+            ColorPicker(
+                "Pick color for Tint",
+                selection: Binding(get: { filterEditViewModel.getTintColor() }, set: { filterEditViewModel.setTintColor($0) })
+            )
             createEditViewWithSlider(
                 editName: "Tint Intensity",
                 value: Binding(get: { filterEditViewModel.getTintIntensity() }, set: { filterEditViewModel.setTintIntensity($0) }),
@@ -212,13 +214,13 @@ struct FilterEditView: View {
             )
         }.padding()
     }
-    
+
     private var editHighlightTintView: some View {
         VStack {
-                ColorPicker(
-                    "Pick color for Highlight Tint",
-                    selection: Binding(get: { filterEditViewModel.getHighlightTintColor() }, set: { filterEditViewModel.setHighlightTintColor($0) })
-                )
+            ColorPicker(
+                "Pick color for Highlight Tint",
+                selection: Binding(get: { filterEditViewModel.getHighlightTintColor() }, set: { filterEditViewModel.setHighlightTintColor($0) })
+            )
             createEditViewWithSlider(
                 editName: "Highlight Tint Intensity",
                 value: Binding(get: { filterEditViewModel.getHighlightTintIntensity() }, set: { filterEditViewModel.setHighlightTintIntensity($0) }),
@@ -227,13 +229,13 @@ struct FilterEditView: View {
             )
         }.padding()
     }
-    
+
     private var editShadowTintView: some View {
         VStack {
-                ColorPicker(
-                    "Pick color for Shadow Tint",
-                    selection: Binding(get: { filterEditViewModel.getShadowTintColor() }, set: { filterEditViewModel.setShadowTintColor($0) })
-                )
+            ColorPicker(
+                "Pick color for Shadow Tint",
+                selection: Binding(get: { filterEditViewModel.getShadowTintColor() }, set: { filterEditViewModel.setShadowTintColor($0) })
+            )
             createEditViewWithSlider(
                 editName: "Shadow Tint Intensity",
                 value: Binding(get: { filterEditViewModel.getShadowTintIntensity() }, set: { filterEditViewModel.setShadowTintIntensity($0) }),
@@ -244,6 +246,39 @@ struct FilterEditView: View {
     }
 
 
+    private var editVignetteView: some View {
+        ScrollView {
+            createEditViewWithSlider(
+                editName: "Vignette Center X",
+                value: Binding(get: { filterEditViewModel.getVignetteCenterX() }, set: { filterEditViewModel.setVignetteCenterX($0) }),
+                range: 0...1,
+                resetValue: 0.5
+            )
+            createEditViewWithSlider(
+                editName: "Vignette Center Y",
+                value: Binding(get: { filterEditViewModel.getVignetteCenterY() }, set: { filterEditViewModel.setVignetteCenterY($0) }),
+                range: 0...1,
+                resetValue: 0.5
+            )
+            createEditViewWithSlider(
+                editName: "Vignette Start",
+                value: Binding(get: { filterEditViewModel.getVignetteStart() }, set: { filterEditViewModel.setVignetteStart($0) }),
+                range: 0...1,
+                resetValue: 0.5
+            )
+            createEditViewWithSlider(
+                editName: "Vignette End",
+                value: Binding(get: { filterEditViewModel.getVignetteEnd() }, set: { filterEditViewModel.setVignetteEnd($0) }),
+                range: 0...1,
+                resetValue: 0.75
+            )
+            ColorPicker(
+                "Pick Vignette Color",
+                selection: Binding(get: { filterEditViewModel.getVignetteColor() }, set: { filterEditViewModel.setVignetteColor($0) })
+            )
+
+        }.padding()
+    }
 
     private func createToolbarContent() -> some View {
         HStack {
@@ -286,7 +321,7 @@ struct FilterEditView: View {
         ImagePicker(uiImage: $imageChosen)
     }
 
- 
+
 
 
 
