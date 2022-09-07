@@ -9,13 +9,14 @@ import Foundation
 import SwiftUI
 import MetalPetal
 
-struct AnofilmFilter {
+struct AnofilmFilter: Codable {
+    
     var name: String
-    private var brightness = MTIBrightnessFilter()
-    private var contrast = MTIContrastFilter()
-    private var saturation = MTISaturationFilter()
-    private var exposure = MTIExposureFilter()
-    private var vibrance = MTIVibranceFilter()
+    private var brightness = MTIDecodableBrightnessFilter()
+    private var contrast = MTIDecodableContrastFilter()
+    private var saturation = MTIDecodableSaturationFilter()
+    private var exposure = MTIDecodableExposureFilter()
+    private var vibrance = MTICodableVibranceFilter()
     private var whiteBalance = MTIWhiteBalanceFilter()
     private var gamma = MTIGammaFilter()
     private var haze = MTIHazeFilter()
@@ -30,25 +31,25 @@ struct AnofilmFilter {
     }
 
     /// value of brightness in range of -1 to 1 with 0 being default
-    func setBrightness(_ value: Float) { brightness.brightness = value }
-    func getBrightness() -> Float { brightness.brightness }
-    func resetBrightness() { brightness.brightness = 0 }
+    func setBrightness(_ value: Float) { brightness.filter.brightness = value }
+    func getBrightness() -> Float { brightness.filter.brightness }
+    func resetBrightness() { brightness.filter.brightness = 0 }
 
-    func setContrast(_ value: Float) { contrast.contrast = value }
-    func getContrast() -> Float { contrast.contrast }
-    func resetContrast() { contrast.contrast = 0 }
+    func setContrast(_ value: Float) { contrast.filter.contrast = value }
+    func getContrast() -> Float { contrast.filter.contrast }
+    func resetContrast() { contrast.filter.contrast = 0 }
 
-    func setSaturation(_ value: Float) { saturation.saturation = value }
-    func getSaturation() -> Float { saturation.saturation }
-    func resetSaturation() { saturation.saturation = 0 }
+    func setSaturation(_ value: Float) { saturation.filter.saturation = value }
+    func getSaturation() -> Float { saturation.filter.saturation }
+    func resetSaturation() { saturation.filter.saturation = 0 }
 
-    func setExposure(_ value: Float) { exposure.exposure = value }
-    func getExposure() -> Float { exposure.exposure }
-    func resetExposure() { exposure.exposure = 0 }
+    func setExposure(_ value: Float) { exposure.filter.exposure = value }
+    func getExposure() -> Float { exposure.filter.exposure }
+    func resetExposure() { exposure.filter.exposure = 0 }
 
-    func setVibrance(_ value: Float) { vibrance.amount = value }
-    func getVibrance() -> Float { vibrance.amount }
-    func resetVibrance() { vibrance.amount = 0 }
+    func setVibrance(_ value: Float) { vibrance.filter.amount = value }
+    func getVibrance() -> Float { vibrance.filter.amount }
+    func resetVibrance() { vibrance.filter.amount = 0 }
 
     func setWhiteBalanceTemperature(_ value: Float) { whiteBalance.temperature = value }
     func getWhiteBalanceTemperature() -> Float { whiteBalance.temperature }
@@ -123,6 +124,7 @@ struct AnofilmFilter {
     func setVignetteEnd(_ value: Float) { vignette.vignetteEnd = value }
     func getVignetteEnd() -> Float { vignette.vignetteEnd }
     func resetVignetteEnd() { vignette.vignetteEnd = 1 }
+    
     
     /// returns filtered version of image
     func filterImage(image: MTIImage?) -> MTIImage? {

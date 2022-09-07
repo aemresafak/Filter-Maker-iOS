@@ -14,6 +14,9 @@ struct FiltersView: View {
         filtersView
             .toolbar(content: createToolbar)
             .navigationTitle("Filters")
+            .onDisappear {
+                print("i disappeared")
+            }
 
     }
 

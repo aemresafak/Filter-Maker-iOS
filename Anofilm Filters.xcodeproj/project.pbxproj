@@ -39,6 +39,12 @@
 		E49ED0AC28C7797800C68007 /* MTIHazeFilter.metal in Sources */ = {isa = PBXBuildFile; fileRef = E49ED0AB28C7797800C68007 /* MTIHazeFilter.metal */; };
 		E49ED0AE28C77A6300C68007 /* MTIHazeFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49ED0AD28C77A6300C68007 /* MTIHazeFilter.swift */; };
 		E4ACE3F028C8EF710069E17C /* ColorError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4ACE3EF28C8EF710069E17C /* ColorError.swift */; };
+		E4ACE3F628C8F8D40069E17C /* SIMDExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4ACE3F528C8F8D40069E17C /* SIMDExtensions.swift */; };
+		E4ACE3F828C8FBA20069E17C /* MTIDecodableBrightnessFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4ACE3F728C8FBA20069E17C /* MTIDecodableBrightnessFilter.swift */; };
+		E4ACE3FA28C8FDA60069E17C /* MTIDecodableContrastFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4ACE3F928C8FDA60069E17C /* MTIDecodableContrastFilter.swift */; };
+		E4ACE3FC28C8FDD60069E17C /* MTIDecodableSaturationFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4ACE3FB28C8FDD60069E17C /* MTIDecodableSaturationFilter.swift */; };
+		E4ACE3FE28C8FE330069E17C /* MTIDecodableExposureFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4ACE3FD28C8FE330069E17C /* MTIDecodableExposureFilter.swift */; };
+		E4ACE40028C8FE720069E17C /* MTICodableVibranceFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4ACE3FF28C8FE720069E17C /* MTICodableVibranceFilter.swift */; };
 		F03A8599F8D64D64830792C6 /* Pods_Anofilm_Filters.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57F1A861853C4533DC978AD9 /* Pods_Anofilm_Filters.framework */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +85,12 @@
 		E49ED0AB28C7797800C68007 /* MTIHazeFilter.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = MTIHazeFilter.metal; sourceTree = "<group>"; };
 		E49ED0AD28C77A6300C68007 /* MTIHazeFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTIHazeFilter.swift; sourceTree = "<group>"; };
 		E4ACE3EF28C8EF710069E17C /* ColorError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorError.swift; sourceTree = "<group>"; };
+		E4ACE3F528C8F8D40069E17C /* SIMDExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIMDExtensions.swift; sourceTree = "<group>"; };
+		E4ACE3F728C8FBA20069E17C /* MTIDecodableBrightnessFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTIDecodableBrightnessFilter.swift; sourceTree = "<group>"; };
+		E4ACE3F928C8FDA60069E17C /* MTIDecodableContrastFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTIDecodableContrastFilter.swift; sourceTree = "<group>"; };
+		E4ACE3FB28C8FDD60069E17C /* MTIDecodableSaturationFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTIDecodableSaturationFilter.swift; sourceTree = "<group>"; };
+		E4ACE3FD28C8FE330069E17C /* MTIDecodableExposureFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTIDecodableExposureFilter.swift; sourceTree = "<group>"; };
+		E4ACE3FF28C8FE720069E17C /* MTICodableVibranceFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTICodableVibranceFilter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +128,7 @@
 				E42D3DFF28C7C5DD0018C9FE /* MTICustomColorFilterExtensions.swift */,
 				E42D3E0928C7D51E0018C9FE /* ColorExtensions.swift */,
 				E48CFFD828C872D3004EB25C /* AnofilmFilterExtensions.swift */,
+				E4ACE3F528C8F8D40069E17C /* SIMDExtensions.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -243,6 +256,11 @@
 				E42D3E0728C7D36A0018C9FE /* MTIHighlightShadowTintFilter.swift */,
 				E42D3E0B28C7DA8A0018C9FE /* MTIVignetteFilter.metal */,
 				E42D3E0D28C7DB3F0018C9FE /* MTIVignetteFilter.swift */,
+				E4ACE3F728C8FBA20069E17C /* MTIDecodableBrightnessFilter.swift */,
+				E4ACE3F928C8FDA60069E17C /* MTIDecodableContrastFilter.swift */,
+				E4ACE3FB28C8FDD60069E17C /* MTIDecodableSaturationFilter.swift */,
+				E4ACE3FD28C8FE330069E17C /* MTIDecodableExposureFilter.swift */,
+				E4ACE3FF28C8FE720069E17C /* MTICodableVibranceFilter.swift */,
 			);
 			path = customfilters;
 			sourceTree = "<group>";
@@ -370,15 +388,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				E48CFFD928C872D3004EB25C /* AnofilmFilterExtensions.swift in Sources */,
+				E4ACE3FA28C8FDA60069E17C /* MTIDecodableContrastFilter.swift in Sources */,
 				E49ED09128C659E200C68007 /* EditType.swift in Sources */,
 				E42D3DF928C7AC190018C9FE /* MTICustomColorMatrixFilter.metal in Sources */,
 				E49ED0A228C71D2C00C68007 /* MTIWhiteBalanceFilter.swift in Sources */,
 				E42D3DF128C79DF80018C9FE /* MTIHighlightsAndShadows.metal in Sources */,
+				E4ACE3FC28C8FDD60069E17C /* MTIDecodableSaturationFilter.swift in Sources */,
 				E48CFFDB28C87FB0004EB25C /* CustomizableDialog.swift in Sources */,
 				E4ACE3F028C8EF710069E17C /* ColorError.swift in Sources */,
 				E49ED0AA28C76CBD00C68007 /* MTIGammaFilter.swift in Sources */,
 				E49ED0AC28C7797800C68007 /* MTIHazeFilter.metal in Sources */,
 				E42D3E0C28C7DA8A0018C9FE /* MTIVignetteFilter.metal in Sources */,
+				E4ACE3F628C8F8D40069E17C /* SIMDExtensions.swift in Sources */,
 				E49ED0A028C71CDA00C68007 /* MTIWhiteBalanceFilter.metal in Sources */,
 				E49ED08F28C6589A00C68007 /* FilterEditViewModel.swift in Sources */,
 				E49ED08428C6577C00C68007 /* ImagePicker.swift in Sources */,
@@ -390,13 +411,16 @@
 				E49ED07528C6560F00C68007 /* Anofilm_FiltersApp.swift in Sources */,
 				E42D3DFB28C7ACE90018C9FE /* MTICustomColorMatrixFilter.swift in Sources */,
 				E42D3DF328C79EFE0018C9FE /* MTIHighlightsAndShadowsFilter.swift in Sources */,
+				E4ACE3FE28C8FE330069E17C /* MTIDecodableExposureFilter.swift in Sources */,
 				E49ED0A828C76BED00C68007 /* MTIGammaFilter.metal in Sources */,
 				E42D3E0E28C7DB3F0018C9FE /* MTIVignetteFilter.swift in Sources */,
 				E42D3E0028C7C5DD0018C9FE /* MTICustomColorFilterExtensions.swift in Sources */,
 				E42D3DFD28C7ADA30018C9FE /* MTISepiaToneFilter.swift in Sources */,
+				E4ACE40028C8FE720069E17C /* MTICodableVibranceFilter.swift in Sources */,
 				E42D3E0828C7D36A0018C9FE /* MTIHighlightShadowTintFilter.swift in Sources */,
 				E49ED08C28C6588300C68007 /* FilterEditView.swift in Sources */,
 				E48CFFD728C86FDD004EB25C /* FilterItem.swift in Sources */,
+				E4ACE3F828C8FBA20069E17C /* MTIDecodableBrightnessFilter.swift in Sources */,
 				E48CFFD528C86E28004EB25C /* FiltersViewModel.swift in Sources */,
 				E48CFFD228C86E11004EB25C /* FiltersView.swift in Sources */,
 			);

@@ -20,4 +20,11 @@ class MTISepiaToneFilter: MTICustomColorMatrixFilter {
     init() {
         super.init(matrix: MTISepiaToneFilter.sepiaToneFilter)
     }
+    
+   
+    
+    required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+    }
+    
 }
