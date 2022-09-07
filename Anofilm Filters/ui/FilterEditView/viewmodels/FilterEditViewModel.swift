@@ -17,6 +17,7 @@ class FilterEditViewModel: ObservableObject {
     private var originalImage: MTIImage? = MTIImage(cgImage: UIImage(named: "sampleImage")!.cgImage!).unpremultiplyingAlpha()
     @Published var outputImage: MTIImage?
     @Published var editType = EditType.brightness
+    private let context: MTIContext? = try? MTIContext(device: MTLCreateSystemDefaultDevice()!)
     private var isFilterUpdated = false
     init() {
         outputImage = self.originalImage
@@ -30,6 +31,21 @@ class FilterEditViewModel: ObservableObject {
         isFilterUpdated = true
     }
 
+    
+    func saveImageToDocuments() {
+        Task {
+            guard let outputImage = outputImage else {
+                return
+            }
+            guard let cgImage = try? context?.makeCGImage(from: outputImage) else {
+                return
+            }
+            let uiImage = UIImage(cgImage: cgImage)
+            UIImageWriteToSavedPhotosAlbum(uiImage, nil, nil, nil)
+        }
+    
+    }
+    
     func getFilter() -> AnofilmFilter { filter }
 
     func setFilterName(_ value: String) { filter.name = value }

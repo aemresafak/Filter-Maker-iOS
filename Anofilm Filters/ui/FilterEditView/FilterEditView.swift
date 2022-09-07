@@ -299,6 +299,12 @@ struct FilterEditView: View {
     private func createToolbarContent() -> some View {
         HStack {
             Button {
+                filterEditViewModel.saveImageToDocuments()
+            } label: {
+                Image(systemName: "square.and.arrow.down.on.square.fill")
+            }
+
+            Button {
                 showSaveDialog = true
             } label: {
                 Image(systemName: "square.and.arrow.down")
