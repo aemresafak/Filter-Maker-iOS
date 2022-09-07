@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import UniformTypeIdentifiers
 struct FilterDetailView: View {
     @Binding var filter: AnofilmFilter
     var body: some View {
@@ -18,6 +18,19 @@ struct FilterDetailView: View {
                 }) {
                     Text("EDIT FILTER")
                 }
+                Button {
+                    do {
+                        let json = try JSONEncoder().encode(filter)
+                        let string = String(data: json, encoding: .utf8)
+                        UIPasteboard.general.setValue(string ?? "COULD NOT COPY, an error occurred",
+                                    forPasteboardType: UTType.plainText.identifier)
+                    } catch {
+                        
+                    }
+                } label: {
+                    Text("COPY INFORMATION FOR DEVELOPER")
+                }
+
 
                 createFilterPair("Brightness", value: filter.getBrightness())
                 createFilterPair("Contrast", value: filter.getContrast())
