@@ -10,81 +10,86 @@ import UniformTypeIdentifiers
 struct FilterDetailView: View {
     @Binding var filter: AnofilmFilter
     var body: some View {
-        ScrollView {
-            VStack {
-                Text("Filter Name: \(filter.name)")
-                NavigationLink(destination: {
-                    FilterEditView(filter: filter)
-                }) {
-                    Text("EDIT FILTER")
-                }
-                Button {
-                    do {
-                        let json = try JSONEncoder().encode(filter)
-                        let string = String(data: json, encoding: .utf8)
-                        UIPasteboard.general.setValue(string ?? "COULD NOT COPY, an error occurred",
-                                    forPasteboardType: UTType.plainText.identifier)
-                    } catch {
-                        
-                    }
-                } label: {
-                    Text("COPY INFORMATION FOR DEVELOPER")
-                }
+        ZStack {
+            Color(.sRGB, red: 0.25, green: 0.25, blue: 0.25, opacity: 1).ignoresSafeArea()
+            ScrollView {
+                //            NavigationLink(destination: {
+                //                FilterEditView(filter: filter)
+                //            }) {
+                //                Text("EDIT FILTER")
+                //            }
+                //            Button {
+                //                do {
+                //                    let json = try JSONEncoder().encode(filter)
+                //                    let string = String(data: json, encoding: .utf8)
+                //                    UIPasteboard.general.setValue(string ?? "COULD NOT COPY, an error occurred",
+                //                                                  forPasteboardType: UTType.plainText.identifier)
+                //                } catch {
+                //
+                //                }
+                //            } label: {
+                //                Text("COPY INFORMATION FOR DEVELOPER")
+                //            }
 
-
-                createFilterPair("Brightness", value: filter.getBrightness())
-                createFilterPair("Contrast", value: filter.getContrast())
-                createFilterPair("Saturation", value: filter.getSaturation())
-                createFilterPair("Exposure", value: filter.getExposure())
-                createFilterPair("Vibrance", value: filter.getVibrance())
-                VStack {
-                    createFilterPair("White Balance Temperature", value: filter.getWhiteBalanceTemperature())
-                    createFilterPair("White Balance Hue", value: filter.getWhiteBalanceHue())
-                    createFilterPair("Gamma", value: filter.getGamma())
-                    createFilterPair("Haze Distance", value: filter.getHazeDistance())
-                    createFilterPair("Haze Slope", value: filter.getHazeSlope())
-                    createFilterPair("Highlights", value: filter.getHighlights())
-                    createFilterPair("Shadows", value: filter.getShadows())
-                    createColorPair("Tint Color", color: filter.getTintColor())
-                    createFilterPair("Tint Intensity", value: filter.getTintIntensity())
-                    createFilterPair("Sepia Tone Intensity", value: filter.getSepiaTone())
-                }
-                VStack {
-                    createFilterPair("Highlight Tint Intensity", value: filter.getHighlightTintIntensity())
-                    createColorPair("Highlight Tint Color", color: filter.getHighlightTintColor())
-                    createFilterPair("Shadow Tint Intensity", value: filter.getShadowTintIntensity())
-                    createColorPair("Shadow Tint Color", color: filter.getShadowTintColor())
-                    createFilterPair("Vignette Center X", value: filter.getVignetteCenterX())
-                    createFilterPair("Vignette Center Y", value: filter.getVignetteCenterY())
-                    createColorPair("Vignette Color", color: filter.getVignetteColor())
-                    createFilterPair("Vignette Start", value: filter.getVignetteStart())
-                    createFilterPair("Vignette End", value: filter.getVignetteEnd())
-
-                }
-            
+                Text(filter.description)
+                    .foregroundColor(.white)
+                    .font(.title3)
+                    .fontWeight(.semibold)
+                    .lineSpacing(8)
+                    .padding()
+                colorDisplayView
             }
         }
-       
+            .navigationTitle("Filter Details")
+            .navigationBarTitleDisplayMode(.inline)
     }
-    
-    func createColorPair(_ name: String, color: Color) -> some View {
+
+    private var colorDisplayView: some View {
+        VStack(alignment: .center, spacing: 0) {
+            Text("Colors used")
+                .font(.title)
+                .padding([.bottom, .horizontal])
+            createColorDescription("Tint Color", color: filter.getTintColor())
+                .font(.title3)
+                .padding([.bottom, .horizontal])
+            createColorDescription("Highlight Tint Color", color: filter.getHighlightTintColor())
+                .font(.title3)
+                .padding([.bottom, .horizontal])
+            createColorDescription("Shadow Tint Color", color: filter.getShadowTintColor())
+                .font(.title3)
+                .padding([.bottom, .horizontal])
+            createColorDescription("Vignette Color", color: filter.getVignetteColor())
+                .font(.title3)
+                .padding([.bottom, .horizontal])
+        }
+            .foregroundColor(.white)
+    }
+
+    private func createColorDescription(_ description: String, color: Color) -> some View {
         HStack {
-            Text(name)
-            Circle()
-                .frame(width: 36, height: 36)
-                .foregroundColor(color)
-        }.padding()
+            Text(description).padding(.trailing, 4)
+            createColorCircle(color)
+            Spacer()
+        }
     }
-    
-    func createFilterPair(_ name: String, value: Float) -> some View {
-        Text("\(name): \(value)")
-            .padding()
+
+    private func createColorCircle(_ color: Color) -> some View {
+        Circle()
+            .foregroundColor(color)
+            .frame(width: DrawingConstants.colorCircleDiameter, height: DrawingConstants.colorCircleDiameter)
     }
+
+    private struct DrawingConstants {
+        static let colorCircleDiameter: CGFloat = 36
+    }
+
 }
 
 struct FilterDetailView_Previews: PreviewProvider {
     @State static var filter = AnofilmFilter(name: "ali")
     static var previews: some View {
-        FilterDetailView(filter: $filter)
+        NavigationView {
+            FilterDetailView(filter: $filter)
+        }
     }
 }

@@ -10,7 +10,7 @@ import SwiftUI
 import MetalPetal
 
 struct AnofilmFilter: Codable {
-    
+
     var name: String
     private var brightness = MTIBrightnessFilter()
     private var contrast = MTIContrastFilter()
@@ -25,7 +25,7 @@ struct AnofilmFilter: Codable {
     private var tint = MTICustomColorMatrixFilter(matrix: MTICustomColorMatrixFilter.noColorMatrix)
     private var highlightShadowTint = MTIHighlightShadowTintFilter()
     private var vignette = MTIVignetteFilter()
-    
+
     init(name: String = "") {
         self.name = name
     }
@@ -62,69 +62,69 @@ struct AnofilmFilter: Codable {
     func setGamma(_ value: Float) { gamma.gamma = value }
     func getGamma() -> Float { gamma.gamma }
     func resetGamma() { gamma.gamma = 1.0 }
-    
+
     func setHazeSlope(_ value: Float) { haze.slope = value }
     func getHazeSlope() -> Float { haze.slope }
     func resetHazeSlope() { haze.slope = 0 }
-    
+
     func setHazeDistance(_ value: Float) { haze.hazeDistance = value }
     func getHazeDistance() -> Float { haze.hazeDistance }
     func resetHazeDistance() { haze.hazeDistance = 0 }
-    
+
     func setHighlights(_ value: Float) { highlightsAndShadows.highlights = value }
     func getHighlights() -> Float { highlightsAndShadows.highlights }
     func resetHighlights() { highlightsAndShadows.highlights = 1 }
-    
+
     func setShadows(_ value: Float) { highlightsAndShadows.shadows = value }
     func getShadows() -> Float { highlightsAndShadows.shadows }
     func resetShadows() { highlightsAndShadows.shadows = 0 }
-    
+
     func setSepiaTone(_ value: Float) { sepiaTone.intensity = value }
     func getSepiaTone() -> Float { sepiaTone.intensity }
     func resetSepiaTone() { sepiaTone.intensity = 0 }
-    
+
     func setTintColor(_ color: Color) { tint.matrix = MTICustomColorMatrixFilter.createMatrix(from: color) }
     func getTintColor() -> Color { MTICustomColorMatrixFilter.createColor(from: tint.matrix) }
     func resetTintColor() { tint.matrix = MTICustomColorMatrixFilter.noColorMatrix }
-    
+
     func setTintIntensity(_ value: Float) { tint.intensity = value }
     func getTintIntensity() -> Float { tint.intensity }
     func resetTintIntensity() { tint.intensity = 0 }
-    
-    
+
+
     func setHighlightTintIntensity(_ value: Float) { highlightShadowTint.highlightTintIntensity = value }
     func getHighlightTintIntensity() -> Float { highlightShadowTint.highlightTintIntensity }
     func resetHighlightTintIntensity() { highlightShadowTint.highlightTintIntensity = 0 }
-    
+
     func setShadowTintIntensity(_ value: Float) { highlightShadowTint.shadowTintIntensity = value }
     func getShadowTintIntensity() -> Float { highlightShadowTint.shadowTintIntensity }
     func resetShadowTintIntensity() { highlightShadowTint.shadowTintIntensity = 0 }
 
     func setHighlightTintColor(_ color: Color) { highlightShadowTint.highlightTintColor = color.createFloat3() }
     func getHighlightTintColor() -> Color { Color.createFrom(vector: highlightShadowTint.highlightTintColor) }
-    
+
     func setShadowTintColor(_ color: Color) { highlightShadowTint.shadowTintColor = color.createFloat3() }
     func getShadowTintColor() -> Color { Color.createFrom(vector: highlightShadowTint.shadowTintColor) }
-    
+
     func setVignetteCenterX(_ value: Float) { vignette.vignetteCenter.x = value }
     func getVignetteCenterX() -> Float { vignette.vignetteCenter.x }
-    func resetVignetteCenterX() { vignette.vignetteCenter.x = 0.5}
-    
+    func resetVignetteCenterX() { vignette.vignetteCenter.x = 0.5 }
+
     func setVignetteCenterY(_ value: Float) { vignette.vignetteCenter.y = value }
     func getVignetteCenterY() -> Float { vignette.vignetteCenter.y }
-    func resetVignetteCenterY() { vignette.vignetteCenter.y = 0.5}
-    
+    func resetVignetteCenterY() { vignette.vignetteCenter.y = 0.5 }
+
     func setVignetteColor(_ color: Color) { vignette.vignetteColor = color.createFloat3() }
     func getVignetteColor() -> Color { Color.createFrom(vector: vignette.vignetteColor) }
-    
+
     func setVignetteStart(_ value: Float) { vignette.vignetteStart = value }
     func getVignetteStart() -> Float { vignette.vignetteStart }
     func resetVignetteStart() { vignette.vignetteStart = 1 }
-    
+
     func setVignetteEnd(_ value: Float) { vignette.vignetteEnd = value }
     func getVignetteEnd() -> Float { vignette.vignetteEnd }
     func resetVignetteEnd() { vignette.vignetteEnd = 1 }
-    
+
     /// returns filtered version of image
     func filterImage(image: MTIImage?) -> MTIImage? {
         guard let image = image else {
@@ -135,7 +135,7 @@ struct AnofilmFilter: Codable {
             image => brightness => contrast => vignette =>
             saturation => exposure => vibrance => output
         })
-        
+
         guard let intermediateOutput = intermediateOutput else {
             return nil
         }
@@ -144,14 +144,14 @@ struct AnofilmFilter: Codable {
             intermediateOutput => whiteBalance => gamma => haze =>
             highlightsAndShadows => sepiaTone => tint => highlightShadowTint => output
         }
-        
-        
+
+
         return output
     }
-    
-    
-    
-    
+
+
+
+
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.name = try container.decode(String.self, forKey: .name)
@@ -184,7 +184,7 @@ struct AnofilmFilter: Codable {
         self.highlightShadowTint = try container.decode(MTIHighlightShadowTintFilter.self, forKey: .highlightShadowTint)
         self.vignette = try container.decode(MTIVignetteFilter.self, forKey: .vignette)
     }
-    
+
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(name, forKey: .name)
@@ -202,8 +202,38 @@ struct AnofilmFilter: Codable {
         try container.encode(highlightShadowTint, forKey: .highlightShadowTint)
         try container.encode(vignette, forKey: .vignette)
     }
-    
+
     private enum CodingKeys: String, CodingKey {
         case name, brightness, contrast, saturation, exposure, vibrance, whiteBalance, gamma, haze, highlightsAndShadows, sepiaTone, tint, highlightShadowTint, vignette
+    }
+
+    var description: String {
+        """
+        Filter Name:    \(name)
+        Brightness Value:    \(brightness.brightness)
+        Contrast Value:    \(contrast.contrast)
+        Saturation Value:    \(saturation.saturation)
+        Exposure Value:    \(exposure.exposure)
+        Vibrance Value:    \(vibrance.amount)
+        White Balance Temperature:    \(getWhiteBalanceTemperature())
+        White Balance Hue:    \(getWhiteBalanceHue())
+        Gamma Value:    \(getGamma())
+        Haze Distance:    \(getHazeDistance())
+        Haze Slope:    \(getHazeSlope())
+        Highlights:    \(getHighlights())
+        Shadows:    \(getShadows())
+        Sepia Tone:    \(getSepiaTone())
+        Tint Color Description:    \(getTintColor().description)
+        Tint Color Intensity:    \(getTintIntensity())
+        Highlight Tint Color:    \(getHighlightTintColor())
+        Highlight Tint Intensity:    \(getHighlightTintIntensity())
+        Shadow Tint Color:    \(getShadowTintColor())
+        Shadow Tint Intensity:    \(getShadowTintIntensity())
+        Vignette Center X:    \(getVignetteCenterX())
+        Vignette Center Y:    \(getVignetteCenterY())
+        Vignette Color Description:    \(getVignetteColor().description)
+        Vignette Start:    \(getVignetteStart())
+        Vignette End:    \(getVignetteEnd())
+        """
     }
 }
