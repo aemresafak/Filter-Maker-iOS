@@ -10,13 +10,21 @@ import SwiftUI
 struct FiltersView: View {
 
     @EnvironmentObject var filtersViewModel: FiltersViewModel
+    @Environment(\.scenePhase) private var scenePhase
+
     var body: some View {
         filtersView
             .toolbar(content: createToolbar)
             .navigationTitle("Filters")
-            .onDisappear {
-                print("i disappeared")
+            .onChange(of: scenePhase) { newValue in
+            switch newValue {
+            case .background, .inactive:
+                filtersViewModel.saveFilters()
+            default:
+                return
             }
+        }
+
 
     }
 

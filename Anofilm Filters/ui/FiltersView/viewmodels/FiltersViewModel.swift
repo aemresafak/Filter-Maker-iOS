@@ -10,9 +10,7 @@ import Foundation
 class FiltersViewModel: ObservableObject {
 
     func getFiltersURL() throws -> URL {
-        guard let url = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first else {
-            throw URLError(.badURL)
-        }
+        let url = try FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
         return url.appendingPathComponent("filters.json")
     }
 
