@@ -40,6 +40,7 @@
 		E49ED0AE28C77A6300C68007 /* MTIHazeFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49ED0AD28C77A6300C68007 /* MTIHazeFilter.swift */; };
 		E4ACE3F028C8EF710069E17C /* ColorError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4ACE3EF28C8EF710069E17C /* ColorError.swift */; };
 		E4ACE3F628C8F8D40069E17C /* SIMDExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4ACE3F528C8F8D40069E17C /* SIMDExtensions.swift */; };
+		E4ACE40D28C910D90069E17C /* FilterDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4ACE40C28C910D90069E17C /* FilterDetailView.swift */; };
 		F03A8599F8D64D64830792C6 /* Pods_Anofilm_Filters.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57F1A861853C4533DC978AD9 /* Pods_Anofilm_Filters.framework */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +82,7 @@
 		E49ED0AD28C77A6300C68007 /* MTIHazeFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTIHazeFilter.swift; sourceTree = "<group>"; };
 		E4ACE3EF28C8EF710069E17C /* ColorError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorError.swift; sourceTree = "<group>"; };
 		E4ACE3F528C8F8D40069E17C /* SIMDExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIMDExtensions.swift; sourceTree = "<group>"; };
+		E4ACE40C28C910D90069E17C /* FilterDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +186,7 @@
 		E49ED08228C6576400C68007 /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				E4ACE40B28C910C30069E17C /* FilterDetailView */,
 				E48CFFD028C86DCF004EB25C /* FiltersView */,
 				E49ED08A28C6585C00C68007 /* FilterEditView */,
 			);
@@ -256,6 +259,14 @@
 				E4ACE3EF28C8EF710069E17C /* ColorError.swift */,
 			);
 			path = errors;
+			sourceTree = "<group>";
+		};
+		E4ACE40B28C910C30069E17C /* FilterDetailView */ = {
+			isa = PBXGroup;
+			children = (
+				E4ACE40C28C910D90069E17C /* FilterDetailView.swift */,
+			);
+			path = FilterDetailView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -377,6 +388,7 @@
 				E42D3DF928C7AC190018C9FE /* MTICustomColorMatrixFilter.metal in Sources */,
 				E49ED0A228C71D2C00C68007 /* MTIWhiteBalanceFilter.swift in Sources */,
 				E42D3DF128C79DF80018C9FE /* MTIHighlightsAndShadows.metal in Sources */,
+				E4ACE40D28C910D90069E17C /* FilterDetailView.swift in Sources */,
 				E48CFFDB28C87FB0004EB25C /* CustomizableDialog.swift in Sources */,
 				E4ACE3F028C8EF710069E17C /* ColorError.swift in Sources */,
 				E49ED0AA28C76CBD00C68007 /* MTIGammaFilter.swift in Sources */,

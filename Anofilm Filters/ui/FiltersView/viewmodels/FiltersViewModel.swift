@@ -28,6 +28,13 @@ class FiltersViewModel: ObservableObject {
         loadFilters()
     }
 
+    func findIndex(of filter: AnofilmFilter) -> Int {
+        let index = filters.firstIndex(where: {
+            $0.name == filter.name
+        })
+        return index ?? -1
+    }
+    
     /// Saves filters to internal storage
     func saveFilters() {
         Task {

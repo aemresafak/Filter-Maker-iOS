@@ -33,7 +33,7 @@ struct FiltersView: View {
             ScrollView {
                 ForEach(filtersViewModel.filters) { filter in
                     NavigationLink {
-                        EmptyView()
+                        FilterDetailView(filter: $filtersViewModel.filters[filtersViewModel.findIndex(of: filter)])
                     } label: {
                         FilterItem(anofilmFilter: filter)
                             .frame(maxWidth: .infinity, idealHeight: reader.size.height * DrawingConstants.filterItemHeightPercentage)
