@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct FilterEditView: View {
-
+    
     @StateObject private var filterEditViewModel = FilterEditViewModel()
     @State private var showFiltersSheet = false
     @State private var showImagePickerSheet = false
     @State private var imageChosen: UIImage?
+    @EnvironmentObject var filtersViewModel: FiltersViewModel
+    @Environment(\.presentationMode) var presentationMode
 
 
     var body: some View {
@@ -283,14 +285,21 @@ struct FilterEditView: View {
     private func createToolbarContent() -> some View {
         HStack {
             Button {
-                showFiltersSheet = true
+                filtersViewModel.addFilter(filterEditViewModel.getFilter())
+                presentationMode.wrappedValue.dismiss()
             } label: {
-                Image(systemName: "camera.filters")
+                Image(systemName: "square.and.arrow.down")
             }
+
             Button {
                 showImagePickerSheet = true
             } label: {
                 Image(systemName: "photo")
+            }
+            Button {
+                showFiltersSheet = true
+            } label: {
+                Image(systemName: "camera.filters")
             }
 
         }
@@ -328,9 +337,11 @@ struct FilterEditView: View {
 }
 
 struct FilterEditView_Previews: PreviewProvider {
+    @StateObject static private var vm = FiltersViewModel()
     static var previews: some View {
         NavigationView {
             FilterEditView()
-        }
+                
+        }.environmentObject(vm)
     }
 }

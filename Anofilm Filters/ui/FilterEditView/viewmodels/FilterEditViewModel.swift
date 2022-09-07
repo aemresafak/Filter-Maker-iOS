@@ -22,6 +22,8 @@ class FilterEditViewModel: ObservableObject {
         outputImage = self.originalImage
     }
 
+    func getFilter() -> AnofilmFilter { filter }
+    
     /// Change brightness of filter, brightness ranges from -1 to 1 with 0 being default  value
     func setBrightness(_ value: Float) {
         filter.setBrightness(value)

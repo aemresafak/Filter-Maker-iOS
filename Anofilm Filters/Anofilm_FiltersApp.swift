@@ -9,11 +9,14 @@ import SwiftUI
 
 @main
 struct Anofilm_FiltersApp: App {
+    @StateObject private var filtersViewModel: FiltersViewModel = FiltersViewModel()
+
     var body: some Scene {
         WindowGroup {
             NavigationView {
                 FiltersView()
-            }.navigationViewStyle(.stack)
+            }.navigationViewStyle(.stack)            .environmentObject(filtersViewModel)
+
         }
     }
 }

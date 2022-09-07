@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct FiltersView: View {
-    @StateObject private var filtersViewModel: FiltersViewModel = FiltersViewModel()
 
+    @EnvironmentObject var filtersViewModel: FiltersViewModel
     var body: some View {
         filtersView
             .toolbar(content: createToolbar)
@@ -48,7 +48,9 @@ struct FiltersView: View {
 }
 
 struct FiltersView_Previews: PreviewProvider {
+    @StateObject static private var vm = FiltersViewModel()
     static var previews: some View {
         FiltersView()
+            .environmentObject(vm)
     }
 }
