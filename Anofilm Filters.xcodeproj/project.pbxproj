@@ -22,6 +22,7 @@
 		E48CFFD528C86E28004EB25C /* FiltersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48CFFD428C86E28004EB25C /* FiltersViewModel.swift */; };
 		E48CFFD728C86FDD004EB25C /* FilterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48CFFD628C86FDD004EB25C /* FilterItem.swift */; };
 		E48CFFD928C872D3004EB25C /* AnofilmFilterExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48CFFD828C872D3004EB25C /* AnofilmFilterExtensions.swift */; };
+		E48CFFDB28C87FB0004EB25C /* CustomizableDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48CFFDA28C87FB0004EB25C /* CustomizableDialog.swift */; };
 		E49ED07528C6560F00C68007 /* Anofilm_FiltersApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49ED07428C6560F00C68007 /* Anofilm_FiltersApp.swift */; };
 		E49ED07928C6562500C68007 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E49ED07828C6562500C68007 /* Assets.xcassets */; };
 		E49ED07C28C6562500C68007 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E49ED07B28C6562500C68007 /* Preview Assets.xcassets */; };
@@ -59,6 +60,7 @@
 		E48CFFD428C86E28004EB25C /* FiltersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersViewModel.swift; sourceTree = "<group>"; };
 		E48CFFD628C86FDD004EB25C /* FilterItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterItem.swift; sourceTree = "<group>"; };
 		E48CFFD828C872D3004EB25C /* AnofilmFilterExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnofilmFilterExtensions.swift; sourceTree = "<group>"; };
+		E48CFFDA28C87FB0004EB25C /* CustomizableDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizableDialog.swift; sourceTree = "<group>"; };
 		E49ED07128C6560F00C68007 /* Anofilm Filters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Anofilm Filters.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E49ED07428C6560F00C68007 /* Anofilm_FiltersApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anofilm_FiltersApp.swift; sourceTree = "<group>"; };
 		E49ED07828C6562500C68007 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				E49ED08328C6577C00C68007 /* ImagePicker.swift */,
+				E48CFFDA28C87FB0004EB25C /* CustomizableDialog.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -360,6 +363,7 @@
 				E42D3DF928C7AC190018C9FE /* MTICustomColorMatrixFilter.metal in Sources */,
 				E49ED0A228C71D2C00C68007 /* MTIWhiteBalanceFilter.swift in Sources */,
 				E42D3DF128C79DF80018C9FE /* MTIHighlightsAndShadows.metal in Sources */,
+				E48CFFDB28C87FB0004EB25C /* CustomizableDialog.swift in Sources */,
 				E49ED0AA28C76CBD00C68007 /* MTIGammaFilter.swift in Sources */,
 				E49ED0AC28C7797800C68007 /* MTIHazeFilter.metal in Sources */,
 				E42D3E0C28C7DA8A0018C9FE /* MTIVignetteFilter.metal in Sources */,

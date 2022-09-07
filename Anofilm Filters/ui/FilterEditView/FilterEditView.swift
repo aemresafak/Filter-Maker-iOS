@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct FilterEditView: View {
-    
+
     @StateObject private var filterEditViewModel = FilterEditViewModel()
     @State private var showFiltersSheet = false
     @State private var showImagePickerSheet = false
+    @State private var showSaveDialog = false
     @State private var imageChosen: UIImage?
     @EnvironmentObject var filtersViewModel: FiltersViewModel
     @Environment(\.presentationMode) var presentationMode
@@ -19,14 +20,20 @@ struct FilterEditView: View {
 
     var body: some View {
         GeometryReader { geometry in
-            VStack {
-                FilterImageView(imageToDisplay: $filterEditViewModel.outputImage)
-                editContent.frame(
-                    width: geometry.size.width,
-                    height: geometry.size.height * 0.3,
-                    alignment: .center
-                )
+            ZStack {
+                VStack {
+                    FilterImageView(imageToDisplay: $filterEditViewModel.outputImage)
+                    editContent.frame(
+                        width: geometry.size.width,
+                        height: geometry.size.height * 0.3,
+                        alignment: .center
+                    )
+                }
+                if showSaveDialog {
+                    CustomizableDialog(showDialog: $showSaveDialog, content: createSaveDialogContent)
+                }
             }
+           
         }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar(content: createToolbarContent)
@@ -285,8 +292,7 @@ struct FilterEditView: View {
     private func createToolbarContent() -> some View {
         HStack {
             Button {
-                filtersViewModel.addFilter(filterEditViewModel.getFilter())
-                presentationMode.wrappedValue.dismiss()
+                showSaveDialog = true
             } label: {
                 Image(systemName: "square.and.arrow.down")
             }
@@ -326,6 +332,34 @@ struct FilterEditView: View {
         }
     }
 
+    @ViewBuilder private func createSaveDialogContent() -> some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 8)
+                .foregroundColor(.white)
+            VStack {
+                Text("Save your filter")
+                TextField("Filter Name", text: Binding(get: { filterEditViewModel.getFilterName() }, set: { filterEditViewModel.setFilterName($0) }))
+                    .foregroundColor(.black)
+                HStack {
+                    Button {
+                        showSaveDialog = false
+                    } label: {
+                        Text("Cancel")
+                    }
+                    Spacer()
+                    Button {
+                        showSaveDialog = false
+                        filtersViewModel.addFilter(filterEditViewModel.getFilter())
+                        presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        Text("Save")
+                    }
+                }
+                
+            }.padding()
+        }.frame(width: 250, height: 300, alignment: .center)
+    }
+
     private func createImagePicker() -> some View {
         ImagePicker(uiImage: $imageChosen)
     }
@@ -341,7 +375,7 @@ struct FilterEditView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             FilterEditView()
-                
+
         }.environmentObject(vm)
     }
 }

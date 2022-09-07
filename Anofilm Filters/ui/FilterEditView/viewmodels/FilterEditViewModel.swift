@@ -23,7 +23,10 @@ class FilterEditViewModel: ObservableObject {
     }
 
     func getFilter() -> AnofilmFilter { filter }
-    
+
+    func setFilterName(_ value: String) { filter.name = value }
+    func getFilterName() -> String { filter.name }
+
     /// Change brightness of filter, brightness ranges from -1 to 1 with 0 being default  value
     func setBrightness(_ value: Float) {
         filter.setBrightness(value)
