@@ -10,7 +10,7 @@ import SwiftUI
 import MetalPetal
 
 struct AnofilmFilter {
-
+    var name: String
     private var brightness = MTIBrightnessFilter()
     private var contrast = MTIContrastFilter()
     private var saturation = MTISaturationFilter()
@@ -24,6 +24,10 @@ struct AnofilmFilter {
     private var tint = MTICustomColorMatrixFilter(matrix: MTICustomColorMatrixFilter.noColorMatrix)
     private var highlightShadowTint = MTIHighlightShadowTintFilter()
     private var vignette = MTIVignetteFilter()
+    
+    init(name: String = "") {
+        self.name = name
+    }
 
     /// value of brightness in range of -1 to 1 with 0 being default
     func setBrightness(_ value: Float) { brightness.brightness = value }

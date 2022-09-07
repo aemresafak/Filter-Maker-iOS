@@ -18,8 +18,10 @@
 		E42D3E0A28C7D51E0018C9FE /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42D3E0928C7D51E0018C9FE /* ColorExtensions.swift */; };
 		E42D3E0C28C7DA8A0018C9FE /* MTIVignetteFilter.metal in Sources */ = {isa = PBXBuildFile; fileRef = E42D3E0B28C7DA8A0018C9FE /* MTIVignetteFilter.metal */; };
 		E42D3E0E28C7DB3F0018C9FE /* MTIVignetteFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42D3E0D28C7DB3F0018C9FE /* MTIVignetteFilter.swift */; };
+		E48CFFD228C86E11004EB25C /* FiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48CFFD128C86E11004EB25C /* FiltersView.swift */; };
+		E48CFFD528C86E28004EB25C /* FiltersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48CFFD428C86E28004EB25C /* FiltersViewModel.swift */; };
+		E48CFFD728C86FDD004EB25C /* FilterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48CFFD628C86FDD004EB25C /* FilterItem.swift */; };
 		E49ED07528C6560F00C68007 /* Anofilm_FiltersApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49ED07428C6560F00C68007 /* Anofilm_FiltersApp.swift */; };
-		E49ED07728C6560F00C68007 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49ED07628C6560F00C68007 /* ContentView.swift */; };
 		E49ED07928C6562500C68007 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E49ED07828C6562500C68007 /* Assets.xcassets */; };
 		E49ED07C28C6562500C68007 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E49ED07B28C6562500C68007 /* Preview Assets.xcassets */; };
 		E49ED08428C6577C00C68007 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49ED08328C6577C00C68007 /* ImagePicker.swift */; };
@@ -52,9 +54,11 @@
 		E42D3E0928C7D51E0018C9FE /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		E42D3E0B28C7DA8A0018C9FE /* MTIVignetteFilter.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = MTIVignetteFilter.metal; sourceTree = "<group>"; };
 		E42D3E0D28C7DB3F0018C9FE /* MTIVignetteFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTIVignetteFilter.swift; sourceTree = "<group>"; };
+		E48CFFD128C86E11004EB25C /* FiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersView.swift; sourceTree = "<group>"; };
+		E48CFFD428C86E28004EB25C /* FiltersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersViewModel.swift; sourceTree = "<group>"; };
+		E48CFFD628C86FDD004EB25C /* FilterItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterItem.swift; sourceTree = "<group>"; };
 		E49ED07128C6560F00C68007 /* Anofilm Filters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Anofilm Filters.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E49ED07428C6560F00C68007 /* Anofilm_FiltersApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anofilm_FiltersApp.swift; sourceTree = "<group>"; };
-		E49ED07628C6560F00C68007 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E49ED07828C6562500C68007 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E49ED07B28C6562500C68007 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E49ED08328C6577C00C68007 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
@@ -109,6 +113,24 @@
 			path = extensions;
 			sourceTree = "<group>";
 		};
+		E48CFFD028C86DCF004EB25C /* FiltersView */ = {
+			isa = PBXGroup;
+			children = (
+				E48CFFD328C86E18004EB25C /* viewmodels */,
+				E48CFFD128C86E11004EB25C /* FiltersView.swift */,
+				E48CFFD628C86FDD004EB25C /* FilterItem.swift */,
+			);
+			path = FiltersView;
+			sourceTree = "<group>";
+		};
+		E48CFFD328C86E18004EB25C /* viewmodels */ = {
+			isa = PBXGroup;
+			children = (
+				E48CFFD428C86E28004EB25C /* FiltersViewModel.swift */,
+			);
+			path = viewmodels;
+			sourceTree = "<group>";
+		};
 		E49ED06828C6560F00C68007 = {
 			isa = PBXGroup;
 			children = (
@@ -133,8 +155,8 @@
 				E42D3DFE28C7C5CD0018C9FE /* extensions */,
 				E49ED08728C657E200C68007 /* data */,
 				E49ED08228C6576400C68007 /* ui */,
+				E49ED08528C6578100C68007 /* utils */,
 				E49ED07428C6560F00C68007 /* Anofilm_FiltersApp.swift */,
-				E49ED07628C6560F00C68007 /* ContentView.swift */,
 				E49ED07828C6562500C68007 /* Assets.xcassets */,
 				E49ED07A28C6562500C68007 /* Preview Content */,
 			);
@@ -152,8 +174,8 @@
 		E49ED08228C6576400C68007 /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				E48CFFD028C86DCF004EB25C /* FiltersView */,
 				E49ED08A28C6585C00C68007 /* FilterEditView */,
-				E49ED08528C6578100C68007 /* utils */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -340,7 +362,6 @@
 				E49ED0A028C71CDA00C68007 /* MTIWhiteBalanceFilter.metal in Sources */,
 				E49ED08F28C6589A00C68007 /* FilterEditViewModel.swift in Sources */,
 				E49ED08428C6577C00C68007 /* ImagePicker.swift in Sources */,
-				E49ED07728C6560F00C68007 /* ContentView.swift in Sources */,
 				E49ED0AE28C77A6300C68007 /* MTIHazeFilter.swift in Sources */,
 				E42D3E0628C7D2A60018C9FE /* MTIHighlightShadowTintFilter.metal in Sources */,
 				E49ED09328C65DA200C68007 /* FilterImageView.swift in Sources */,
@@ -355,6 +376,9 @@
 				E42D3DFD28C7ADA30018C9FE /* MTISepiaToneFilter.swift in Sources */,
 				E42D3E0828C7D36A0018C9FE /* MTIHighlightShadowTintFilter.swift in Sources */,
 				E49ED08C28C6588300C68007 /* FilterEditView.swift in Sources */,
+				E48CFFD728C86FDD004EB25C /* FilterItem.swift in Sources */,
+				E48CFFD528C86E28004EB25C /* FiltersViewModel.swift in Sources */,
+				E48CFFD228C86E11004EB25C /* FiltersView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
