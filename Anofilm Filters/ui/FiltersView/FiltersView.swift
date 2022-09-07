@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct FiltersView: View {
+    @StateObject private var filtersViewModel: FiltersViewModel = FiltersViewModel()
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }

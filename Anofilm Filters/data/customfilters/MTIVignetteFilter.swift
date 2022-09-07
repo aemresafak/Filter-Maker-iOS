@@ -12,8 +12,8 @@ class MTIVignetteFilter: MTIUnaryImageRenderingFilter {
     
     var vignetteCenter: simd_float2 = SIMD2(0.5,0.5)
     var vignetteColor: simd_float3 = SIMD3(0,0,0)
-    var vignetteStart: Float = 0.5
-    var vignetteEnd: Float = 0.75
+    var vignetteStart: Float = 1
+    var vignetteEnd: Float = 1
 
 
     override var parameters: [String: Any] {

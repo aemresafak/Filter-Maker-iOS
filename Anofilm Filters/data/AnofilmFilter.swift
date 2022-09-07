@@ -118,11 +118,11 @@ struct AnofilmFilter {
     
     func setVignetteStart(_ value: Float) { vignette.vignetteStart = value }
     func getVignetteStart() -> Float { vignette.vignetteStart }
-    func resetVignetteStart() { vignette.vignetteStart = 0.5 }
+    func resetVignetteStart() { vignette.vignetteStart = 1 }
     
     func setVignetteEnd(_ value: Float) { vignette.vignetteEnd = value }
     func getVignetteEnd() -> Float { vignette.vignetteEnd }
-    func resetVignetteEnd() { vignette.vignetteEnd = 0.75 }
+    func resetVignetteEnd() { vignette.vignetteEnd = 1 }
     
     /// returns filtered version of image
     func filterImage(image: MTIImage?) -> MTIImage? {
