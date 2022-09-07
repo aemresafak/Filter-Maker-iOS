@@ -9,8 +9,41 @@ import SwiftUI
 
 struct FiltersView: View {
     @StateObject private var filtersViewModel: FiltersViewModel = FiltersViewModel()
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        filtersView
+            .toolbar(content: createToolbar)
+            .navigationTitle("Filters")
+
+    }
+
+    private var filtersView: some View {
+        GeometryReader { reader in
+            ScrollView {
+                ForEach(filtersViewModel.filters) { filter in
+                    NavigationLink {
+                        EmptyView()
+                    } label: {
+                        FilterItem(anofilmFilter: filter)
+                            .frame(maxWidth: .infinity, idealHeight: reader.size.height * DrawingConstants.filterItemHeightPercentage)
+                            .padding(.bottom, DrawingConstants.paddingBetweenElements)
+                    }
+                }
+            }.padding()
+        }
+    }
+
+    private func createToolbar() -> some View {
+        NavigationLink(
+            destination: { FilterEditView() }) {
+            Image(systemName: "plus")
+
+        }
+    }
+
+    private struct DrawingConstants {
+        static let paddingBetweenElements: CGFloat = 4
+        static let filterItemHeightPercentage = 0.15
     }
 }
 

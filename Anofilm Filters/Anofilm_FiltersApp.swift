@@ -12,8 +12,8 @@ struct Anofilm_FiltersApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                FilterEditView()
-            }
+                FiltersView()
+            }.navigationViewStyle(.stack)
         }
     }
 }

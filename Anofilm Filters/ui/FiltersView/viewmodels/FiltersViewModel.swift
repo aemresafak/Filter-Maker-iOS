@@ -8,7 +8,7 @@
 import Foundation
 
 class FiltersViewModel : ObservableObject {
-    @Published var filters: [AnofilmFilter] = []
+    @Published var filters: [AnofilmFilter] = AnofilmFilter.sampleFilters
     
     
     /// Saves filters to internal storage

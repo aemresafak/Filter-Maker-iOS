@@ -16,7 +16,7 @@ struct FilterItem: View {
             backgroundView
             HStack {
                 Label(anofilmFilter.name, systemImage: "pencil")
-                    .font(.largeTitle)
+                    .font(.title)
                     .foregroundColor(.white)
                 Spacer()
             }.padding()
