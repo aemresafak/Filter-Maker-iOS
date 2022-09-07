@@ -9,7 +9,7 @@ import Foundation
 import MetalPetal
 
 
-class MTIGammaFilter: MTIUnaryImageRenderingFilter {
+class MTIGammaFilter: MTIUnaryImageRenderingFilter, Codable {
     var gamma: Float = 1
     
     override var parameters: [String : Any] {

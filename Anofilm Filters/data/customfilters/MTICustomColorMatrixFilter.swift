@@ -8,7 +8,7 @@
 import Foundation
 import MetalPetal
 
-class MTICustomColorMatrixFilter: MTIUnaryImageRenderingFilter {
+class MTICustomColorMatrixFilter: MTIUnaryImageRenderingFilter, Codable {
     var matrix: simd_float4x4
     var intensity: Float = 0
     

@@ -9,7 +9,7 @@ import Foundation
 import MetalPetal
 
 
-class MTIHighlightShadowTintFilter: MTIUnaryImageRenderingFilter {
+class MTIHighlightShadowTintFilter: MTIUnaryImageRenderingFilter, Codable {
     var highlightTintIntensity: Float = 0
     var shadowTintIntensity: Float = 0
     var highlightTintColor: simd_float3 = SIMD3(1, 1, 1)

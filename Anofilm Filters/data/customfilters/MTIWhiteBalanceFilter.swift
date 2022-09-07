@@ -9,7 +9,7 @@ import Foundation
 import MetalPetal
 
 
-class MTIWhiteBalanceFilter: MTIUnaryImageRenderingFilter {
+class MTIWhiteBalanceFilter: MTIUnaryImageRenderingFilter, Codable {
     var temperature: Float = 0
     var hue: Float = 0
     

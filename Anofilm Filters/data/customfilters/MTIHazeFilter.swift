@@ -9,7 +9,7 @@ import Foundation
 import MetalPetal
 
 
-class MTIHazeFilter: MTIUnaryImageRenderingFilter {
+class MTIHazeFilter: MTIUnaryImageRenderingFilter, Codable {
     var hazeDistance: Float = 0
     var slope: Float = 0
     
