@@ -13,7 +13,7 @@ class FiltersViewModel: ObservableObject {
         guard let url = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first else {
             throw URLError(.badURL)
         }
-        return url
+        return url.appendingPathComponent("filters.json")
     }
 
 

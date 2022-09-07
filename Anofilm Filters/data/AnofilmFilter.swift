@@ -12,11 +12,11 @@ import MetalPetal
 struct AnofilmFilter: Codable {
     
     var name: String
-    private var brightness = MTIDecodableBrightnessFilter()
-    private var contrast = MTIDecodableContrastFilter()
-    private var saturation = MTIDecodableSaturationFilter()
-    private var exposure = MTIDecodableExposureFilter()
-    private var vibrance = MTICodableVibranceFilter()
+    private var brightness = MTIBrightnessFilter()
+    private var contrast = MTIContrastFilter()
+    private var saturation = MTISaturationFilter()
+    private var exposure = MTIExposureFilter()
+    private var vibrance = MTIVibranceFilter()
     private var whiteBalance = MTIWhiteBalanceFilter()
     private var gamma = MTIGammaFilter()
     private var haze = MTIHazeFilter()
@@ -31,25 +31,25 @@ struct AnofilmFilter: Codable {
     }
 
     /// value of brightness in range of -1 to 1 with 0 being default
-    func setBrightness(_ value: Float) { brightness.filter.brightness = value }
-    func getBrightness() -> Float { brightness.filter.brightness }
-    func resetBrightness() { brightness.filter.brightness = 0 }
+    func setBrightness(_ value: Float) { brightness.brightness = value }
+    func getBrightness() -> Float { brightness.brightness }
+    func resetBrightness() { brightness.brightness = 0 }
 
-    func setContrast(_ value: Float) { contrast.filter.contrast = value }
-    func getContrast() -> Float { contrast.filter.contrast }
-    func resetContrast() { contrast.filter.contrast = 0 }
+    func setContrast(_ value: Float) { contrast.contrast = value }
+    func getContrast() -> Float { contrast.contrast }
+    func resetContrast() { contrast.contrast = 0 }
 
-    func setSaturation(_ value: Float) { saturation.filter.saturation = value }
-    func getSaturation() -> Float { saturation.filter.saturation }
-    func resetSaturation() { saturation.filter.saturation = 0 }
+    func setSaturation(_ value: Float) { saturation.saturation = value }
+    func getSaturation() -> Float { saturation.saturation }
+    func resetSaturation() { saturation.saturation = 0 }
 
-    func setExposure(_ value: Float) { exposure.filter.exposure = value }
-    func getExposure() -> Float { exposure.filter.exposure }
-    func resetExposure() { exposure.filter.exposure = 0 }
+    func setExposure(_ value: Float) { exposure.exposure = value }
+    func getExposure() -> Float { exposure.exposure }
+    func resetExposure() { exposure.exposure = 0 }
 
-    func setVibrance(_ value: Float) { vibrance.filter.amount = value }
-    func getVibrance() -> Float { vibrance.filter.amount }
-    func resetVibrance() { vibrance.filter.amount = 0 }
+    func setVibrance(_ value: Float) { vibrance.amount = value }
+    func getVibrance() -> Float { vibrance.amount }
+    func resetVibrance() { vibrance.amount = 0 }
 
     func setWhiteBalanceTemperature(_ value: Float) { whiteBalance.temperature = value }
     func getWhiteBalanceTemperature() -> Float { whiteBalance.temperature }
@@ -125,7 +125,6 @@ struct AnofilmFilter: Codable {
     func getVignetteEnd() -> Float { vignette.vignetteEnd }
     func resetVignetteEnd() { vignette.vignetteEnd = 1 }
     
-    
     /// returns filtered version of image
     func filterImage(image: MTIImage?) -> MTIImage? {
         guard let image = image else {
@@ -148,5 +147,63 @@ struct AnofilmFilter: Codable {
         
         
         return output
+    }
+    
+    
+    
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.name = try container.decode(String.self, forKey: .name)
+        let brightness = try container.decode(Float.self, forKey: .brightness)
+        let contrast = try container.decode(Float.self, forKey: .contrast)
+        let saturation = try container.decode(Float.self, forKey: .saturation)
+        let exposure = try container.decode(Float.self, forKey: .exposure)
+        let vibrance = try container.decode(Float.self, forKey: .vibrance)
+        let brightnessFilter = MTIBrightnessFilter()
+        brightnessFilter.brightness = brightness
+        let contrastFilter = MTIContrastFilter()
+        contrastFilter.contrast = contrast
+        let saturationFilter = MTISaturationFilter()
+        saturationFilter.saturation = saturation
+        let exposureFilter = MTIExposureFilter()
+        exposureFilter.exposure = exposure
+        let vibranceFilter = MTIVibranceFilter()
+        vibranceFilter.amount = vibrance
+        self.brightness = brightnessFilter
+        self.contrast = contrastFilter
+        self.saturation = saturationFilter
+        self.exposure = exposureFilter
+        self.vibrance = vibranceFilter
+        self.whiteBalance = try container.decode(MTIWhiteBalanceFilter.self, forKey: .whiteBalance)
+        self.gamma = try container.decode(MTIGammaFilter.self, forKey: .gamma)
+        self.haze = try container.decode(MTIHazeFilter.self, forKey: .haze)
+        self.highlightsAndShadows = try container.decode(MTIHighlightsAndShadowsFilter.self, forKey: .highlightsAndShadows)
+        self.sepiaTone = try container.decode(MTISepiaToneFilter.self, forKey: .sepiaTone)
+        self.tint = try container.decode(MTICustomColorMatrixFilter.self, forKey: .tint)
+        self.highlightShadowTint = try container.decode(MTIHighlightShadowTintFilter.self, forKey: .highlightShadowTint)
+        self.vignette = try container.decode(MTIVignetteFilter.self, forKey: .vignette)
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(name, forKey: .name)
+        try container.encode(getBrightness(), forKey: .brightness)
+        try container.encode(getContrast(), forKey: .contrast)
+        try container.encode(getSaturation(), forKey: .saturation)
+        try container.encode(getExposure(), forKey: .exposure)
+        try container.encode(getVibrance(), forKey: .vibrance)
+        try container.encode(whiteBalance, forKey: .whiteBalance)
+        try container.encode(gamma, forKey: .gamma)
+        try container.encode(haze, forKey: .haze)
+        try container.encode(highlightsAndShadows, forKey: .highlightsAndShadows)
+        try container.encode(sepiaTone, forKey: .sepiaTone)
+        try container.encode(tint, forKey: .tint)
+        try container.encode(highlightShadowTint, forKey: .highlightShadowTint)
+        try container.encode(vignette, forKey: .vignette)
+    }
+    
+    private enum CodingKeys: String, CodingKey {
+        case name, brightness, contrast, saturation, exposure, vibrance, whiteBalance, gamma, haze, highlightsAndShadows, sepiaTone, tint, highlightShadowTint, vignette
     }
 }

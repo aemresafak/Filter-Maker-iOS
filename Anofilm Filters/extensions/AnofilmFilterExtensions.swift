@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 extension AnofilmFilter {
     static let sampleFilters: [AnofilmFilter] = {
