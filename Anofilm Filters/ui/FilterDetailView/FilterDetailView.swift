@@ -13,6 +13,12 @@ struct FilterDetailView: View {
         ScrollView {
             VStack {
                 Text("Filter Name: \(filter.name)")
+                NavigationLink(destination: {
+                    FilterEditView(filter: filter)
+                }) {
+                    Text("EDIT FILTER")
+                }
+
                 createFilterPair("Brightness", value: filter.getBrightness())
                 createFilterPair("Contrast", value: filter.getContrast())
                 createFilterPair("Saturation", value: filter.getSaturation())

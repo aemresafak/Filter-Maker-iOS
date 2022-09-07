@@ -16,7 +16,11 @@ struct FilterEditView: View {
     @State private var imageChosen: UIImage?
     @EnvironmentObject var filtersViewModel: FiltersViewModel
     @Environment(\.presentationMode) var presentationMode
+    private var filterToStartFrom: AnofilmFilter?
 
+    init(filter: AnofilmFilter? = nil) {
+        filterToStartFrom = filter
+    }
 
     var body: some View {
         GeometryReader { geometry in
@@ -33,8 +37,11 @@ struct FilterEditView: View {
                     CustomizableDialog(showDialog: $showSaveDialog, content: createSaveDialogContent)
                 }
             }
-           
+
         }
+            .onAppear(perform: {
+            filterEditViewModel.updateAnofilmFilter(filter: filterToStartFrom)
+        })
             .navigationBarTitleDisplayMode(.inline)
             .toolbar(content: createToolbarContent)
             .sheet(isPresented: $showFiltersSheet, onDismiss: nil, content: createFiltersList)
@@ -355,7 +362,7 @@ struct FilterEditView: View {
                         Text("Save")
                     }
                 }
-                
+
             }.padding()
         }.frame(width: 250, height: 300, alignment: .center)
     }

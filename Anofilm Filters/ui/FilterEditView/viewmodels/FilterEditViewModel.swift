@@ -17,9 +17,17 @@ class FilterEditViewModel: ObservableObject {
     private var originalImage: MTIImage? = MTIImage(cgImage: UIImage(named: "sampleImage")!.cgImage!).unpremultiplyingAlpha()
     @Published var outputImage: MTIImage?
     @Published var editType = EditType.brightness
-
+    private var isFilterUpdated = false
     init() {
         outputImage = self.originalImage
+    }
+
+    func updateAnofilmFilter(filter: AnofilmFilter?) {
+        if let filter = filter, !isFilterUpdated {
+            self.filter = filter
+        }
+        updateOutputImage()
+        isFilterUpdated = true
     }
 
     func getFilter() -> AnofilmFilter { filter }
