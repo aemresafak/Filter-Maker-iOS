@@ -32,7 +32,7 @@ class FilterEditViewModel: ObservableObject {
     }
 
     
-    func saveImageToDocuments() {
+    func saveImageToDocuments(onSaveCallback: (() -> Void)? = nil) {
         Task {
             guard let outputImage = outputImage else {
                 return
@@ -42,6 +42,9 @@ class FilterEditViewModel: ObservableObject {
             }
             let uiImage = UIImage(cgImage: cgImage)
             UIImageWriteToSavedPhotosAlbum(uiImage, nil, nil, nil)
+            await MainActor.run {
+                onSaveCallback?.self()
+            }
         }
     
     }

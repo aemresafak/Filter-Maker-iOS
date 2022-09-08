@@ -13,6 +13,7 @@ struct FilterEditView: View {
     @State private var showFiltersSheet = false
     @State private var showImagePickerSheet = false
     @State private var showSaveDialog = false
+    @State private var showSavedToDocumentsToastMessage = false
     @State private var imageChosen: UIImage?
     @EnvironmentObject var filtersViewModel: FiltersViewModel
     @Environment(\.presentationMode) var presentationMode
@@ -35,6 +36,9 @@ struct FilterEditView: View {
                 }
                 if showSaveDialog {
                     CustomizableDialog(showDialog: $showSaveDialog, content: createSaveDialogContent)
+                }
+                ToastMessage(showMessage: $showSavedToDocumentsToastMessage) {
+                    toastContent
                 }
             }
 
@@ -85,6 +89,17 @@ struct FilterEditView: View {
         case .vignette:
             editVignetteView
         }
+    }
+    
+    private var toastContent: some View {
+        Text("Image saved to gallery!")
+            .padding()
+            .background(
+            RoundedRectangle(cornerRadius: 8)
+                .foregroundColor(.white)
+        )
+            .font(.largeTitle)
+            .shadow(radius: 8)
     }
 
     private func createEditViewWithSlider(
@@ -299,7 +314,11 @@ struct FilterEditView: View {
     private func createToolbarContent() -> some View {
         HStack {
             Button {
-                filterEditViewModel.saveImageToDocuments()
+                filterEditViewModel.saveImageToDocuments {
+                    withAnimation {
+                        showSavedToDocumentsToastMessage = true
+                    }
+                }
             } label: {
                 Image(systemName: "square.and.arrow.down.on.square.fill")
             }
