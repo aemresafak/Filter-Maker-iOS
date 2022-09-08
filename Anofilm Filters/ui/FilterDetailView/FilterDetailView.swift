@@ -13,23 +13,7 @@ struct FilterDetailView: View {
         ZStack {
             Color(.sRGB, red: 0.25, green: 0.25, blue: 0.25, opacity: 1).ignoresSafeArea()
             ScrollView {
-                //            NavigationLink(destination: {
-                //                FilterEditView(filter: filter)
-                //            }) {
-                //                Text("EDIT FILTER")
-                //            }
-                //            Button {
-                //                do {
-                //                    let json = try JSONEncoder().encode(filter)
-                //                    let string = String(data: json, encoding: .utf8)
-                //                    UIPasteboard.general.setValue(string ?? "COULD NOT COPY, an error occurred",
-                //                                                  forPasteboardType: UTType.plainText.identifier)
-                //                } catch {
-                //
-                //                }
-                //            } label: {
-                //                Text("COPY INFORMATION FOR DEVELOPER")
-                //            }
+
 
                 Text(filter.description)
                     .foregroundColor(.white)
@@ -40,8 +24,25 @@ struct FilterDetailView: View {
                 colorDisplayView
             }
         }
+            .toolbar(content: toolbarContet)
             .navigationTitle("Filter Details")
             .navigationBarTitleDisplayMode(.inline)
+    }
+
+    private func toolbarContet() -> some View {
+        HStack {
+            NavigationLink(destination: {
+                FilterEditView(filter: filter)
+            }) {
+                Image(systemName: "Pencil")
+            }
+            Button {
+                copyTextToClipboard(filter.description)
+            } label: {
+                Image(systemName: "doc.on.doc")
+            }
+
+        }
     }
 
     private var colorDisplayView: some View {
@@ -77,6 +78,10 @@ struct FilterDetailView: View {
         Circle()
             .foregroundColor(color)
             .frame(width: DrawingConstants.colorCircleDiameter, height: DrawingConstants.colorCircleDiameter)
+    }
+
+    private func copyTextToClipboard(_ text: String) {
+        UIPasteboard.general.setValue(text, forPasteboardType: UTType.plainText.identifier)
     }
 
     private struct DrawingConstants {
