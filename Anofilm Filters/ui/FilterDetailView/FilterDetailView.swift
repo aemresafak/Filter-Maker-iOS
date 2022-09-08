@@ -7,8 +7,10 @@
 
 import SwiftUI
 import UniformTypeIdentifiers
+
 struct FilterDetailView: View {
     @Binding var filter: AnofilmFilter
+    @State private var showCopyToastMessage = false
     var body: some View {
         ZStack {
             Color(.sRGB, red: 0.25, green: 0.25, blue: 0.25, opacity: 1).ignoresSafeArea()
@@ -21,6 +23,9 @@ struct FilterDetailView: View {
                     .lineSpacing(8)
                     .padding()
                 colorDisplayView
+            }
+            ToastMessage(showMessage: $showCopyToastMessage) {
+                toastContent
             }
         }
             .navigationTitle("Filter Details")
@@ -44,6 +49,17 @@ struct FilterDetailView: View {
         }
             .font(.title2)
             .padding()
+    }
+
+    private var toastContent: some View {
+        Text("Message is copied!")
+            .padding()
+            .background(
+            RoundedRectangle(cornerRadius: DrawingConstants.toastMessageCornerRadius)
+                .foregroundColor(.white)
+        )
+            .font(.largeTitle)
+            .shadow(radius: DrawingConstants.toastMessageShadowRadius)
     }
 
     private var colorDisplayView: some View {
@@ -83,9 +99,14 @@ struct FilterDetailView: View {
 
     private func copyTextToClipboard(_ text: String) {
         UIPasteboard.general.setValue(text, forPasteboardType: UTType.plainText.identifier)
+        withAnimation {
+            showCopyToastMessage = true
+        }
     }
 
     private struct DrawingConstants {
+        static let toastMessageCornerRadius: CGFloat = 8
+        static let toastMessageShadowRadius: CGFloat = 8
         static let colorCircleDiameter: CGFloat = 36
     }
 
