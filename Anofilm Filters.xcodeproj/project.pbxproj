@@ -23,6 +23,7 @@
 		E48CFFD728C86FDD004EB25C /* FilterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48CFFD628C86FDD004EB25C /* FilterItem.swift */; };
 		E48CFFD928C872D3004EB25C /* AnofilmFilterExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48CFFD828C872D3004EB25C /* AnofilmFilterExtensions.swift */; };
 		E48CFFDB28C87FB0004EB25C /* CustomizableDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48CFFDA28C87FB0004EB25C /* CustomizableDialog.swift */; };
+		E49654E828C9C9CA0069A13F /* ToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49654E728C9C9CA0069A13F /* ToastMessage.swift */; };
 		E49ED07528C6560F00C68007 /* Anofilm_FiltersApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49ED07428C6560F00C68007 /* Anofilm_FiltersApp.swift */; };
 		E49ED07928C6562500C68007 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E49ED07828C6562500C68007 /* Assets.xcassets */; };
 		E49ED07C28C6562500C68007 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E49ED07B28C6562500C68007 /* Preview Assets.xcassets */; };
@@ -64,6 +65,7 @@
 		E48CFFD628C86FDD004EB25C /* FilterItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterItem.swift; sourceTree = "<group>"; };
 		E48CFFD828C872D3004EB25C /* AnofilmFilterExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnofilmFilterExtensions.swift; sourceTree = "<group>"; };
 		E48CFFDA28C87FB0004EB25C /* CustomizableDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizableDialog.swift; sourceTree = "<group>"; };
+		E49654E728C9C9CA0069A13F /* ToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastMessage.swift; sourceTree = "<group>"; };
 		E49ED07128C6560F00C68007 /* Anofilm Filters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Anofilm Filters.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E49ED07428C6560F00C68007 /* Anofilm_FiltersApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anofilm_FiltersApp.swift; sourceTree = "<group>"; };
 		E49ED07828C6562500C68007 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 			children = (
 				E49ED08328C6577C00C68007 /* ImagePicker.swift */,
 				E48CFFDA28C87FB0004EB25C /* CustomizableDialog.swift */,
+				E49654E728C9C9CA0069A13F /* ToastMessage.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 				E42D3DF328C79EFE0018C9FE /* MTIHighlightsAndShadowsFilter.swift in Sources */,
 				E49ED0A828C76BED00C68007 /* MTIGammaFilter.metal in Sources */,
 				E42D3E0E28C7DB3F0018C9FE /* MTIVignetteFilter.swift in Sources */,
+				E49654E828C9C9CA0069A13F /* ToastMessage.swift in Sources */,
 				E42D3E0028C7C5DD0018C9FE /* MTICustomColorFilterExtensions.swift in Sources */,
 				E42D3DFD28C7ADA30018C9FE /* MTISepiaToneFilter.swift in Sources */,
 				E42D3E0828C7D36A0018C9FE /* MTIHighlightShadowTintFilter.swift in Sources */,
