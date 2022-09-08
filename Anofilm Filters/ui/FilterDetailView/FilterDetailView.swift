@@ -35,7 +35,7 @@ struct FilterDetailView: View {
     private func actionHStack() -> some View {
         HStack {
             NavigationLink(destination: {
-                FilterEditView(filter: filter)
+                FilterEditView(anofilmFilter: $filter)
             }) {
                 Label("Edit", systemImage: "pencil")
             }

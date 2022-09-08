@@ -11,6 +11,7 @@ struct FiltersView: View {
 
     @EnvironmentObject var filtersViewModel: FiltersViewModel
     @Environment(\.scenePhase) private var scenePhase
+    @State private var navigateToFilterEdit = false
 
     var body: some View {
         filtersView
@@ -30,6 +31,13 @@ struct FiltersView: View {
 
     private var filtersView: some View {
         GeometryReader { reader in
+
+            NavigationLink(isActive: $navigateToFilterEdit) {
+                FilterEditView(anofilmFilter: $filtersViewModel.filters.last ?? .constant(AnofilmFilter()))
+            } label: {
+                EmptyView()
+            }
+
             ScrollView {
                 ForEach(filtersViewModel.filters) { filter in
                     NavigationLink {
@@ -40,15 +48,17 @@ struct FiltersView: View {
                             .padding(.bottom, DrawingConstants.paddingBetweenElements)
                     }
                 }
-            }.padding()
+            }
+                .padding()
         }
     }
 
     private func createToolbar() -> some View {
-        NavigationLink(
-            destination: { FilterEditView() }) {
+        Button {
+            filtersViewModel.filters.append(AnofilmFilter())
+            navigateToFilterEdit = true
+        } label: {
             Image(systemName: "plus")
-
         }
     }
 

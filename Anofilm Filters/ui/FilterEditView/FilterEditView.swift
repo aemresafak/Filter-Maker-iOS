@@ -9,6 +9,7 @@ import SwiftUI
 
 struct FilterEditView: View {
 
+    @Binding var anofilmFilter: AnofilmFilter
     @StateObject private var filterEditViewModel = FilterEditViewModel()
     @State private var showFiltersSheet = false
     @State private var showImagePickerSheet = false
@@ -17,11 +18,6 @@ struct FilterEditView: View {
     @State private var imageChosen: UIImage?
     @EnvironmentObject var filtersViewModel: FiltersViewModel
     @Environment(\.presentationMode) var presentationMode
-    private var filterToStartFrom: AnofilmFilter?
-
-    init(filter: AnofilmFilter? = nil) {
-        filterToStartFrom = filter
-    }
 
     var body: some View {
         GeometryReader { geometry in
@@ -44,7 +40,7 @@ struct FilterEditView: View {
 
         }
             .onAppear(perform: {
-            filterEditViewModel.updateAnofilmFilter(filter: filterToStartFrom)
+            filterEditViewModel.updateAnofilmFilter(filter: anofilmFilter)
         })
             .navigationBarTitleDisplayMode(.inline)
             .toolbar(content: createToolbarContent)
@@ -90,7 +86,7 @@ struct FilterEditView: View {
             editVignetteView
         }
     }
-    
+
     private var toastContent: some View {
         Text("Image saved to gallery!")
             .padding()
@@ -370,7 +366,10 @@ struct FilterEditView: View {
                 .foregroundColor(.white)
             VStack {
                 Text("Save your filter")
-                TextField("Filter Name", text: Binding(get: { filterEditViewModel.getFilterName() }, set: { filterEditViewModel.setFilterName($0) }))
+                TextField(
+                    "Filter Name",
+                    text: Binding(get: { filterEditViewModel.getFilterName() }, set: { filterEditViewModel.setFilterName($0) })
+                )
                     .foregroundColor(.black)
                 HStack {
                     Button {
@@ -381,7 +380,7 @@ struct FilterEditView: View {
                     Spacer()
                     Button {
                         showSaveDialog = false
-                        filtersViewModel.addFilter(filterEditViewModel.getFilter())
+                        anofilmFilter = filterEditViewModel.getFilter()
                         presentationMode.wrappedValue.dismiss()
                     } label: {
                         Text("Save")
@@ -400,14 +399,4 @@ struct FilterEditView: View {
 
 
 
-}
-
-struct FilterEditView_Previews: PreviewProvider {
-    @StateObject static private var vm = FiltersViewModel()
-    static var previews: some View {
-        NavigationView {
-            FilterEditView()
-
-        }.environmentObject(vm)
-    }
 }

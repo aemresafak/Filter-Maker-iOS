@@ -18,11 +18,6 @@ class FiltersViewModel: ObservableObject {
 
     @Published var filters: [AnofilmFilter] = []
 
-    /// adds given filter to the filters list, and saves current state to internal storage
-    func addFilter(_ filter: AnofilmFilter) {
-        filters.append(filter)
-        saveFilters()
-    }
     
     init() {
         loadFilters()

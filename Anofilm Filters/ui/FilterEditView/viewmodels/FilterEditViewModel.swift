@@ -23,10 +23,8 @@ class FilterEditViewModel: ObservableObject {
         outputImage = self.originalImage
     }
 
-    func updateAnofilmFilter(filter: AnofilmFilter?) {
-        if let filter = filter, !isFilterUpdated {
-            self.filter = filter
-        }
+    func updateAnofilmFilter(filter: AnofilmFilter) {
+        self.filter = filter
         updateOutputImage()
         isFilterUpdated = true
     }
