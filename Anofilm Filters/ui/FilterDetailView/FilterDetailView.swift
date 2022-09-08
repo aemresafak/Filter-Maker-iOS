@@ -13,8 +13,7 @@ struct FilterDetailView: View {
         ZStack {
             Color(.sRGB, red: 0.25, green: 0.25, blue: 0.25, opacity: 1).ignoresSafeArea()
             ScrollView {
-
-
+                actionHStack()
                 Text(filter.description)
                     .foregroundColor(.white)
                     .font(.title3)
@@ -24,25 +23,26 @@ struct FilterDetailView: View {
                 colorDisplayView
             }
         }
-            .toolbar(content: toolbarContet)
-            .navigationTitle("Filter Details")
             .navigationBarTitleDisplayMode(.inline)
     }
 
-    private func toolbarContet() -> some View {
+    private func actionHStack() -> some View {
         HStack {
             NavigationLink(destination: {
                 FilterEditView(filter: filter)
             }) {
-                Image(systemName: "Pencil")
+                Label("Edit", systemImage: "pencil")
             }
             Button {
                 copyTextToClipboard(filter.description)
             } label: {
-                Image(systemName: "doc.on.doc")
+                Label("Copy to clipboard", systemImage: "doc.on.doc")
+                    .padding(.horizontal)
             }
-
+            Spacer()
         }
+        .font(.title2)
+        .padding()
     }
 
     private var colorDisplayView: some View {
