@@ -23,6 +23,7 @@ struct FilterDetailView: View {
                 colorDisplayView
             }
         }
+            .navigationTitle("Filter Details")
             .navigationBarTitleDisplayMode(.inline)
     }
 
@@ -41,8 +42,8 @@ struct FilterDetailView: View {
             }
             Spacer()
         }
-        .font(.title2)
-        .padding()
+            .font(.title2)
+            .padding()
     }
 
     private var colorDisplayView: some View {
