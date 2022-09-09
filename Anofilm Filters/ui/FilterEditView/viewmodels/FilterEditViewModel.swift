@@ -12,13 +12,17 @@ import SwiftUI
 
 
 class FilterEditViewModel: ObservableObject {
-
+    
     private var filter = AnofilmFilter()
     private var originalImage: MTIImage? = MTIImage(cgImage: UIImage(named: "sampleImage")!.cgImage!).unpremultiplyingAlpha()
-    @Published var outputImage: MTIImage?
-    @Published var editType = EditType.brightness
     private let context: MTIContext? = try? MTIContext(device: MTLCreateSystemDefaultDevice()!)
     private var isFilterUpdated = false
+    
+    @Published var outputImage: MTIImage?
+    @Published var editType = EditType.brightness
+    
+    
+    
     init() {
         outputImage = self.originalImage
     }

@@ -344,6 +344,7 @@ struct FilterEditView: View {
         }
     }
 
+
     private func createFiltersList() -> some View {
         VStack {
             HStack {
@@ -353,15 +354,15 @@ struct FilterEditView: View {
                 }
             }
                 .padding()
-            Spacer()
-            Picker("Choose a Filter", selection: $filterEditViewModel.editType) {
-                ForEach(EditType.allCases) { editType in
+            List(EditType.allCases) { editType in
+                Button {
+                    filterEditViewModel.editType = editType
+                    showFiltersSheet = false
+                } label: {
                     Text(editType.rawValue.capitalized)
                 }
+
             }
-                .pickerStyle(.wheel)
-                .padding()
-            Spacer()
         }
     }
 
@@ -377,7 +378,7 @@ struct FilterEditView: View {
             }.padding()
         }.frame(width: 250, height: 300, alignment: .center)
     }
-    
+
     @ViewBuilder private func createSaveDialogContent() -> some View {
         ZStack {
             RoundedRectangle(cornerRadius: 8)
