@@ -84,6 +84,8 @@ struct FilterEditView: View {
             editShadowTintView
         case .vignette:
             editVignetteView
+        case .rgbAdjustment:
+            editRGBAdjustmentView
         }
     }
 
@@ -307,6 +309,31 @@ struct FilterEditView: View {
         }.padding()
     }
 
+    private var editRGBAdjustmentView: some View {
+            ScrollView {
+                createHorizontalSliderWithColor(color: Color.red, value: Binding(get: { filterEditViewModel.getRedAdjustment() }, set: { filterEditViewModel.setRedAdjustment($0) }))
+                createHorizontalSliderWithColor(color: Color.green, value: Binding(get: { filterEditViewModel.getGreenAdjustment() }, set: { filterEditViewModel.setGreenAdjustment($0) }))
+                createHorizontalSliderWithColor(color: Color.blue, value: Binding(get: { filterEditViewModel.getBlueAdjustment() }, set: { filterEditViewModel.setBlueAdjustment($0) }))
+            }
+        
+    }
+
+    private func createHorizontalSliderWithColor(color: Color, value: Binding<Float>) -> some View {
+        HStack {
+            Circle()
+                .foregroundColor(color)
+                .frame(width: 32, height: 32)
+                .padding(.trailing)
+            Slider(value: value, in: 0...1)
+            Button {
+                value.wrappedValue = 1
+            } label: {
+                Image(systemName: "arrow.uturn.backward")
+            }.padding(.leading)
+        }
+            .padding()
+    }
+
     private func createToolbarContent() -> some View {
         HStack {
             Button {
@@ -405,7 +432,6 @@ struct FilterEditView: View {
                         Text("Save")
                     }
                 }
-
             }.padding()
         }.frame(width: 250, height: 300, alignment: .center)
     }
