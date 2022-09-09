@@ -29,7 +29,7 @@ class FilterEditViewModel: ObservableObject {
         isFilterUpdated = true
     }
 
-    
+
     func saveImageToDocuments(onSaveCallback: (() -> Void)? = nil) {
         Task {
             guard let outputImage = outputImage else {
@@ -39,14 +39,21 @@ class FilterEditViewModel: ObservableObject {
                 return
             }
             let uiImage = UIImage(cgImage: cgImage)
-            UIImageWriteToSavedPhotosAlbum(uiImage, nil, nil, nil)
-            await MainActor.run {
-                onSaveCallback?.self()
+            let imageSaver = ImageSaver(onSuccess: { _ in
+                Task {
+                    await MainActor.run {
+                        onSaveCallback?.self()
+                    }
+                }
+            }) { _, error in
+                print(error.localizedDescription)
             }
+            imageSaver.saveImageToPhotos(uiImage)
+            
         }
-    
+
     }
-    
+
     func getFilter() -> AnofilmFilter { filter }
 
     func setFilterName(_ value: String) { filter.name = value }
