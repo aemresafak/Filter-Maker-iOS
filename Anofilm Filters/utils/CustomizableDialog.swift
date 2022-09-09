@@ -14,16 +14,21 @@ struct CustomizableDialog<Content: View>: View {
     @ViewBuilder var content:  () -> Content
     
     var body: some View {
-        ZStack {
-            Rectangle()
-                .foregroundColor(DrawingConstants.blurColor)
-                .ignoresSafeArea()
-                .onTapGesture {
-                    showDialog = false
-                }
-            content()
-                .padding()
+        if showDialog {
+            ZStack {
+                Rectangle()
+                    .foregroundColor(DrawingConstants.blurColor)
+                    .ignoresSafeArea()
+                    .onTapGesture {
+                        showDialog = false
+                    }
+                content()
+                    .padding()
+            }
+        } else {
+            EmptyView()
         }
+       
     }
     
 

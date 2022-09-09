@@ -14,6 +14,7 @@ struct FilterEditView: View {
     @State private var showFiltersSheet = false
     @State private var showImagePickerSheet = false
     @State private var showSaveDialog = false
+    @State private var showPhotoLibraryAdditionPermissionDeniedDialog = false
     @State private var showSavedToDocumentsToastMessage = false
     @State private var imageChosen: UIImage?
     @EnvironmentObject var filtersViewModel: FiltersViewModel
@@ -30,9 +31,8 @@ struct FilterEditView: View {
                         alignment: .center
                     )
                 }
-                if showSaveDialog {
-                    CustomizableDialog(showDialog: $showSaveDialog, content: createSaveDialogContent)
-                }
+                CustomizableDialog(showDialog: $showSaveDialog, content: createSaveDialogContent)
+                CustomizableDialog(showDialog: $showPhotoLibraryAdditionPermissionDeniedDialog, content: createPhotoLibraryAdditionPermissionDeniedDialogContent)
                 ToastMessage(showMessage: $showSavedToDocumentsToastMessage) {
                     toastContent
                 }
@@ -310,11 +310,16 @@ struct FilterEditView: View {
     private func createToolbarContent() -> some View {
         HStack {
             Button {
-                filterEditViewModel.saveImageToDocuments {
-                    withAnimation {
-                        showSavedToDocumentsToastMessage = true
+                let permissionManager = PhotosLibraryPermissionManager {
+                    filterEditViewModel.saveImageToDocuments {
+                        withAnimation {
+                            showSavedToDocumentsToastMessage = true
+                        }
                     }
+                } onDenied: {
+                    showPhotoLibraryAdditionPermissionDeniedDialog = true
                 }
+                permissionManager.requestPhotosLibraryAdditionPermission()
             } label: {
                 Image(systemName: "square.and.arrow.down.on.square.fill")
             }
@@ -360,6 +365,19 @@ struct FilterEditView: View {
         }
     }
 
+    @ViewBuilder private func createPhotoLibraryAdditionPermissionDeniedDialogContent() -> some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 8)
+                .foregroundColor(.white)
+            VStack {
+                Text("You denied permission to save photos to your library.")
+                Text("You need to go to settings to enable it.")
+                Link("Open settings", destination: URL(string: UIApplication.openSettingsURLString)!)
+                    .padding()
+            }.padding()
+        }.frame(width: 250, height: 300, alignment: .center)
+    }
+    
     @ViewBuilder private func createSaveDialogContent() -> some View {
         ZStack {
             RoundedRectangle(cornerRadius: 8)
