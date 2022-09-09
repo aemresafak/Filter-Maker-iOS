@@ -25,6 +25,7 @@ struct AnofilmFilter: Codable {
     private var tint = MTICustomColorMatrixFilter(matrix: MTICustomColorMatrixFilter.noColorMatrix)
     private var highlightShadowTint = MTIHighlightShadowTintFilter()
     private var vignette = MTIVignetteFilter()
+    private var rgbAdjustment = MTIRGBAdjustmentFilter()
 
     init(name: String = "") {
         self.name = name
@@ -124,6 +125,19 @@ struct AnofilmFilter: Codable {
     func setVignetteEnd(_ value: Float) { vignette.vignetteEnd = value }
     func getVignetteEnd() -> Float { vignette.vignetteEnd }
     func resetVignetteEnd() { vignette.vignetteEnd = 1 }
+    
+    func setRedAdjustment(_ value: Float) { rgbAdjustment.redAdjustment = value }
+    func getRedAdjustment() -> Float { rgbAdjustment.redAdjustment }
+    func resetRedAdjustment() { rgbAdjustment.redAdjustment = 1 }
+    
+    
+    func setGreenAdjustment(_ value: Float) { rgbAdjustment.greenAdjustment = value }
+    func getGreenAdjustment() -> Float { rgbAdjustment.greenAdjustment }
+    func resetGreenAdjustment() { rgbAdjustment.greenAdjustment = 1 }
+    
+    func setBlueAdjustment(_ value: Float) { rgbAdjustment.blueAdjustment = value }
+    func getBlueAdjustment() -> Float { rgbAdjustment.blueAdjustment }
+    func resetBlueAdjustment() { rgbAdjustment.blueAdjustment = 1 }
 
     /// returns filtered version of image
     func filterImage(image: MTIImage?) -> MTIImage? {
@@ -133,6 +147,7 @@ struct AnofilmFilter: Codable {
 
         let intermediateOutput = FilterGraph.makeImage(builder: { output in
             image => brightness => contrast => vignette =>
+            rgbAdjustment =>
             saturation => exposure => vibrance => output
         })
 
@@ -183,6 +198,7 @@ struct AnofilmFilter: Codable {
         self.tint = try container.decode(MTICustomColorMatrixFilter.self, forKey: .tint)
         self.highlightShadowTint = try container.decode(MTIHighlightShadowTintFilter.self, forKey: .highlightShadowTint)
         self.vignette = try container.decode(MTIVignetteFilter.self, forKey: .vignette)
+        self.rgbAdjustment = try container.decode(MTIRGBAdjustmentFilter.self, forKey: .rgbAdjustment)
     }
 
     func encode(to encoder: Encoder) throws {
@@ -201,10 +217,13 @@ struct AnofilmFilter: Codable {
         try container.encode(tint, forKey: .tint)
         try container.encode(highlightShadowTint, forKey: .highlightShadowTint)
         try container.encode(vignette, forKey: .vignette)
+        try container.encode(rgbAdjustment, forKey: .rgbAdjustment)
     }
 
     private enum CodingKeys: String, CodingKey {
-        case name, brightness, contrast, saturation, exposure, vibrance, whiteBalance, gamma, haze, highlightsAndShadows, sepiaTone, tint, highlightShadowTint, vignette
+        case name, brightness, contrast, saturation, exposure, vibrance
+        case whiteBalance, gamma, haze, highlightsAndShadows
+        case sepiaTone, tint, highlightShadowTint, vignette, rgbAdjustment
     }
 
     var description: String {
@@ -234,6 +253,9 @@ struct AnofilmFilter: Codable {
         Vignette Color Description:    \(getVignetteColor().description)
         Vignette Start:    \(getVignetteStart())
         Vignette End:    \(getVignetteEnd())
+        Red Adjustment: \(getRedAdjustment())
+        Green Adjustment: \(getGreenAdjustment())
+        Blue Adjustment: \(getBlueAdjustment())
         """
     }
 }

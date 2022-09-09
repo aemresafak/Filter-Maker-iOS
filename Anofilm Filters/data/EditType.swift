@@ -11,6 +11,8 @@ enum EditType : String, CaseIterable, Identifiable {
     var id : Self {
         self
     }
-    case brightness, contrast, saturation, exposure, vibrance, whiteBalance = "White Balance", gamma, haze, highlightsAndShadows = "Highlights and Shadows", sepiaTone = "Sepia Tone", tint
+    case brightness, contrast, saturation, exposure, vibrance, whiteBalance = "White Balance"
+    case gamma, haze, highlightsAndShadows = "Highlights and Shadows", sepiaTone = "Sepia Tone", tint
     case highlightTint = "Highlight Tint", shadowTint = "Shadow Tint", vignette
+    case rgbAdjustment = "RGB Adjustment"
 }

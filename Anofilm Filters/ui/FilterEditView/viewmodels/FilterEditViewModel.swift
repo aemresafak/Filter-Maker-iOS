@@ -12,17 +12,17 @@ import SwiftUI
 
 
 class FilterEditViewModel: ObservableObject {
-    
+
     private var filter = AnofilmFilter()
     private var originalImage: MTIImage? = MTIImage(cgImage: UIImage(named: "sampleImage")!.cgImage!).unpremultiplyingAlpha()
     private let context: MTIContext? = try? MTIContext(device: MTLCreateSystemDefaultDevice()!)
     private var isFilterUpdated = false
-    
+
     @Published var outputImage: MTIImage?
     @Published var editType = EditType.brightness
-    
-    
-    
+
+
+
     init() {
         outputImage = self.originalImage
     }
@@ -53,7 +53,7 @@ class FilterEditViewModel: ObservableObject {
                 print(error.localizedDescription)
             }
             imageSaver.saveImageToPhotos(uiImage)
-            
+
         }
 
     }
@@ -240,6 +240,27 @@ class FilterEditViewModel: ObservableObject {
     func getVignetteEnd() -> Float { filter.getVignetteEnd() }
     func resetVignetteEnd() { filter.resetVignetteEnd() }
 
+
+    func setRedAdjustment(_ value: Float) {
+        filter.setRedAdjustment(value)
+        updateOutputImage()
+    }
+    func getRedAdjustment() -> Float { filter.getRedAdjustment() }
+    func resetRedAdjustment() { filter.resetRedAdjustment() }
+    
+    func setGreenAdjustment(_ value: Float) {
+        filter.setGreenAdjustment(value)
+        updateOutputImage()
+    }
+    func getGreenAdjustment() -> Float { filter.getGreenAdjustment() }
+    func resetGreenAdjustment() { filter.resetGreenAdjustment() }
+    
+    func setBlueAdjustment(_ value: Float) {
+        filter.setBlueAdjustment(value)
+        updateOutputImage()
+    }
+    func getBlueAdjustment() -> Float { filter.getBlueAdjustment() }
+    func resetBlueAdjustment() { filter.resetBlueAdjustment() }
 
     private func updateOutputImage() {
         outputImage = filter.filterImage(image: originalImage)
