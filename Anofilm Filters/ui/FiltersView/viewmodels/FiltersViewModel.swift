@@ -53,5 +53,13 @@ class FiltersViewModel: ObservableObject {
             print("Filters could not be loaded \(error.localizedDescription)")
         }
     }
+    
+    func deleteFilters(_ indexSet: IndexSet) {
+        filters.remove(atOffsets: indexSet)
+    }
+    
+    func moveFilters(fromOffsets: IndexSet, toOffset: Int) {
+        filters.move(fromOffsets: fromOffsets, toOffset: toOffset)
+    }
 
 }

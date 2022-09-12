@@ -11,7 +11,8 @@ struct FiltersView: View {
 
     @EnvironmentObject var filtersViewModel: FiltersViewModel
     @Environment(\.scenePhase) private var scenePhase
-    @State private var navigateToFilterEdit = false
+    @State private var navigateToAddFilter = false
+
 
     var body: some View {
         filtersView
@@ -30,33 +31,53 @@ struct FiltersView: View {
     }
 
     private var filtersView: some View {
-        GeometryReader { reader in
-
-            NavigationLink(isActive: $navigateToFilterEdit) {
-                FilterEditView(anofilmFilter: $filtersViewModel.filters.last ?? .constant(AnofilmFilter()))
-            } label: {
-                EmptyView()
-            }
-
-            ScrollView {
+        ZStack {
+            addFilterNavigationLink
+            List {
                 ForEach(filtersViewModel.filters) { filter in
-                    NavigationLink {
-                        FilterDetailView(filter: $filtersViewModel.filters[filtersViewModel.findIndex(of: filter)])
-                    } label: {
-                        FilterItem(anofilmFilter: filter)
-                            .frame(maxWidth: .infinity, idealHeight: reader.size.height * DrawingConstants.filterItemHeightPercentage)
-                            .padding(.bottom, DrawingConstants.paddingBetweenElements)
-                    }
+                    createFilterListItem(for: filter)
                 }
+                    .onDelete(perform: filtersViewModel.deleteFilters)
+                    .onMove(perform: filtersViewModel.moveFilters)
             }
-                .padding()
+                .listStyle(.plain)
+        }
+    }
+
+    private var addFilterNavigationLink: some View {
+        NavigationLink(isActive: $navigateToAddFilter) {
+            FilterEditView(
+                anofilmFilter: $filtersViewModel.filters.last ?? .constant(AnofilmFilter())
+            )
+        } label: {
+            EmptyView()
+        }
+    }
+
+    private func createFilterListItem(for filter: AnofilmFilter) -> some View {
+        NavigationLink {
+            FilterDetailView(
+                filter: $filtersViewModel.filters[filtersViewModel.findIndex(of: filter)]
+            )
+        } label: {
+            FilterItem(anofilmFilter: filter)
+                .padding(.bottom, DrawingConstants.paddingBetweenElements)
         }
     }
 
     private func createToolbar() -> some View {
+        HStack {
+            EditButton()
+            addFilterView
+        }
+    }
+
+
+
+    private var addFilterView: some View {
         Button {
             filtersViewModel.filters.append(AnofilmFilter())
-            navigateToFilterEdit = true
+            navigateToAddFilter = true
         } label: {
             Image(systemName: "plus")
         }
@@ -64,7 +85,6 @@ struct FiltersView: View {
 
     private struct DrawingConstants {
         static let paddingBetweenElements: CGFloat = 4
-        static let filterItemHeightPercentage = 0.15
     }
 }
 

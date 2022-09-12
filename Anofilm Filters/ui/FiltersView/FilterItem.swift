@@ -8,29 +8,17 @@
 import SwiftUI
 
 struct FilterItem: View {
-    
+
     let anofilmFilter: AnofilmFilter
-    
+
     var body: some View {
-        ZStack {
-            backgroundView
-            HStack {
-                Label(anofilmFilter.name, systemImage: "pencil")
-                    .font(.title)
-                    .foregroundColor(.white)
-                Spacer()
-            }.padding()
-        }
+        Label(anofilmFilter.name,systemImage: "pencil")
+            .font(.title)
     }
-    
-    private var backgroundView : some View {
-        RoundedRectangle(cornerRadius: DrawingConstants.cornerRadius)
-            .foregroundColor(DrawingConstants.backgroundColor)
-    }
-    
+
+
     private struct DrawingConstants {
-        static let cornerRadius: CGFloat = 16
-        static let backgroundColor = Color.init(red: 0.45, green: 0.45, blue: 0.45)
+
     }
 }
 
