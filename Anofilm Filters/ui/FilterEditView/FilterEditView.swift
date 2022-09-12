@@ -18,6 +18,7 @@ struct FilterEditView: View {
     @State private var showSavedToDocumentsToastMessage = false
     @State private var imageChosen: UIImage?
     @EnvironmentObject var filtersViewModel: FiltersViewModel
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
     @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
@@ -409,14 +410,14 @@ struct FilterEditView: View {
     @ViewBuilder private func createSaveDialogContent() -> some View {
         ZStack {
             RoundedRectangle(cornerRadius: 8)
-                .foregroundColor(.white)
+                .foregroundColor(colorScheme == .light ? .white : .black)
             VStack {
                 Text("Save your filter")
                 TextField(
                     "Filter Name",
                     text: Binding(get: { filterEditViewModel.getFilterName() }, set: { filterEditViewModel.setFilterName($0) })
                 )
-                    .foregroundColor(.black)
+                Spacer()
                 HStack {
                     Button {
                         showSaveDialog = false
