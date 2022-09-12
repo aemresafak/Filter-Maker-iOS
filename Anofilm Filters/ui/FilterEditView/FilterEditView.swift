@@ -26,7 +26,9 @@ struct FilterEditView: View {
             ZStack {
                 VStack {
                     FilterImageView(imageToDisplay: $filterEditViewModel.outputImage)
-                    editContent.frame(
+                    editContent
+                        .padding()
+                        .frame(
                         width: geometry.size.width,
                         height: geometry.size.height * 0.3,
                         alignment: .center
@@ -311,12 +313,12 @@ struct FilterEditView: View {
     }
 
     private var editRGBAdjustmentView: some View {
-            ScrollView {
-                createHorizontalSliderWithColor(color: Color.red, value: Binding(get: { filterEditViewModel.getRedAdjustment() }, set: { filterEditViewModel.setRedAdjustment($0) }))
-                createHorizontalSliderWithColor(color: Color.green, value: Binding(get: { filterEditViewModel.getGreenAdjustment() }, set: { filterEditViewModel.setGreenAdjustment($0) }))
-                createHorizontalSliderWithColor(color: Color.blue, value: Binding(get: { filterEditViewModel.getBlueAdjustment() }, set: { filterEditViewModel.setBlueAdjustment($0) }))
-            }
-        
+        ScrollView {
+            createHorizontalSliderWithColor(color: Color.red, value: Binding(get: { filterEditViewModel.getRedAdjustment() }, set: { filterEditViewModel.setRedAdjustment($0) }))
+            createHorizontalSliderWithColor(color: Color.green, value: Binding(get: { filterEditViewModel.getGreenAdjustment() }, set: { filterEditViewModel.setGreenAdjustment($0) }))
+            createHorizontalSliderWithColor(color: Color.blue, value: Binding(get: { filterEditViewModel.getBlueAdjustment() }, set: { filterEditViewModel.setBlueAdjustment($0) }))
+        }
+
     }
 
     private func createHorizontalSliderWithColor(color: Color, value: Binding<Float>) -> some View {
