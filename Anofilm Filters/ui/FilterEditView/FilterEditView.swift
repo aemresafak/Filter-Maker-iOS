@@ -47,6 +47,7 @@ struct FilterEditView: View {
         })
             .navigationBarTitleDisplayMode(.inline)
             .toolbar(content: createToolbarContent)
+            .navigationBarBackButtonHidden(true)
             .sheet(isPresented: $showFiltersSheet, onDismiss: nil, content: createFiltersList)
             .sheet(isPresented: $showImagePickerSheet, onDismiss: nil, content: createImagePicker)
             .onChange(of: imageChosen, perform: {
@@ -348,6 +349,18 @@ struct FilterEditView: View {
                 Image(systemName: "list.bullet")
             }
         }
+        ToolbarItem(placement: .navigationBarLeading) {
+            backButton
+        }
+    }
+    
+    private var backButton: some View {
+        Button {
+            showSaveDialog = true
+        } label: {
+            Label("Filters", systemImage: "chevron.left")
+        }
+
     }
 
     private var chooseFilterButton: some View {
@@ -441,6 +454,7 @@ struct FilterEditView: View {
                 HStack {
                     Button {
                         showSaveDialog = false
+                        presentationMode.wrappedValue.dismiss()
                     } label: {
                         Text("Cancel")
                     }
