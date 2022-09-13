@@ -337,40 +337,58 @@ struct FilterEditView: View {
             .padding()
     }
 
-    private func createToolbarContent() -> some View {
-        HStack {
-            Button {
-                let permissionManager = PhotosLibraryPermissionManager {
-                    filterEditViewModel.saveImageToDocuments {
-                        withAnimation {
-                            showSavedToDocumentsToastMessage = true
-                        }
+    @ToolbarContentBuilder private func createToolbarContent() -> some ToolbarContent {
+        ToolbarItem(placement: .automatic) {
+            Menu {
+                saveImageButton
+                saveFilterButton
+                imagePickerButton
+                chooseFilterButton
+            } label: {
+                Image(systemName: "list.bullet")
+            }
+        }
+    }
+
+    private var chooseFilterButton: some View {
+        Button {
+            showFiltersSheet = true
+        } label: {
+            Label("Choose filter type", systemImage: "camera.filters")
+        }
+
+    }
+
+    private var imagePickerButton: some View {
+        Button {
+            showImagePickerSheet = true
+        } label: {
+            Label("Change photo", systemImage: "photo")
+        }
+    }
+
+    private var saveFilterButton: some View {
+        Button {
+            showSaveDialog = true
+        } label: {
+            Label("Save Filter", systemImage: "square.and.arrow.down")
+        }
+    }
+
+    private var saveImageButton: some View {
+        Button {
+            let permissionManager = PhotosLibraryPermissionManager {
+                filterEditViewModel.saveImageToDocuments {
+                    withAnimation {
+                        showSavedToDocumentsToastMessage = true
                     }
-                } onDenied: {
-                    showPhotoLibraryAdditionPermissionDeniedDialog = true
                 }
-                permissionManager.requestPhotosLibraryAdditionPermission()
-            } label: {
-                Image(systemName: "square.and.arrow.down.on.square.fill")
+            } onDenied: {
+                showPhotoLibraryAdditionPermissionDeniedDialog = true
             }
-
-            Button {
-                showSaveDialog = true
-            } label: {
-                Image(systemName: "square.and.arrow.down")
-            }
-
-            Button {
-                showImagePickerSheet = true
-            } label: {
-                Image(systemName: "photo")
-            }
-            Button {
-                showFiltersSheet = true
-            } label: {
-                Image(systemName: "camera.filters")
-            }
-
+            permissionManager.requestPhotosLibraryAdditionPermission()
+        } label: {
+            Label("Save image to gallery", systemImage: "square.and.arrow.down.on.square.fill")
         }
     }
 
