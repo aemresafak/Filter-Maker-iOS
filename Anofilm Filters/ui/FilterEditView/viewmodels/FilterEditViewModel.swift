@@ -16,15 +16,17 @@ class FilterEditViewModel: ObservableObject {
     @Binding var filter: AnofilmFilter
     private var originalImage: MTIImage? = MTIImage(cgImage: UIImage(named: "sampleImage")!.cgImage!).unpremultiplyingAlpha()
     private let context: MTIContext? = try? MTIContext(device: MTLCreateSystemDefaultDevice()!)
-
+    
     @Published var outputImage: MTIImage?
     @Published var editType = EditType.brightness
-
+    
+    var newFilterName: String
 
 
     init(filter: Binding<AnofilmFilter>) {
         outputImage = self.originalImage
         self._filter = filter
+        newFilterName = filter.wrappedValue.name
         updateOutputImage()
     }
 

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FilterEditView: View {
-    
+
     @Environment(\.colorScheme) private var colorScheme: ColorScheme
     @Environment(\.presentationMode) private var presentationMode
 
@@ -18,7 +18,7 @@ struct FilterEditView: View {
     @State private var showPhotoLibraryAdditionPermissionDeniedDialog = false
     @State private var showSavedToDocumentsToastMessage = false
     @State private var imageChosen: UIImage?
-    
+
     let shouldAddFilterToFilters: Bool
     @StateObject var filterEditViewModel: FilterEditViewModel
     @EnvironmentObject var filtersViewModel: FiltersViewModel
@@ -353,7 +353,7 @@ struct FilterEditView: View {
             backButton
         }
     }
-    
+
     private var backButton: some View {
         Button {
             showSaveDialog = true
@@ -448,7 +448,7 @@ struct FilterEditView: View {
                 Text("Save your filter")
                 TextField(
                     "Filter Name",
-                    text: filterEditViewModel.$filter.name
+                    text: Binding(get: { filterEditViewModel.newFilterName }, set: { filterEditViewModel.newFilterName = $0 })
                 )
                 Spacer()
                 HStack {
@@ -462,6 +462,7 @@ struct FilterEditView: View {
                     Spacer()
                     Button {
                         showSaveDialog = false
+                        filterEditViewModel.filter.name = filterEditViewModel.newFilterName
                         if shouldAddFilterToFilters {
                             let filterToAdd = filterEditViewModel.filter
                             filtersViewModel.filters.append(filterToAdd)
