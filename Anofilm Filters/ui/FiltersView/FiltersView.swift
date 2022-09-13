@@ -14,6 +14,7 @@ struct FiltersView: View {
     @State private var navigateToAddFilter = false
 
 
+   
     var body: some View {
         filtersView
             .toolbar(content: createToolbar)
@@ -46,8 +47,10 @@ struct FiltersView: View {
 
     private var addFilterNavigationLink: some View {
         NavigationLink(isActive: $navigateToAddFilter) {
+            let filterEditViewModel = FilterEditViewModel(filter: Binding(get: {filtersViewModel.draftFilter}, set: {filtersViewModel.draftFilter = $0}))
             FilterEditView(
-                anofilmFilter: $filtersViewModel.filters.last ?? .constant(AnofilmFilter())
+                shouldAddFilterToFilters: true,
+                filterEditViewModel: filterEditViewModel
             )
         } label: {
             EmptyView()
@@ -76,7 +79,6 @@ struct FiltersView: View {
 
     private var addFilterView: some View {
         Button {
-            filtersViewModel.filters.append(AnofilmFilter())
             navigateToAddFilter = true
         } label: {
             Image(systemName: "plus")
