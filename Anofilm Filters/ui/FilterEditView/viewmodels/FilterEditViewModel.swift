@@ -260,6 +260,27 @@ class FilterEditViewModel: ObservableObject {
     }
     func getBlueAdjustment() -> Float { filter.getBlueAdjustment() }
     func resetBlueAdjustment() { filter.resetBlueAdjustment() }
+    
+    func setClaheClipLimit(_ value: Float) {
+        filter.setClaheClipLimit(value)
+        updateOutputImage()
+    }
+    func getClaheClipLimit() -> Float { filter.getClaheClipLimit() }
+    func resetClaheClipLimit() { filter.resetClaheClipLimit() }
+    
+    func setClaheTileWidth(_ value: UInt) {
+        filter.setClaheTileWidth(value)
+        updateOutputImage()
+    }
+    func getClaheTileWidth() -> UInt { filter.getClaheTileWidth() }
+    func resetClaheTileWidth() { filter.resetClaheTileWidth() }
+    
+    func setClaheTileHeight(_ value: UInt) {
+        filter.setClaheTileHeight(value)
+        updateOutputImage()
+    }
+    func getClaheTileHeight() -> UInt { filter.getClaheTileHeight() }
+    func resetClaheTileHeight() { filter.resetClaheTileHeight() }
 
     private func updateOutputImage() {
         outputImage = filter.filterImage(image: originalImage)

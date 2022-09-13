@@ -41,6 +41,8 @@
 		E49ED0AA28C76CBD00C68007 /* MTIGammaFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49ED0A928C76CBD00C68007 /* MTIGammaFilter.swift */; };
 		E49ED0AC28C7797800C68007 /* MTIHazeFilter.metal in Sources */ = {isa = PBXBuildFile; fileRef = E49ED0AB28C7797800C68007 /* MTIHazeFilter.metal */; };
 		E49ED0AE28C77A6300C68007 /* MTIHazeFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49ED0AD28C77A6300C68007 /* MTIHazeFilter.swift */; };
+		E4A12DBA28D12BF8001AF77B /* MTICLAHEFilterBlueprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A12DB928D12BF8001AF77B /* MTICLAHEFilterBlueprint.swift */; };
+		E4A12DBC28D12CE2001AF77B /* MTICLAHEFilterExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A12DBB28D12CE2001AF77B /* MTICLAHEFilterExtensions.swift */; };
 		E4ACE3F028C8EF710069E17C /* ColorError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4ACE3EF28C8EF710069E17C /* ColorError.swift */; };
 		E4ACE3F628C8F8D40069E17C /* SIMDExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4ACE3F528C8F8D40069E17C /* SIMDExtensions.swift */; };
 		E4ACE40D28C910D90069E17C /* FilterDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4ACE40C28C910D90069E17C /* FilterDetailView.swift */; };
@@ -89,6 +91,8 @@
 		E49ED0A928C76CBD00C68007 /* MTIGammaFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTIGammaFilter.swift; sourceTree = "<group>"; };
 		E49ED0AB28C7797800C68007 /* MTIHazeFilter.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = MTIHazeFilter.metal; sourceTree = "<group>"; };
 		E49ED0AD28C77A6300C68007 /* MTIHazeFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTIHazeFilter.swift; sourceTree = "<group>"; };
+		E4A12DB928D12BF8001AF77B /* MTICLAHEFilterBlueprint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTICLAHEFilterBlueprint.swift; sourceTree = "<group>"; };
+		E4A12DBB28D12CE2001AF77B /* MTICLAHEFilterExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTICLAHEFilterExtensions.swift; sourceTree = "<group>"; };
 		E4ACE3EF28C8EF710069E17C /* ColorError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorError.swift; sourceTree = "<group>"; };
 		E4ACE3F528C8F8D40069E17C /* SIMDExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIMDExtensions.swift; sourceTree = "<group>"; };
 		E4ACE40C28C910D90069E17C /* FilterDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterDetailView.swift; sourceTree = "<group>"; };
@@ -134,6 +138,7 @@
 				E42D3E0928C7D51E0018C9FE /* ColorExtensions.swift */,
 				E48CFFD828C872D3004EB25C /* AnofilmFilterExtensions.swift */,
 				E4ACE3F528C8F8D40069E17C /* SIMDExtensions.swift */,
+				E4A12DBB28D12CE2001AF77B /* MTICLAHEFilterExtensions.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -225,6 +230,7 @@
 				E49ED09E28C71CA700C68007 /* customfilters */,
 				E49ED08828C657EF00C68007 /* AnofilmFilter.swift */,
 				E49ED09028C659E200C68007 /* EditType.swift */,
+				E4A12DB928D12BF8001AF77B /* MTICLAHEFilterBlueprint.swift */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -415,6 +421,7 @@
 				E497668928CB340600E9EB11 /* PhotosLibraryPermissonManager.swift in Sources */,
 				E42D3E0C28C7DA8A0018C9FE /* MTIVignetteFilter.metal in Sources */,
 				E4ACE3F628C8F8D40069E17C /* SIMDExtensions.swift in Sources */,
+				E4A12DBC28D12CE2001AF77B /* MTICLAHEFilterExtensions.swift in Sources */,
 				E49ED0A028C71CDA00C68007 /* MTIWhiteBalanceFilter.metal in Sources */,
 				E49ED08F28C6589A00C68007 /* FilterEditViewModel.swift in Sources */,
 				E49ED08428C6577C00C68007 /* ImagePicker.swift in Sources */,
@@ -437,6 +444,7 @@
 				E4AD87A728CBE84700AA9B2D /* MTIRGBAdjustmentFilter.metal in Sources */,
 				E49ED08C28C6588300C68007 /* FilterEditView.swift in Sources */,
 				E48CFFD728C86FDD004EB25C /* FilterItem.swift in Sources */,
+				E4A12DBA28D12BF8001AF77B /* MTICLAHEFilterBlueprint.swift in Sources */,
 				E48CFFD528C86E28004EB25C /* FiltersViewModel.swift in Sources */,
 				E48CFFD228C86E11004EB25C /* FiltersView.swift in Sources */,
 			);

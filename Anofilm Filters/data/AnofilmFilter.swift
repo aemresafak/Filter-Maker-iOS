@@ -26,6 +26,7 @@ struct AnofilmFilter: Codable {
     private var highlightShadowTint = MTIHighlightShadowTintFilter()
     private var vignette = MTIVignetteFilter()
     private var rgbAdjustment = MTIRGBAdjustmentFilter()
+    private var clahe = MTICLAHEFilter()
 
     init(name: String = "") {
         self.name = name
@@ -138,6 +139,18 @@ struct AnofilmFilter: Codable {
     func setBlueAdjustment(_ value: Float) { rgbAdjustment.blueAdjustment = value }
     func getBlueAdjustment() -> Float { rgbAdjustment.blueAdjustment }
     func resetBlueAdjustment() { rgbAdjustment.blueAdjustment = 1 }
+    
+    func setClaheClipLimit(_ value: Float) { clahe.clipLimit = value }
+    func getClaheClipLimit() -> Float { clahe.clipLimit }
+    func resetClaheClipLimit() { clahe.clipLimit = 0 }
+    
+    func setClaheTileWidth(_ value: UInt) { clahe.tileGridSize.width = value }
+    func getClaheTileWidth() -> UInt { clahe.tileGridSize.width }
+    func resetClaheTileWidth() { clahe.tileGridSize.width = 8 }
+    
+    func setClaheTileHeight(_ value: UInt) { clahe.tileGridSize.height = value }
+    func getClaheTileHeight() -> UInt { clahe.tileGridSize.height }
+    func resetClaheTileHeight() { clahe.tileGridSize.height = 8 }
 
     /// returns filtered version of image
     func filterImage(image: MTIImage?) -> MTIImage? {
@@ -147,7 +160,7 @@ struct AnofilmFilter: Codable {
 
         let intermediateOutput = FilterGraph.makeImage(builder: { output in
             image => brightness => contrast => vignette =>
-            rgbAdjustment =>
+            rgbAdjustment => clahe =>
             saturation => exposure => vibrance => output
         })
 
@@ -199,6 +212,8 @@ struct AnofilmFilter: Codable {
         self.highlightShadowTint = try container.decode(MTIHighlightShadowTintFilter.self, forKey: .highlightShadowTint)
         self.vignette = try container.decode(MTIVignetteFilter.self, forKey: .vignette)
         self.rgbAdjustment = try container.decode(MTIRGBAdjustmentFilter.self, forKey: .rgbAdjustment)
+        let claheBlueprint = try container.decode(MTICLAHEFilterBluePrint.self, forKey: .clahe)
+        self.clahe = claheBlueprint.createMTICLAHEFilter()
     }
 
     func encode(to encoder: Encoder) throws {
@@ -218,12 +233,14 @@ struct AnofilmFilter: Codable {
         try container.encode(highlightShadowTint, forKey: .highlightShadowTint)
         try container.encode(vignette, forKey: .vignette)
         try container.encode(rgbAdjustment, forKey: .rgbAdjustment)
+        try container.encode(clahe.createBlueprint(), forKey: .clahe)
     }
 
     private enum CodingKeys: String, CodingKey {
         case name, brightness, contrast, saturation, exposure, vibrance
         case whiteBalance, gamma, haze, highlightsAndShadows
         case sepiaTone, tint, highlightShadowTint, vignette, rgbAdjustment
+        case clahe
     }
 
     var description: String {
@@ -253,9 +270,12 @@ struct AnofilmFilter: Codable {
         Vignette Color Description:    \(getVignetteColor().description)
         Vignette Start:    \(getVignetteStart())
         Vignette End:    \(getVignetteEnd())
-        Red Adjustment: \(getRedAdjustment())
-        Green Adjustment: \(getGreenAdjustment())
-        Blue Adjustment: \(getBlueAdjustment())
+        Red Adjustment:  \(getRedAdjustment())
+        Green Adjustment:  \(getGreenAdjustment())
+        Blue Adjustment:  \(getBlueAdjustment())
+        CLAHE Clip Limit:  \(clahe.clipLimit)
+        CLAHE Grid Tile Width:  \(clahe.tileGridSize.width)
+        CLAHE Grid Tile Height: \(clahe.tileGridSize.height)
         """
     }
 }
