@@ -90,6 +90,8 @@ struct FilterEditView: View {
             editVignetteView
         case .rgbAdjustment:
             editRGBAdjustmentView
+        case .clahe:
+            editClaheView
         }
     }
 
@@ -319,8 +321,47 @@ struct FilterEditView: View {
             createHorizontalSliderWithColor(color: Color.green, value: Binding(get: { filterEditViewModel.getGreenAdjustment() }, set: { filterEditViewModel.setGreenAdjustment($0) }))
             createHorizontalSliderWithColor(color: Color.blue, value: Binding(get: { filterEditViewModel.getBlueAdjustment() }, set: { filterEditViewModel.setBlueAdjustment($0) }))
         }
-
     }
+
+    private var editClaheView: some View {
+        ScrollView {
+            createEditViewWithSlider(
+                editName: "Clip Limit",
+                value: Binding(get: { filterEditViewModel.getClaheClipLimit() }, set: { filterEditViewModel.setClaheClipLimit($0) }),
+                range: 0...2,
+                resetValue: 0
+            )
+            createEditStepper(
+                "Tile Width",
+                value: Binding(get: { filterEditViewModel.getClaheTileWidth() }, set: { filterEditViewModel.setClaheTileWidth($0) }),
+                range: 1...32,
+                resetValue: 8
+            )
+            createEditStepper(
+                "Tile Height",
+                value: Binding(get: { filterEditViewModel.getClaheTileHeight() }, set: { filterEditViewModel.setClaheTileHeight($0) }),
+                range: 1...32,
+                resetValue: 8
+            )
+
+        }
+    }
+
+
+    func createEditStepper<Value: Strideable & LosslessStringConvertible>(_ title: String, value: Binding<Value>, range: ClosedRange<Value>, resetValue: Value) -> some View {
+        HStack {
+            Stepper(value: value, in: range) {
+                Text("\(title): \(value.wrappedValue.description)")
+            }
+            Button {
+                value.wrappedValue = resetValue
+            } label: {
+                Image(systemName: "arrow.uturn.backward")
+            }
+        }
+    }
+
+
 
     private func createHorizontalSliderWithColor(color: Color, value: Binding<Float>) -> some View {
         HStack {

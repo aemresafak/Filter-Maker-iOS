@@ -30,6 +30,7 @@ struct AnofilmFilter: Codable {
 
     init(name: String = "") {
         self.name = name
+        clahe.clipLimit = 0
     }
 
     /// value of brightness in range of -1 to 1 with 0 being default
