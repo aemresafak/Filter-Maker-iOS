@@ -9,18 +9,20 @@ import Foundation
 
 class FiltersViewModel: ObservableObject {
 
-    func getFiltersURL() throws -> URL {
-        let url = try FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-        return url.appendingPathComponent("filters.json")
-    }
 
 
 
     @Published var filters: [AnofilmFilter] = []
+    var draftFilter: AnofilmFilter = AnofilmFilter()
 
-    
+
     init() {
         loadFilters()
+    }
+
+    func getFiltersURL() throws -> URL {
+        let url = try FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+        return url.appendingPathComponent("filters.json")
     }
 
     func findIndex(of filter: AnofilmFilter) -> Int {
@@ -29,7 +31,9 @@ class FiltersViewModel: ObservableObject {
         })
         return index ?? -1
     }
-    
+
+
+
     /// Saves filters to internal storage
     func saveFilters() {
         Task {
@@ -53,11 +57,21 @@ class FiltersViewModel: ObservableObject {
             print("Filters could not be loaded \(error.localizedDescription)")
         }
     }
-    
+
+  
+    func resetDraftFilter() {
+        draftFilter = AnofilmFilter()
+    }
+
+    func appendDraftFilter() {
+        filters.append(draftFilter)
+        draftFilter = AnofilmFilter()
+    }
+
     func deleteFilters(_ indexSet: IndexSet) {
         filters.remove(atOffsets: indexSet)
     }
-    
+
     func moveFilters(fromOffsets: IndexSet, toOffset: Int) {
         filters.move(fromOffsets: fromOffsets, toOffset: toOffset)
     }
