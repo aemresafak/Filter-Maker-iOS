@@ -21,8 +21,17 @@ class FilterEditViewModel: ObservableObject {
     @Published var editType = EditType.brightness
     
     private var isFilterUpdated = false
+    private var restoreData: Data?
+    var storedFilter: AnofilmFilter? {
+        if let restoreData = restoreData {
+            return try? JSONDecoder().decode(AnofilmFilter.self, from: restoreData)
+        } else {
+            return nil
+        }
+        
+    }
     
-
+    
     init() {
         outputImage = self.originalImage
         updateOutputImage()
@@ -35,6 +44,7 @@ class FilterEditViewModel: ObservableObject {
         self.filter = filter
         updateOutputImage()
         isFilterUpdated = true
+        restoreData = try? JSONEncoder().encode(filter)
     }
     
     func changeOriginalImage(with image: UIImage?) {

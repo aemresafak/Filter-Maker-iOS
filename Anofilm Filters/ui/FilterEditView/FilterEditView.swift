@@ -501,6 +501,9 @@ struct FilterEditView: View {
                 HStack {
                     Button {
                         showSaveDialog = false
+                        if let storedFilter = filterEditViewModel.storedFilter, filtersViewModel.filters.indices.contains(filterIndex) {
+                            filtersViewModel.filters[filterIndex] = storedFilter
+                        }
                         presentationMode.wrappedValue.dismiss()
                     } label: {
                         Text("Cancel")
