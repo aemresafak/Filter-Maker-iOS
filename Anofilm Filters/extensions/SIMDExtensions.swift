@@ -7,6 +7,7 @@
 
 import Foundation
 import MetalPetal
+import SwiftUI
 
 extension simd_float4x4: Codable {
 
@@ -34,5 +35,11 @@ extension simd_float4x4: Codable {
 
     private enum CodingKeys: String, CodingKey {
         case firstColumn, secondColumn, thirdColumn, fourthColumn
+    }
+}
+
+extension simd_float3 {
+    func toColor() -> Color {
+        Color(.sRGB, red: Double(self.x), green: Double(self.y), blue: Double(self.z), opacity: 1)
     }
 }
