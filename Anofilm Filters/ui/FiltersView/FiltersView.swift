@@ -47,11 +47,7 @@ struct FiltersView: View {
 
     private var addFilterNavigationLink: some View {
         NavigationLink(isActive: $navigateToAddFilter) {
-            let filterEditViewModel = FilterEditViewModel(filter: Binding(get: {filtersViewModel.draftFilter}, set: {filtersViewModel.draftFilter = $0}))
-            FilterEditView(
-                shouldAddFilterToFilters: true,
-                filterEditViewModel: filterEditViewModel
-            )
+            FilterEditView()
         } label: {
             EmptyView()
         }
@@ -60,7 +56,7 @@ struct FiltersView: View {
     private func createFilterListItem(for filter: AnofilmFilter) -> some View {
         NavigationLink {
             FilterDetailView(
-                filter: $filtersViewModel.filters[filtersViewModel.findIndex(of: filter)]
+                filterIndex: filtersViewModel.findIndex(of: filter)
             )
         } label: {
             FilterItem(anofilmFilter: filter)

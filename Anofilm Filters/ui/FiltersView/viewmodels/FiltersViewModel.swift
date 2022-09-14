@@ -13,8 +13,6 @@ class FiltersViewModel: ObservableObject {
 
 
     @Published var filters: [AnofilmFilter] = []
-    var draftFilter: AnofilmFilter = AnofilmFilter()
-
 
     init() {
         loadFilters()
@@ -27,7 +25,7 @@ class FiltersViewModel: ObservableObject {
 
     func findIndex(of filter: AnofilmFilter) -> Int {
         let index = filters.firstIndex(where: {
-            $0.name == filter.name
+            $0.id == filter.id
         })
         return index ?? -1
     }
@@ -56,16 +54,6 @@ class FiltersViewModel: ObservableObject {
         } catch {
             print("Filters could not be loaded \(error.localizedDescription)")
         }
-    }
-
-  
-    func resetDraftFilter() {
-        draftFilter = AnofilmFilter()
-    }
-
-    func appendDraftFilter() {
-        filters.append(draftFilter)
-        draftFilter = AnofilmFilter()
     }
 
     func deleteFilters(_ indexSet: IndexSet) {

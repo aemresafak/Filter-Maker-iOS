@@ -9,7 +9,15 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 struct FilterDetailView: View {
-    @Binding var filter: AnofilmFilter
+    let filterIndex: Int
+    
+    private var filter: AnofilmFilter {
+        filtersViewModel.filters[filterIndex]
+    }
+    
+    @EnvironmentObject var filtersViewModel: FiltersViewModel
+    
+    
     @State private var showCopyToastMessage = false
     var body: some View {
         ZStack {
@@ -35,10 +43,7 @@ struct FilterDetailView: View {
     private func actionHStack() -> some View {
         HStack {
             NavigationLink(destination: {
-                FilterEditView(
-                    shouldAddFilterToFilters: false,
-                    filterEditViewModel: FilterEditViewModel(filter: _filter))
-                
+                FilterEditView(filterIndex: filterIndex)
             }) {
                 Label("Edit", systemImage: "pencil")
             }
@@ -113,13 +118,4 @@ struct FilterDetailView: View {
         static let colorCircleDiameter: CGFloat = 36
     }
 
-}
-
-struct FilterDetailView_Previews: PreviewProvider {
-    @State static var filter = AnofilmFilter(name: "ali")
-    static var previews: some View {
-        NavigationView {
-            FilterDetailView(filter: $filter)
-        }
-    }
 }

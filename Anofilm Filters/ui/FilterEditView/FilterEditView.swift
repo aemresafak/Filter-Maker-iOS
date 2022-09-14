@@ -19,8 +19,9 @@ struct FilterEditView: View {
     @State private var showSavedToDocumentsToastMessage = false
     @State private var imageChosen: UIImage?
 
-    let shouldAddFilterToFilters: Bool
-    @StateObject var filterEditViewModel: FilterEditViewModel
+    var filterIndex: Int = -1
+    
+    @StateObject var filterEditViewModel: FilterEditViewModel = FilterEditViewModel()
     @EnvironmentObject var filtersViewModel: FiltersViewModel
 
 
@@ -44,6 +45,11 @@ struct FilterEditView: View {
                 }
             }
 
+        }
+            .onAppear {
+            if filtersViewModel.filters.indices.contains(filterIndex) {
+                filterEditViewModel.updateFilter(filter: filtersViewModel.filters[filterIndex])
+            }
         }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar(content: createToolbarContent)
@@ -489,13 +495,12 @@ struct FilterEditView: View {
                 Text("Save your filter")
                 TextField(
                     "Filter Name",
-                    text: Binding(get: { filterEditViewModel.newFilterName }, set: { filterEditViewModel.newFilterName = $0 })
+                    text: Binding(get: { filterEditViewModel.getFilterName() }, set: { filterEditViewModel.setFilterName($0) })
                 )
                 Spacer()
                 HStack {
                     Button {
                         showSaveDialog = false
-                        filtersViewModel.resetDraftFilter()
                         presentationMode.wrappedValue.dismiss()
                     } label: {
                         Text("Cancel")
@@ -503,10 +508,10 @@ struct FilterEditView: View {
                     Spacer()
                     Button {
                         showSaveDialog = false
-                        filterEditViewModel.filter.name = filterEditViewModel.newFilterName
-                        if shouldAddFilterToFilters {
-                            let filterToAdd = filterEditViewModel.filter
-                            filtersViewModel.filters.append(filterToAdd)
+                        if filterIndex == -1 {
+                            filtersViewModel.filters.append(filterEditViewModel.getFilter())
+                        } else {
+                            filtersViewModel.filters[filterIndex] = filterEditViewModel.getFilter()
                         }
                         presentationMode.wrappedValue.dismiss()
                     } label: {
