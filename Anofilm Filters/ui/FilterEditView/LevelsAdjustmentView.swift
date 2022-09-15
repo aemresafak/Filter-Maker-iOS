@@ -9,10 +9,16 @@ import SwiftUI
 
 struct LevelsAdjustmentView: View {
     var body: some View {
-        createHolder()
+        outputRectangle
     }
 
-
+    
+    private var outputRectangle: some View {
+        Rectangle()
+            .foregroundStyle(LinearGradient(colors: [.white, .black], startPoint: .leading, endPoint: .trailing))
+            .frame(height: DrawingConstants.outputRectangleHeight)
+    }
+    
     private func createHolder() -> some View {
         VStack(spacing: 0) {
             Triangle(inRectangle: CGRect(x: 0, y: 0, width: DrawingConstants.holderWidth, height: DrawingConstants.holderTriangleHeight))
@@ -27,6 +33,7 @@ struct LevelsAdjustmentView: View {
         static let holderTriangleHeight: CGFloat = 9
         static let holderRectangleHeight: CGFloat = 9
         static let holderColor = Color.gray
+        static let outputRectangleHeight: CGFloat = 32
     }
 }
 
