@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct OutputLevelsAdjustmentView: View {
+struct LevelsAdjustmentView: View {
 
     
     @Binding var minimumLevel: Float
@@ -22,7 +22,10 @@ struct OutputLevelsAdjustmentView: View {
 
 
     var body: some View {
-        levelsAdjustmentView
+        VStack(spacing: 32) {
+            levelsAdjustmentView
+            outputLevelsAdjustmentView
+        }
     }
     
     private var levelsAdjustmentView: some View {
@@ -34,6 +37,7 @@ struct OutputLevelsAdjustmentView: View {
                 Spacer()
                 Text("Max")
             }
+            TripleThumbSlider(minimumValue: $minimumLevel, middleValue: $middleLevel, maximumValue: $maximumLevel)
         }
     }
     
@@ -132,7 +136,7 @@ struct OutputLevelsAdjustmentView: View {
 
 struct LevelsAdjustmentView_Previews: PreviewProvider {
     static var previews: some View {
-        OutputLevelsAdjustmentView(
+        LevelsAdjustmentView(
             minimumLevel: .constant(0),
             middleLevel: .constant(0.5),
             maximumLevel: .constant(1),
