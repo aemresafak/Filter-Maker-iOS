@@ -11,22 +11,32 @@ struct LevelsAdjustmentView: View {
 
     @Binding var minimumOutputLevel: Float
     @Binding var maximumOutputLevel: Float
-    
-    
-    
-    @GestureState private var leftHolderPositionGestureState: CGFloat = 0
-    @State private var leftHolderPositionSteadyState: CGFloat = 0
-    private var leftHolderPosition: CGFloat {
-        leftHolderPositionSteadyState + leftHolderPositionGestureState
-    }
+
+
+
+    @State private var leftHolderPosition: CGFloat = 0
+    @State private var rightHolderPosition: CGFloat = 0
+
 
     var body: some View {
         GeometryReader { reader in
-            VStack(spacing: 0) {
+            VStack(spacing: 4) {
                 outputRectangle
-                holderRow
+                    .border(.gray)
+                holderRow(outputRectangleWidth: reader.size.width)
+            }
+                .onChange(of: leftHolderPosition, perform: { newValue in
+                minimumOutputLevel = Float(newValue / reader.size.width)
+            })
+                .onChange(of: rightHolderPosition, perform: { newValue in
+                maximumOutputLevel = Float(newValue / reader.size.width)
+            })
+                .onAppear {
+                leftHolderPosition = CGFloat(minimumOutputLevel) * reader.size.width
+                rightHolderPosition = CGFloat(maximumOutputLevel) * reader.size.width
             }
         }
+
             .frame(height: DrawingConstants.totalHeightWithoutPaddings, alignment: .center)
 
     }
@@ -39,32 +49,39 @@ struct LevelsAdjustmentView: View {
             .frame(height: DrawingConstants.outputRectangleHeight)
     }
 
-    private var holderRow: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            HStack {
-                Spacer()
-            }
-            ZStack {
-                
-            }
-            HStack(spacing: 0) {
-                leftHolder
-                    .offset(x: leftHolderPosition, y: 0)
-                    .gesture(leftHolderGesture)
-                Spacer()
-                rightHolder
+    private func holderRow(outputRectangleWidth: CGFloat) -> some View {
+        ZStack {
+            leftHolder
+                .position(x: leftHolderPosition, y: DrawingConstants.holderTotalHeight / 2)
+                .gesture(leftHolderGesture(outputRectangleWidth: outputRectangleWidth))
+            Spacer()
+            rightHolder
+                .position(x: rightHolderPosition, y: DrawingConstants.holderTotalHeight / 2)
+                .gesture(rightHolderGesture(outputRectangleWidth: outputRectangleWidth))
+        } .frame(width: outputRectangleWidth, alignment: .leading)
+    }
+
+
+    private func rightHolderGesture(outputRectangleWidth: CGFloat) -> some Gesture {
+        DragGesture()
+            .onChanged { gesture in
+            let isLocationLessThanOrEqualToRightBorder = gesture.location.x <= outputRectangleWidth
+            let isLocationGreaterThanOrEqualToLeftHolder = gesture.location.x >= leftHolderPosition
+            if isLocationLessThanOrEqualToRightBorder && isLocationGreaterThanOrEqualToLeftHolder {
+                rightHolderPosition = gesture.location.x
             }
         }
     }
-    
-    private var leftHolderGesture: some Gesture {
+
+    private func leftHolderGesture(outputRectangleWidth: CGFloat) -> some Gesture {
         DragGesture()
-            .updating($leftHolderPositionGestureState) { drag, leftHolderPositionGestureState, _ in
-                leftHolderPositionGestureState = drag.translation.width
+            .onChanged { gesture in
+            let isLocationGreaterThanOrEqualToZero = gesture.location.x >= 0
+            let isLocationLessThanOrEqualToRightHolder = gesture.location.x <= rightHolderPosition
+            if isLocationGreaterThanOrEqualToZero && isLocationLessThanOrEqualToRightHolder {
+                leftHolderPosition = gesture.location.x
             }
-            .onEnded { drag in
-                leftHolderPositionSteadyState += drag.translation.width
-            }
+        }
     }
 
     private var leftHolder: some View { createHolder() }
@@ -80,13 +97,16 @@ struct LevelsAdjustmentView: View {
     }
 
     private struct DrawingConstants {
-        static let holderWidth: CGFloat = 16
-        static let holderTriangleHeight: CGFloat = 9
-        static let holderRectangleHeight: CGFloat = 9
+        static let holderWidth: CGFloat = 20
+        static let holderTriangleHeight: CGFloat = 12
+        static let holderRectangleHeight: CGFloat = 12
         static let holderColor = Color.gray
-        static let outputRectangleHeight: CGFloat = 32
+        static let outputRectangleHeight: CGFloat = 36
         static var totalHeightWithoutPaddings: CGFloat {
             holderRectangleHeight + holderTriangleHeight + outputRectangleHeight
+        }
+        static var holderTotalHeight: CGFloat {
+            holderTriangleHeight + holderRectangleHeight
         }
     }
 }
@@ -94,5 +114,7 @@ struct LevelsAdjustmentView: View {
 struct LevelsAdjustmentView_Previews: PreviewProvider {
     static var previews: some View {
         LevelsAdjustmentView(minimumOutputLevel: .constant(0), maximumOutputLevel: .constant(1))
+            .padding(32)
+
     }
 }
