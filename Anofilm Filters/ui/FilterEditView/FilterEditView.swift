@@ -17,10 +17,11 @@ struct FilterEditView: View {
     @State private var showSaveDialog = false
     @State private var showPhotoLibraryAdditionPermissionDeniedDialog = false
     @State private var showSavedToDocumentsToastMessage = false
-    @State private var imageChosen: UIImage?
+    @State private var imageChosen: (image: UIImage?, orientation: UIImage.Orientation?)?
 
-    let shouldAddFilterToFilters: Bool
-    @StateObject var filterEditViewModel: FilterEditViewModel
+    var filterIndex: Int = -1
+    
+    @StateObject var filterEditViewModel: FilterEditViewModel = FilterEditViewModel()
     @EnvironmentObject var filtersViewModel: FiltersViewModel
 
 
@@ -45,14 +46,20 @@ struct FilterEditView: View {
             }
 
         }
+            .onAppear {
+            if filtersViewModel.filters.indices.contains(filterIndex) {
+                filterEditViewModel.updateFilter(filter: filtersViewModel.filters[filterIndex])
+            }
+        }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar(content: createToolbarContent)
             .navigationBarBackButtonHidden(true)
             .sheet(isPresented: $showFiltersSheet, onDismiss: nil, content: createFiltersList)
             .sheet(isPresented: $showImagePickerSheet, onDismiss: nil, content: createImagePicker)
-            .onChange(of: imageChosen, perform: {
-            filterEditViewModel.changeOriginalImage(with: $0)
-        })
+            .onChange(of: imageChosen?.image, perform: { newValue in
+                filterEditViewModel.changeOriginalImage(with: imageChosen?.image, orientation: imageChosen?.orientation)
+            })
+           
 
     }
 
@@ -499,13 +506,15 @@ struct FilterEditView: View {
                 Text("Save your filter")
                 TextField(
                     "Filter Name",
-                    text: Binding(get: { filterEditViewModel.newFilterName }, set: { filterEditViewModel.newFilterName = $0 })
+                    text: $filterEditViewModel.filterName
                 )
                 Spacer()
                 HStack {
                     Button {
                         showSaveDialog = false
-                        filtersViewModel.resetDraftFilter()
+                        if let storedFilter = filterEditViewModel.storedFilter, filtersViewModel.filters.indices.contains(filterIndex) {
+                            filtersViewModel.filters[filterIndex] = storedFilter
+                        }
                         presentationMode.wrappedValue.dismiss()
                     } label: {
                         Text("Cancel")
@@ -513,10 +522,11 @@ struct FilterEditView: View {
                     Spacer()
                     Button {
                         showSaveDialog = false
-                        filterEditViewModel.filter.name = filterEditViewModel.newFilterName
-                        if shouldAddFilterToFilters {
-                            let filterToAdd = filterEditViewModel.filter
-                            filtersViewModel.filters.append(filterToAdd)
+                        filterEditViewModel.filter.name = filterEditViewModel.filterName
+                        if filterIndex == -1 {
+                            filtersViewModel.filters.append(filterEditViewModel.filter)
+                        } else {
+                            filtersViewModel.filters[filterIndex] = filterEditViewModel.filter
                         }
                         presentationMode.wrappedValue.dismiss()
                     } label: {
@@ -528,7 +538,7 @@ struct FilterEditView: View {
     }
 
     private func createImagePicker() -> some View {
-        ImagePicker(uiImage: $imageChosen)
+        ImagePicker(imageWithOrientation: $imageChosen)
     }
 
 

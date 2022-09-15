@@ -11,17 +11,29 @@ import PhotosUI
 
 struct ImagePicker: UIViewControllerRepresentable {
 
-    @Binding var uiImage: UIImage?
-
+    @Binding var imageWithOrientation: (image: UIImage?, orientation: UIImage.Orientation?)?
     class Coordinator: NSObject, PHPickerViewControllerDelegate {
-        
+
         func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
             picker.dismiss(animated: true)
             guard let provider = results.first?.itemProvider else { return }
-
             if provider.canLoadObject(ofClass: UIImage.self) {
+                var orientation: UIImage.Orientation?
+                provider.loadFileRepresentation(forTypeIdentifier: UTType.image.identifier) { url, error in
+                    if error != nil {
+                        return
+                    }
+                    let options = [kCGImageSourceShouldCache as String: kCFBooleanFalse]
+                    if let url = url, let data = NSData(contentsOf: url)  {
+                        guard let imgSrc = CGImageSourceCreateWithData(data, options as CFDictionary) else { return }
+                        guard let metadata = CGImageSourceCopyPropertiesAtIndex(imgSrc, 0, options as CFDictionary) else { return }
+                        let metadataDictionary = metadata as NSDictionary
+                        guard let orientationValue = metadataDictionary[kCGImagePropertyOrientation] as? Int else { return }
+                        orientation = UIImage.Orientation(rawValue: orientationValue)
+                    }
+                }
                 provider.loadObject(ofClass: UIImage.self) { image, _ in
-                    self.parent.uiImage = image as? UIImage
+                    self.parent.imageWithOrientation = (image as? UIImage, orientation ?? UIImage.Orientation.up)
                 }
             }
         }

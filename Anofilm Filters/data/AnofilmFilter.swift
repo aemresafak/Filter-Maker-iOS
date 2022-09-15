@@ -9,8 +9,8 @@ import Foundation
 import SwiftUI
 import MetalPetal
 
-struct AnofilmFilter: Codable {
-
+struct AnofilmFilter: Codable, Identifiable {
+    var id: UUID = UUID()
     var name: String
     private var brightness = MTIBrightnessFilter()
     private var contrast = MTIContrastFilter()

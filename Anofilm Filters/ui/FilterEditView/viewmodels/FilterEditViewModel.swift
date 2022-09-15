@@ -13,30 +13,42 @@ import SwiftUI
 
 class FilterEditViewModel: ObservableObject {
 
-    @Binding var filter: AnofilmFilter
+    var filter: AnofilmFilter = AnofilmFilter()
     private var originalImage: MTIImage? = MTIImage(cgImage: UIImage(named: "sampleImage")!.cgImage!).unpremultiplyingAlpha()
     private let context: MTIContext? = try? MTIContext(device: MTLCreateSystemDefaultDevice()!)
-    
+
     @Published var outputImage: MTIImage?
     @Published var editType = EditType.brightness
+    @Published var filterName: String = ""
     
-    var newFilterName: String
-
-
-    init(filter: Binding<AnofilmFilter>) {
+    private var isFilterUpdated = false
+    private var restoreData: Data?
+    var storedFilter: AnofilmFilter? {
+        if let restoreData = restoreData {
+            return try? JSONDecoder().decode(AnofilmFilter.self, from: restoreData)
+        } else {
+            return nil
+        }
+        
+    }
+    
+    
+    init() {
         outputImage = self.originalImage
-        self._filter = filter
-        newFilterName = filter.wrappedValue.name
         updateOutputImage()
     }
     
-    func changeOriginalImage(with image: UIImage?) {
-        if let image = image, let cgImage = image.cgImage {
-            originalImage = MTIImage(cgImage: cgImage).unpremultiplyingAlpha()
-            originalImage?.oriented(image.imageOrientation.cgImagePropertyOrientation)
-            updateOutputImage()
+    func updateFilter(filter: AnofilmFilter) {
+        if isFilterUpdated {
+            return
         }
+        self.filter = filter
+        updateOutputImage()
+        filterName = filter.name
+        isFilterUpdated = true
+        restoreData = try? JSONEncoder().encode(filter)
     }
+    
 
     func saveImageToDocuments(onSaveCallback: (() -> Void)? = nil) {
         Task {
@@ -61,7 +73,9 @@ class FilterEditViewModel: ObservableObject {
         }
 
     }
+    
 
+    
     /// Change brightness of filter, brightness ranges from -1 to 1 with 0 being default  value
     func setBrightness(_ value: Float) {
         filter.setBrightness(value)
@@ -322,6 +336,16 @@ class FilterEditViewModel: ObservableObject {
         outputImage = filter.filterImage(image: originalImage)
     }
 
+    func changeOriginalImage(with image: UIImage?, orientation: UIImage.Orientation?) {
+        if let image = image {
+            let imageToSet = MTIImage(image: image).unpremultiplyingAlpha()
+            if let orientation = orientation {
+                imageToSet.oriented(orientation.cgImagePropertyOrientation)
+            }
+            originalImage = imageToSet
+            updateOutputImage()
+        }
+    }
 
 
 }

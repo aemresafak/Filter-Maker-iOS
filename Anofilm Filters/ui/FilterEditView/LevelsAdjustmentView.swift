@@ -89,7 +89,7 @@ struct LevelsAdjustmentView: View {
 
     private var outputRectangle: some View {
         Rectangle()
-            .foregroundStyle(LinearGradient(colors: [.white, .black], startPoint: .leading, endPoint: .trailing))
+            .foregroundStyle(LinearGradient(colors: [.black, .white], startPoint: .leading, endPoint: .trailing))
             .frame(height: DrawingConstants.outputRectangleHeight)
     }
 

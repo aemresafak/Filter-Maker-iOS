@@ -30,8 +30,4 @@ extension AnofilmFilter {
 }
 
 
-extension AnofilmFilter : Identifiable {
-    var id: String {
-        self.name
-    }
-}
+
