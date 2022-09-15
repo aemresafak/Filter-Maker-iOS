@@ -19,8 +19,9 @@ struct TripleThumbSlider: View {
             ZStack(alignment: .leading) {
                 RoundedRectangle(cornerRadius: DrawingConstants.rectangleCornerRadius)
                     .frame(height: DrawingConstants.sliderHeight)
-                    .foregroundColor(DrawingConstants.inactiveSliderColor)
+                    .foregroundColor(DrawingConstants.sliderColor)
                     .opacity(0.5)
+                activeSlider(width: maxThumbLocation - minThumbLocation, xOffset: minThumbLocation)
                 minThumb
                     .position(x: minThumbLocation, y: DrawingConstants.thumbDiameter / 2)
                     .gesture(minThumbDragGesture)
@@ -51,9 +52,16 @@ struct TripleThumbSlider: View {
             }
         }
     }
-    
+
+    private func activeSlider(width: CGFloat, xOffset: CGFloat) -> some View {
+        Rectangle()
+            .foregroundColor(DrawingConstants.sliderColor)
+            .frame(width: width, height: DrawingConstants.sliderHeight)
+            .offset(x: xOffset, y: 0)
+    }
+
     // newMid max - min max + min mid = newMax mid - min newMax  + newMid min
-    
+
     private func calculateNewMidPosition(max: CGFloat, min: CGFloat, mid: CGFloat, newMin: CGFloat) -> CGFloat {
         if max == min {
             return min
@@ -61,12 +69,12 @@ struct TripleThumbSlider: View {
             return (max * (mid - min) - newMin * (mid - max)) / (max - min)
         }
     }
-    
-    private func calculateNewMidPosition(max: CGFloat, min:CGFloat, mid:CGFloat, newMax: CGFloat) -> CGFloat {
+
+    private func calculateNewMidPosition(max: CGFloat, min: CGFloat, mid: CGFloat, newMax: CGFloat) -> CGFloat {
         if max - min == 0 {
             return max
         } else {
-            return (newMax * (mid-min) + min * (max-mid)) / (max-min)
+            return (newMax * (mid - min) + min * (max - mid)) / (max - min)
         }
     }
 
@@ -90,7 +98,7 @@ struct TripleThumbSlider: View {
             if isLocationGreaterThanMidThumb && isLocationLessThanSliderWidth {
                 midThumbLocation = calculateNewMidPosition(max: maxThumbLocation, min: minThumbLocation, mid: midThumbLocation, newMax: gesture.location.x)
                 maxThumbLocation = gesture.location.x
-                
+
             }
         }
     }
@@ -123,7 +131,7 @@ struct TripleThumbSlider: View {
         static let thumbDiameter: CGFloat = 28
         static let sliderHeight: CGFloat = 12
         static let rectangleCornerRadius: CGFloat = 12
-        static let inactiveSliderColor = Color(red: 0.4, green: 0.4, blue: 0.4)
+        static let sliderColor = Color(red: 0.4, green: 0.4, blue: 0.4)
     }
 }
 
