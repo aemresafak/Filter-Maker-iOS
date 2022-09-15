@@ -9,27 +9,40 @@ import SwiftUI
 
 struct LevelsAdjustmentView: View {
 
-    
+
     @Binding var minimumLevel: Float
     @Binding var middleLevel: Float
     @Binding var maximumLevel: Float
-    
+
     @Binding var minimumOutputLevel: Float
     @Binding var maximumOutputLevel: Float
 
     @State private var leftHolderPosition: CGFloat = 0
     @State private var rightHolderPosition: CGFloat = 0
 
+    @State private var refreshSlider = false
 
     var body: some View {
-        VStack(spacing: 32) {
+        ScrollView {
             levelsAdjustmentView
+                .padding()
             outputLevelsAdjustmentView
+                .padding()
+            Spacer()
+                .frame(height: 60)
         }
     }
-    
+
     private var levelsAdjustmentView: some View {
         VStack {
+            HStack {
+                Spacer()
+                Button {
+                    resetLevels()
+                } label: {
+                    Image(systemName: "arrow.uturn.backward")
+                }
+            }
             HStack {
                 Text("Min")
                 Spacer()
@@ -37,14 +50,22 @@ struct LevelsAdjustmentView: View {
                 Spacer()
                 Text("Max")
             }
-            TripleThumbSlider(minimumValue: $minimumLevel, middleValue: $middleLevel, maximumValue: $maximumLevel)
+            TripleThumbSlider(minimumValue: $minimumLevel, middleValue: $middleLevel, maximumValue: $maximumLevel, refresh: $refreshSlider)
         }
     }
-    
-    
+
+
     private var outputLevelsAdjustmentView: some View {
         GeometryReader { reader in
             VStack(spacing: 4) {
+                HStack {
+                    Spacer()
+                    Button {
+                        resetOutputLevels(outputRectangleWidth: reader.size.width)
+                    } label: {
+                        Image(systemName: "arrow.uturn.backward")
+                    }
+                }
                 outputRectangle
                     .border(.gray)
                 holderRow(outputRectangleWidth: reader.size.width)
@@ -117,6 +138,22 @@ struct LevelsAdjustmentView: View {
                 .frame(width: DrawingConstants.holderWidth, height: DrawingConstants.holderRectangleHeight)
         }
             .foregroundColor(DrawingConstants.holderColor)
+    }
+
+    func resetLevels() {
+        minimumLevel = 0
+        middleLevel = 1
+        maximumLevel = 1
+        refreshSlider.toggle()
+        
+        
+    }
+    
+    func resetOutputLevels(outputRectangleWidth: CGFloat) {
+        minimumOutputLevel = 0
+        maximumOutputLevel = 1
+        leftHolderPosition = 0
+        rightHolderPosition = outputRectangleWidth
     }
 
     private struct DrawingConstants {

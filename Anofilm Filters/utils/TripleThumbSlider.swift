@@ -12,6 +12,7 @@ struct TripleThumbSlider: View {
     @Binding var minimumValue: Float
     @Binding var middleValue: Float
     @Binding var maximumValue: Float
+    @Binding var refresh: Bool
 
 
     @State private var minThumbLocation: CGFloat = 0
@@ -51,6 +52,11 @@ struct TripleThumbSlider: View {
                 midThumbLocation = CGFloat(middleValue) * reader.size.width
                 maxThumbLocation = CGFloat(maximumValue) * reader.size.width
             }
+                .onChange(of: refresh) { newValue in
+                    minThumbLocation = CGFloat(minimumValue) * reader.size.width
+                    midThumbLocation = CGFloat(middleValue) * reader.size.width
+                    maxThumbLocation = CGFloat(maximumValue) * reader.size.width
+                }
 
 
 
@@ -154,7 +160,7 @@ struct TripleThumbSlider: View {
 
 struct TripleThumbSlider_Previews: PreviewProvider {
     static var previews: some View {
-        TripleThumbSlider(minimumValue: .constant(0.1), middleValue: .constant(0.2), maximumValue: .constant(0.5))
+        TripleThumbSlider(minimumValue: .constant(0.1), middleValue: .constant(0.2), maximumValue: .constant(0.5), refresh: .constant(true))
             .padding()
     }
 }
