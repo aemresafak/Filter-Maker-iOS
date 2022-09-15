@@ -9,16 +9,26 @@ import SwiftUI
 
 struct OutputLevelsAdjustmentView: View {
 
+    
+    @Binding var minimumLevel: Float
+    @Binding var middleLevel: Float
+    @Binding var maximumLevel: Float
+    
     @Binding var minimumOutputLevel: Float
     @Binding var maximumOutputLevel: Float
-
-
 
     @State private var leftHolderPosition: CGFloat = 0
     @State private var rightHolderPosition: CGFloat = 0
 
 
     var body: some View {
+        VStack {
+            outputLevelsAdjustmentView
+        }
+    }
+    
+    
+    private var outputLevelsAdjustmentView: some View {
         GeometryReader { reader in
             VStack(spacing: 4) {
                 outputRectangle
@@ -38,7 +48,6 @@ struct OutputLevelsAdjustmentView: View {
         }
 
             .frame(height: DrawingConstants.totalHeightWithoutPaddings, alignment: .center)
-
     }
 
 
