@@ -22,8 +22,18 @@ struct OutputLevelsAdjustmentView: View {
 
 
     var body: some View {
+        levelsAdjustmentView
+    }
+    
+    private var levelsAdjustmentView: some View {
         VStack {
-            outputLevelsAdjustmentView
+            HStack {
+                Text("Min")
+                Spacer()
+                Text("Mid")
+                Spacer()
+                Text("Max")
+            }
         }
     }
     
@@ -122,7 +132,12 @@ struct OutputLevelsAdjustmentView: View {
 
 struct LevelsAdjustmentView_Previews: PreviewProvider {
     static var previews: some View {
-        OutputLevelsAdjustmentView(minimumOutputLevel: .constant(0), maximumOutputLevel: .constant(1))
+        OutputLevelsAdjustmentView(
+            minimumLevel: .constant(0),
+            middleLevel: .constant(0.5),
+            maximumLevel: .constant(1),
+            minimumOutputLevel: .constant(0),
+            maximumOutputLevel: .constant(1))
             .padding(32)
 
     }
