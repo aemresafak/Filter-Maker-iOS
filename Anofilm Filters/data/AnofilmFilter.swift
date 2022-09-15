@@ -28,6 +28,7 @@ struct AnofilmFilter: Codable {
     private var rgbAdjustment = MTIRGBAdjustmentFilter()
     private var clahe = MTICLAHEFilter()
     private var levels = MTILevelsAdjustmentFilter()
+    private var rgbLevels = MTIRGBLevelsAdjustmentFilter()
 
     init(name: String = "") {
         self.name = name
@@ -128,52 +129,72 @@ struct AnofilmFilter: Codable {
     func setVignetteEnd(_ value: Float) { vignette.vignetteEnd = value }
     func getVignetteEnd() -> Float { vignette.vignetteEnd }
     func resetVignetteEnd() { vignette.vignetteEnd = 1 }
-    
+
     func setRedAdjustment(_ value: Float) { rgbAdjustment.redAdjustment = value }
     func getRedAdjustment() -> Float { rgbAdjustment.redAdjustment }
     func resetRedAdjustment() { rgbAdjustment.redAdjustment = 1 }
-    
-    
+
+
     func setGreenAdjustment(_ value: Float) { rgbAdjustment.greenAdjustment = value }
     func getGreenAdjustment() -> Float { rgbAdjustment.greenAdjustment }
     func resetGreenAdjustment() { rgbAdjustment.greenAdjustment = 1 }
-    
+
     func setBlueAdjustment(_ value: Float) { rgbAdjustment.blueAdjustment = value }
     func getBlueAdjustment() -> Float { rgbAdjustment.blueAdjustment }
     func resetBlueAdjustment() { rgbAdjustment.blueAdjustment = 1 }
-    
+
     func setClaheClipLimit(_ value: Float) { clahe.clipLimit = value }
     func getClaheClipLimit() -> Float { clahe.clipLimit }
     func resetClaheClipLimit() { clahe.clipLimit = 0 }
-    
+
     func setClaheTileWidth(_ value: UInt) { clahe.tileGridSize.width = value }
     func getClaheTileWidth() -> UInt { clahe.tileGridSize.width }
     func resetClaheTileWidth() { clahe.tileGridSize.width = 8 }
-    
+
     func setClaheTileHeight(_ value: UInt) { clahe.tileGridSize.height = value }
     func getClaheTileHeight() -> UInt { clahe.tileGridSize.height }
     func resetClaheTileHeight() { clahe.tileGridSize.height = 8 }
-    
+
     func setMinimumLevel(_ value: Color) { levels.minimumColor = value.createFloat3() }
     func getMinimumLevel() -> Color { Color.createFrom(vector: levels.minimumColor) }
-    func resetMinimumLevel() { levels.minimumColor = simd_float3(0,0,0) }
-    
+    func resetMinimumLevel() { levels.minimumColor = simd_float3(0, 0, 0) }
+
     func setMiddleLevel(_ value: Color) { levels.middleColor = value.createFloat3() }
     func getMiddleLevel() -> Color { Color.createFrom(vector: levels.middleColor) }
-    func resetMiddleLevel() { levels.middleColor = simd_float3(1,1,1) }
-    
+    func resetMiddleLevel() { levels.middleColor = simd_float3(1, 1, 1) }
+
     func setMaximumLevel(_ value: Color) { levels.maximumColor = value.createFloat3() }
     func getMaximumLevel() -> Color { Color.createFrom(vector: levels.maximumColor) }
-    func resetMaximumLevel() { levels.maximumColor = simd_float3(1,1,1) }
-    
+    func resetMaximumLevel() { levels.maximumColor = simd_float3(1, 1, 1) }
+
     func setMinimumOutputLevel(_ value: Color) { levels.minOutputColor = value.createFloat3() }
     func getMinimumOutputLevel() -> Color { Color.createFrom(vector: levels.minOutputColor) }
-    func resetMinimumOutputLevel() { levels.minOutputColor = simd_float3(0,0,0) }
-    
+    func resetMinimumOutputLevel() { levels.minOutputColor = simd_float3(0, 0, 0) }
+
     func setMaximumOutputLevel(_ value: Color) { levels.maxOutputColor = value.createFloat3() }
     func getMaximumOutputLevel() -> Color { Color.createFrom(vector: levels.maxOutputColor) }
-    func resetMaximumOutputLevel() { levels.maxOutputColor = simd_float3(1,1,1) }
+    func resetMaximumOutputLevel() { levels.maxOutputColor = simd_float3(1, 1, 1) }
+
+    func setMinimumRGBLevel(_ value: Float) { rgbLevels.minimumLevel = value }
+    func getMinimumRGBLevel() -> Float { rgbLevels.minimumLevel }
+    func resetMinimumRGBLevel() { rgbLevels.minimumLevel = 0 }
+
+    func setMiddleRGBLevel(_ value: Float) { rgbLevels.middleLevel = value }
+    func getMiddleRGBLevel() -> Float { rgbLevels.middleLevel }
+    func resetMiddleRGBLevel() { rgbLevels.middleLevel = 0.5 }
+
+    func setMaximumRGBLevel(_ value: Float) { rgbLevels.maximumLevel = value }
+    func getMaximumRGBLevel() -> Float { rgbLevels.maximumLevel }
+    func resetMaximumRGBLevel() { rgbLevels.maximumLevel = 0 }
+
+    func setMinimumOutputRGBLevel(_ value: Float) { rgbLevels.minimumOutputLevel = value }
+    func getMinimumOutputRGBLevel() -> Float { rgbLevels.minimumOutputLevel }
+    func resetMinimumOutputRGBLevel() { rgbLevels.minimumOutputLevel = 0 }
     
+    func setMaximumOutputRGBLevel(_ value: Float) { rgbLevels.maximumOutputLevel = value }
+    func getMaximumOutputRGBLevel() -> Float { rgbLevels.maximumOutputLevel }
+    func resetMaximumOutputRGBLevel() { rgbLevels.maximumOutputLevel = 0 }
+
     /// returns filtered version of image
     func filterImage(image: MTIImage?) -> MTIImage? {
         guard let image = image else {

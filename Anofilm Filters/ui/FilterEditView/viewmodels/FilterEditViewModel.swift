@@ -316,7 +316,43 @@ class FilterEditViewModel: ObservableObject {
     }
     func getMaximumOutputLevelColor() -> Color { filter.getMaximumOutputLevel() }
     func resetMaximumOutputLevelColor() { filter.resetMaximumOutputLevel() }
-
+    
+    func setMinimumRGBLevel(_ value: Float) {
+        filter.setMinimumRGBLevel(value)
+        updateOutputImage()
+    }
+    func getMinimumRGBLevel() -> Float { filter.getMinimumRGBLevel() }
+    func resetMinimumRGBLevel() { filter.resetMinimumRGBLevel() }
+    
+    func setMiddleRGBLevel(_ value: Float) {
+        filter.setMiddleRGBLevel(value)
+        updateOutputImage()
+    }
+    func getMiddleRGBLevel() -> Float { filter.getMiddleRGBLevel() }
+    func resetMiddleRGBLevel() { filter.resetMiddleRGBLevel() }
+    
+    func setMaximumRGBLevel(_ value: Float) {
+        filter.setMaximumRGBLevel(value)
+        updateOutputImage()
+    }
+    func getMaximumRGBLevel() -> Float { filter.getMaximumRGBLevel() }
+    func resetMaximumRGBLevel() { filter.resetMaximumRGBLevel() }
+    
+    func setMinimumOutputRGBLevel(_ value: Float) {
+        filter.setMinimumOutputRGBLevel(value)
+        updateOutputImage()
+    }
+    func getMinimumOutputRGBLevel() -> Float { filter.getMinimumOutputRGBLevel() }
+    func resetMinimumOutputRGBLevel() { filter.resetMinimumOutputRGBLevel() }
+    
+    func setMaximumOutputRGBLevel(_ value: Float) {
+        filter.setMaximumOutputRGBLevel(value)
+        updateOutputImage()
+    }
+    func getMaximumOutputRGBLevel() -> Float { filter.getMaximumOutputRGBLevel() }
+    func resetMaximumOutputRGBLevel() { filter.resetMaximumOutputRGBLevel() }
+    
+    
     private func updateOutputImage() {
         outputImage = filter.filterImage(image: originalImage)
     }
