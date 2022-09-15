@@ -17,7 +17,7 @@ struct FilterEditView: View {
     @State private var showSaveDialog = false
     @State private var showPhotoLibraryAdditionPermissionDeniedDialog = false
     @State private var showSavedToDocumentsToastMessage = false
-    @State private var imageChosen: UIImage?
+    @State private var imageChosen: (image: UIImage?, orientation: UIImage.Orientation?)?
 
     var filterIndex: Int = -1
     
@@ -56,9 +56,10 @@ struct FilterEditView: View {
             .navigationBarBackButtonHidden(true)
             .sheet(isPresented: $showFiltersSheet, onDismiss: nil, content: createFiltersList)
             .sheet(isPresented: $showImagePickerSheet, onDismiss: nil, content: createImagePicker)
-            .onChange(of: imageChosen, perform: {
-            filterEditViewModel.changeOriginalImage(with: $0)
-        })
+            .onChange(of: imageChosen?.image, perform: { newValue in
+                filterEditViewModel.changeOriginalImage(with: imageChosen?.image, orientation: imageChosen?.orientation)
+            })
+           
 
     }
 
@@ -526,7 +527,7 @@ struct FilterEditView: View {
     }
 
     private func createImagePicker() -> some View {
-        ImagePicker(uiImage: $imageChosen)
+        ImagePicker(imageWithOrientation: $imageChosen)
     }
 
 

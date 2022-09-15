@@ -302,9 +302,13 @@ class FilterEditViewModel: ObservableObject {
         outputImage = filter.filterImage(image: originalImage)
     }
 
-    func changeOriginalImage(with image: UIImage?) {
-        if let image = image, let cgImage = image.cgImage {
-            originalImage = MTIImage(cgImage: cgImage).unpremultiplyingAlpha()
+    func changeOriginalImage(with image: UIImage?, orientation: UIImage.Orientation?) {
+        if let image = image {
+            let imageToSet = MTIImage(image: image).unpremultiplyingAlpha()
+            if let orientation = orientation {
+                imageToSet.oriented(orientation.cgImagePropertyOrientation)
+            }
+            originalImage = imageToSet
             updateOutputImage()
         }
     }
