@@ -181,7 +181,7 @@ struct AnofilmFilter: Codable {
 
     func setMiddleRGBLevel(_ value: Float) { rgbLevels.middleLevel = value }
     func getMiddleRGBLevel() -> Float { rgbLevels.middleLevel }
-    func resetMiddleRGBLevel() { rgbLevels.middleLevel = 0.5 }
+    func resetMiddleRGBLevel() { rgbLevels.middleLevel = 1 }
 
     func setMaximumRGBLevel(_ value: Float) { rgbLevels.maximumLevel = value }
     func getMaximumRGBLevel() -> Float { rgbLevels.maximumLevel }
@@ -193,7 +193,7 @@ struct AnofilmFilter: Codable {
     
     func setMaximumOutputRGBLevel(_ value: Float) { rgbLevels.maximumOutputLevel = value }
     func getMaximumOutputRGBLevel() -> Float { rgbLevels.maximumOutputLevel }
-    func resetMaximumOutputRGBLevel() { rgbLevels.maximumOutputLevel = 0 }
+    func resetMaximumOutputRGBLevel() { rgbLevels.maximumOutputLevel = 1 }
 
     /// returns filtered version of image
     func filterImage(image: MTIImage?) -> MTIImage? {
@@ -210,10 +210,19 @@ struct AnofilmFilter: Codable {
         guard let intermediateOutput = intermediateOutput else {
             return nil
         }
+        
+
+        let intermediateOutput2 = FilterGraph.makeImage { output in
+            intermediateOutput => whiteBalance => gamma => haze =>
+            highlightsAndShadows => sepiaTone => tint => highlightShadowTint => output
+        }
+        
+        guard let intermediateOutput2 = intermediateOutput2 else {
+            return nil
+        }
 
         let output = FilterGraph.makeImage { output in
-            intermediateOutput => whiteBalance => gamma => haze => levels =>
-            highlightsAndShadows => sepiaTone => tint => highlightShadowTint => output
+            intermediateOutput2 => rgbLevels => output
         }
 
 

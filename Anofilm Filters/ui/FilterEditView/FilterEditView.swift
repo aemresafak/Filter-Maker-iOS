@@ -94,6 +94,8 @@ struct FilterEditView: View {
             editClaheView
         case .levels:
             editLevelsAdjustmentView
+        case .rgbLevelsAdjustmentView:
+            editRGBLevelsAdjustmentView
         }
     }
 
@@ -359,6 +361,14 @@ struct FilterEditView: View {
         }
     }
 
+    private var editRGBLevelsAdjustmentView: some View { LevelsAdjustmentView(
+            minimumLevel: Binding(get: { filterEditViewModel.getMinimumRGBLevel() }, set: { filterEditViewModel.setMinimumRGBLevel($0) }),
+            middleLevel: Binding(get: { filterEditViewModel.getMiddleRGBLevel() }, set: { filterEditViewModel.setMiddleRGBLevel($0) }),
+            maximumLevel: Binding(get: { filterEditViewModel.getMaximumRGBLevel() }, set: { filterEditViewModel.setMaximumRGBLevel($0) }),
+            minimumOutputLevel: Binding(get: { filterEditViewModel.getMinimumOutputRGBLevel() }, set: { filterEditViewModel.setMinimumOutputRGBLevel($0) }),
+            maximumOutputLevel: Binding(get: { filterEditViewModel.getMaximumOutputRGBLevel() }, set: { filterEditViewModel.setMaximumOutputRGBLevel($0) })
+        )
+    }
 
     func createEditStepper<Value: Strideable & LosslessStringConvertible>(_ title: String, value: Binding<Value>, range: ClosedRange<Value>, resetValue: Value) -> some View {
         HStack {

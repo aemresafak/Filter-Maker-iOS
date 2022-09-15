@@ -16,7 +16,7 @@ class MTIRGBLevelsAdjustmentFilter: MTILevelsAdjustmentFilter {
             minimumColor = simd_float3(repeating: newValue)
         }
     }
-    var middleLevel: Float = 0.5 {
+    var middleLevel: Float = 1 {
         willSet {
             middleColor = simd_float3(repeating: newValue)
         }
@@ -33,7 +33,7 @@ class MTIRGBLevelsAdjustmentFilter: MTILevelsAdjustmentFilter {
         }
     }
 
-    var maximumOutputLevel: Float = 0 {
+    var maximumOutputLevel: Float = 1 {
         willSet {
             maxOutputColor = simd_float3(repeating: newValue)
         }
@@ -42,7 +42,7 @@ class MTIRGBLevelsAdjustmentFilter: MTILevelsAdjustmentFilter {
     override init() {
         super.init()
         minimumColor = simd_float3(0, 0, 0)
-        middleColor = simd_float3(0.5, 0.5, 0.5)
+        middleColor = simd_float3(1, 1, 1)
         maximumColor = simd_float3(1, 1, 1)
     }
 

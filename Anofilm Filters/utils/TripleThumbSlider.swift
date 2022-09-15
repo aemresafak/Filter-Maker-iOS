@@ -29,18 +29,31 @@ struct TripleThumbSlider: View {
                 minThumb
                     .position(x: minThumbLocation, y: DrawingConstants.thumbDiameter / 2)
                     .gesture(minThumbDragGesture)
-                midThumb
-                    .position(x: midThumbLocation, y: DrawingConstants.thumbDiameter / 2)
-                    .gesture(midThumbDragGesture)
+                    .onChange(of: minThumbLocation) { newValue in
+                    minimumValue = Float(newValue / reader.size.width)
+                }
+
                 maxThumb
                     .position(x: maxThumbLocation, y: DrawingConstants.thumbDiameter / 2)
                     .gesture(maxThumbDragGesture(sliderWidth: reader.size.width))
+                    .onChange(of: maxThumbLocation) { newValue in
+                    maximumValue = Float(newValue / reader.size.width)
+                }
+                midThumb
+                    .position(x: midThumbLocation, y: DrawingConstants.thumbDiameter / 2)
+                    .gesture(midThumbDragGesture)
+                    .onChange(of: midThumbLocation) { newValue in
+                    middleValue = Float(newValue / reader.size.width)
+                }
             }
                 .onAppear {
                 minThumbLocation = CGFloat(minimumValue) * reader.size.width
                 midThumbLocation = CGFloat(middleValue) * reader.size.width
                 maxThumbLocation = CGFloat(maximumValue) * reader.size.width
             }
+
+
+
         }
             .frame(height: DrawingConstants.thumbDiameter)
     }

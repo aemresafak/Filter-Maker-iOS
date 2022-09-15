@@ -15,5 +15,5 @@ enum EditType : String, CaseIterable, Identifiable {
     case gamma, haze, highlightsAndShadows = "Highlights and Shadows", sepiaTone = "Sepia Tone", tint
     case highlightTint = "Highlight Tint", shadowTint = "Shadow Tint", vignette
     case rgbAdjustment = "RGB Adjustment"
-    case clahe, levels = "Levels Adjustment"
+    case clahe, levels = "Levels Adjustment", rgbLevelsAdjustmentView = "RGB Levels Adjustment"
 }
