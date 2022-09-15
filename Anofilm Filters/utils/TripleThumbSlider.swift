@@ -9,6 +9,10 @@ import SwiftUI
 
 struct TripleThumbSlider: View {
 
+    @Binding var minimumValue: Float
+    @Binding var middleValue: Float
+    @Binding var maximumValue: Float
+
 
     @State private var minThumbLocation: CGFloat = 0
     @State private var midThumbLocation: CGFloat = 0
@@ -33,9 +37,9 @@ struct TripleThumbSlider: View {
                     .gesture(maxThumbDragGesture(sliderWidth: reader.size.width))
             }
                 .onAppear {
-                minThumbLocation = 0
-                midThumbLocation = 0.5 * reader.size.width
-                maxThumbLocation = reader.size.width
+                minThumbLocation = CGFloat(minimumValue) * reader.size.width
+                midThumbLocation = CGFloat(middleValue) * reader.size.width
+                maxThumbLocation = CGFloat(maximumValue) * reader.size.width
             }
         }
             .frame(height: DrawingConstants.thumbDiameter)
@@ -137,7 +141,7 @@ struct TripleThumbSlider: View {
 
 struct TripleThumbSlider_Previews: PreviewProvider {
     static var previews: some View {
-        TripleThumbSlider()
+        TripleThumbSlider(minimumValue: .constant(0.1), middleValue: .constant(0.2), maximumValue: .constant(0.5))
             .padding()
     }
 }
