@@ -45,6 +45,7 @@
 		E4A12DBC28D12CE2001AF77B /* MTICLAHEFilterExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A12DBB28D12CE2001AF77B /* MTICLAHEFilterExtensions.swift */; };
 		E4A12DBE28D1B690001AF77B /* MTILevelsAdjustmentFilter.metal in Sources */ = {isa = PBXBuildFile; fileRef = E4A12DBD28D1B690001AF77B /* MTILevelsAdjustmentFilter.metal */; };
 		E4A12DC028D1B74B001AF77B /* MTILevelsAdjustmentFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A12DBF28D1B74B001AF77B /* MTILevelsAdjustmentFilter.swift */; };
+		E4AC6E4728D3676E0037F6D7 /* MTIRGBLevelsAdjustmentFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AC6E4628D3676E0037F6D7 /* MTIRGBLevelsAdjustmentFilter.swift */; };
 		E4ACE3F028C8EF710069E17C /* ColorError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4ACE3EF28C8EF710069E17C /* ColorError.swift */; };
 		E4ACE3F628C8F8D40069E17C /* SIMDExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4ACE3F528C8F8D40069E17C /* SIMDExtensions.swift */; };
 		E4ACE40D28C910D90069E17C /* FilterDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4ACE40C28C910D90069E17C /* FilterDetailView.swift */; };
@@ -97,6 +98,7 @@
 		E4A12DBB28D12CE2001AF77B /* MTICLAHEFilterExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTICLAHEFilterExtensions.swift; sourceTree = "<group>"; };
 		E4A12DBD28D1B690001AF77B /* MTILevelsAdjustmentFilter.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = MTILevelsAdjustmentFilter.metal; sourceTree = "<group>"; };
 		E4A12DBF28D1B74B001AF77B /* MTILevelsAdjustmentFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTILevelsAdjustmentFilter.swift; sourceTree = "<group>"; };
+		E4AC6E4628D3676E0037F6D7 /* MTIRGBLevelsAdjustmentFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTIRGBLevelsAdjustmentFilter.swift; sourceTree = "<group>"; };
 		E4ACE3EF28C8EF710069E17C /* ColorError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorError.swift; sourceTree = "<group>"; };
 		E4ACE3F528C8F8D40069E17C /* SIMDExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIMDExtensions.swift; sourceTree = "<group>"; };
 		E4ACE40C28C910D90069E17C /* FilterDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterDetailView.swift; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 				E4A12DB928D12BF8001AF77B /* MTICLAHEFilterBlueprint.swift */,
 				E4A12DBD28D1B690001AF77B /* MTILevelsAdjustmentFilter.metal */,
 				E4A12DBF28D1B74B001AF77B /* MTILevelsAdjustmentFilter.swift */,
+				E4AC6E4628D3676E0037F6D7 /* MTIRGBLevelsAdjustmentFilter.swift */,
 			);
 			path = customfilters;
 			sourceTree = "<group>";
@@ -452,6 +455,7 @@
 				E49ED08C28C6588300C68007 /* FilterEditView.swift in Sources */,
 				E48CFFD728C86FDD004EB25C /* FilterItem.swift in Sources */,
 				E4A12DBA28D12BF8001AF77B /* MTICLAHEFilterBlueprint.swift in Sources */,
+				E4AC6E4728D3676E0037F6D7 /* MTIRGBLevelsAdjustmentFilter.swift in Sources */,
 				E48CFFD528C86E28004EB25C /* FiltersViewModel.swift in Sources */,
 				E4A12DC028D1B74B001AF77B /* MTILevelsAdjustmentFilter.swift in Sources */,
 				E48CFFD228C86E11004EB25C /* FiltersView.swift in Sources */,

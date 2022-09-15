@@ -21,7 +21,6 @@ class MTILevelsAdjustmentFilter: MTIUnaryImageRenderingFilter, Codable {
 
 
 
-
     override var parameters: [String: Any] {
         return ["minimum": minimumColor,
                 "middle": middleColor,
