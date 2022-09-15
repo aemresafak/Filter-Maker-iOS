@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct LevelsAdjustmentView: View {
+struct OutputLevelsAdjustmentView: View {
 
     @Binding var minimumOutputLevel: Float
     @Binding var maximumOutputLevel: Float
@@ -113,7 +113,7 @@ struct LevelsAdjustmentView: View {
 
 struct LevelsAdjustmentView_Previews: PreviewProvider {
     static var previews: some View {
-        LevelsAdjustmentView(minimumOutputLevel: .constant(0), maximumOutputLevel: .constant(1))
+        OutputLevelsAdjustmentView(minimumOutputLevel: .constant(0), maximumOutputLevel: .constant(1))
             .padding(32)
 
     }
