@@ -496,7 +496,7 @@ struct FilterEditView: View {
                 Text("Save your filter")
                 TextField(
                     "Filter Name",
-                    text: Binding(get: { filterEditViewModel.getFilterName() }, set: { filterEditViewModel.setFilterName($0) })
+                    text: $filterEditViewModel.filterName
                 )
                 Spacer()
                 HStack {
@@ -512,10 +512,11 @@ struct FilterEditView: View {
                     Spacer()
                     Button {
                         showSaveDialog = false
+                        filterEditViewModel.filter.name = filterEditViewModel.filterName
                         if filterIndex == -1 {
-                            filtersViewModel.filters.append(filterEditViewModel.getFilter())
+                            filtersViewModel.filters.append(filterEditViewModel.filter)
                         } else {
-                            filtersViewModel.filters[filterIndex] = filterEditViewModel.getFilter()
+                            filtersViewModel.filters[filterIndex] = filterEditViewModel.filter
                         }
                         presentationMode.wrappedValue.dismiss()
                     } label: {

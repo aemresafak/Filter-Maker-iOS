@@ -10,14 +10,12 @@ import UniformTypeIdentifiers
 
 struct FilterDetailView: View {
     let filterIndex: Int
-    
-    private var filter: AnofilmFilter {
-        filtersViewModel.filters[filterIndex]
-    }
-    
+
+    @State private var filter: AnofilmFilter = AnofilmFilter()
     @EnvironmentObject var filtersViewModel: FiltersViewModel
-    
-    
+
+
+
     @State private var showCopyToastMessage = false
     var body: some View {
         ZStack {
@@ -35,6 +33,9 @@ struct FilterDetailView: View {
             ToastMessage(showMessage: $showCopyToastMessage) {
                 toastContent
             }
+        }
+            .onAppear {
+            self.filter = filtersViewModel.filters[filterIndex]
         }
             .navigationTitle("Filter Details")
             .navigationBarTitleDisplayMode(.inline)

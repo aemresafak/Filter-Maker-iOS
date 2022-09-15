@@ -13,12 +13,13 @@ import SwiftUI
 
 class FilterEditViewModel: ObservableObject {
 
-    private var filter: AnofilmFilter = AnofilmFilter()
+    var filter: AnofilmFilter = AnofilmFilter()
     private var originalImage: MTIImage? = MTIImage(cgImage: UIImage(named: "sampleImage")!.cgImage!).unpremultiplyingAlpha()
     private let context: MTIContext? = try? MTIContext(device: MTLCreateSystemDefaultDevice()!)
 
     @Published var outputImage: MTIImage?
     @Published var editType = EditType.brightness
+    @Published var filterName: String = ""
     
     private var isFilterUpdated = false
     private var restoreData: Data?
@@ -43,10 +44,11 @@ class FilterEditViewModel: ObservableObject {
         }
         self.filter = filter
         updateOutputImage()
+        filterName = filter.name
         isFilterUpdated = true
         restoreData = try? JSONEncoder().encode(filter)
     }
-
+    
 
     func saveImageToDocuments(onSaveCallback: (() -> Void)? = nil) {
         Task {
@@ -72,12 +74,8 @@ class FilterEditViewModel: ObservableObject {
 
     }
     
-    func getFilter() -> AnofilmFilter { filter }
-    
-    func setFilterName(_ value: String) { filter.name = value }
-    func getFilterName() -> String { filter.name }
-    
 
+    
     /// Change brightness of filter, brightness ranges from -1 to 1 with 0 being default  value
     func setBrightness(_ value: Float) {
         filter.setBrightness(value)
