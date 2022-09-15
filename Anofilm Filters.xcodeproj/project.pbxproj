@@ -48,7 +48,6 @@
 		E4ACE40D28C910D90069E17C /* FilterDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4ACE40C28C910D90069E17C /* FilterDetailView.swift */; };
 		E4AD87A728CBE84700AA9B2D /* MTIRGBAdjustmentFilter.metal in Sources */ = {isa = PBXBuildFile; fileRef = E4AD87A628CBE84700AA9B2D /* MTIRGBAdjustmentFilter.metal */; };
 		E4AD87A928CBE8BB00AA9B2D /* MTIRGBAdjustmentFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AD87A828CBE8BB00AA9B2D /* MTIRGBAdjustmentFilter.swift */; };
-		E4C6298228D0EACB00B6F892 /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C6298128D0EACB00B6F892 /* UIImageExtensions.swift */; };
 		F03A8599F8D64D64830792C6 /* Pods_Anofilm_Filters.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57F1A861853C4533DC978AD9 /* Pods_Anofilm_Filters.framework */; };
 /* End PBXBuildFile section */
 
@@ -98,7 +97,6 @@
 		E4ACE40C28C910D90069E17C /* FilterDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterDetailView.swift; sourceTree = "<group>"; };
 		E4AD87A628CBE84700AA9B2D /* MTIRGBAdjustmentFilter.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = MTIRGBAdjustmentFilter.metal; sourceTree = "<group>"; };
 		E4AD87A828CBE8BB00AA9B2D /* MTIRGBAdjustmentFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTIRGBAdjustmentFilter.swift; sourceTree = "<group>"; };
-		E4C6298128D0EACB00B6F892 /* UIImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,7 +132,6 @@
 			isa = PBXGroup;
 			children = (
 				E42D3DFF28C7C5DD0018C9FE /* MTICustomColorFilterExtensions.swift */,
-				E4C6298128D0EACB00B6F892 /* UIImageExtensions.swift */,
 				E42D3E0928C7D51E0018C9FE /* ColorExtensions.swift */,
 				E48CFFD828C872D3004EB25C /* AnofilmFilterExtensions.swift */,
 				E4ACE3F528C8F8D40069E17C /* SIMDExtensions.swift */,
@@ -429,7 +426,6 @@
 				E42D3E0628C7D2A60018C9FE /* MTIHighlightShadowTintFilter.metal in Sources */,
 				E49ED09328C65DA200C68007 /* FilterImageView.swift in Sources */,
 				E42D3E0A28C7D51E0018C9FE /* ColorExtensions.swift in Sources */,
-				E4C6298228D0EACB00B6F892 /* UIImageExtensions.swift in Sources */,
 				E4AD87A928CBE8BB00AA9B2D /* MTIRGBAdjustmentFilter.swift in Sources */,
 				E49ED08928C657EF00C68007 /* AnofilmFilter.swift in Sources */,
 				E49ED07528C6560F00C68007 /* Anofilm_FiltersApp.swift in Sources */,
