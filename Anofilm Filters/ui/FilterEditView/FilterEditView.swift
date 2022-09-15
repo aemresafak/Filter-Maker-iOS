@@ -92,8 +92,6 @@ struct FilterEditView: View {
             editRGBAdjustmentView
         case .clahe:
             editClaheView
-        case .levels:
-            editLevelsAdjustmentView
         case .rgbLevelsAdjustmentView:
             editRGBLevelsAdjustmentView
         }
@@ -348,16 +346,6 @@ struct FilterEditView: View {
                 resetValue: 8
             )
 
-        }
-    }
-
-    private var editLevelsAdjustmentView: some View {
-        ScrollView {
-            ColorPicker.init("Minimum Level Color", selection: Binding(get: { filterEditViewModel.getMinimumLevelColor() }, set: { filterEditViewModel.setMinimumLevelColor($0) }))
-            ColorPicker.init("Middle Level Color", selection: Binding(get: { filterEditViewModel.getMiddleLevelColor() }, set: { filterEditViewModel.setMiddleLevelColor($0) }))
-            ColorPicker.init("Maximum Level Color", selection: Binding(get: { filterEditViewModel.getMaximumLevelColor() }, set: { filterEditViewModel.setMaximumLevelColor($0) }))
-            ColorPicker.init("Minimum Output Level Color", selection: Binding(get: { filterEditViewModel.getMinimumOutputLevelColor() }, set: { filterEditViewModel.setMinimumOutputLevelColor($0) }))
-            ColorPicker.init("Maximum Output Level Color", selection: Binding(get: { filterEditViewModel.getMaximumOutputLevelColor() }, set: { filterEditViewModel.setMaximumOutputLevelColor($0) }))
         }
     }
 

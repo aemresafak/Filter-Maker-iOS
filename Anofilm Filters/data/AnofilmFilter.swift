@@ -27,7 +27,6 @@ struct AnofilmFilter: Codable {
     private var vignette = MTIVignetteFilter()
     private var rgbAdjustment = MTIRGBAdjustmentFilter()
     private var clahe = MTICLAHEFilter()
-    private var levels = MTILevelsAdjustmentFilter()
     private var rgbLevels = MTIRGBLevelsAdjustmentFilter()
 
     init(name: String = "") {
@@ -155,26 +154,6 @@ struct AnofilmFilter: Codable {
     func getClaheTileHeight() -> UInt { clahe.tileGridSize.height }
     func resetClaheTileHeight() { clahe.tileGridSize.height = 8 }
 
-    func setMinimumLevel(_ value: Color) { levels.minimumColor = value.createFloat3() }
-    func getMinimumLevel() -> Color { Color.createFrom(vector: levels.minimumColor) }
-    func resetMinimumLevel() { levels.minimumColor = simd_float3(0, 0, 0) }
-
-    func setMiddleLevel(_ value: Color) { levels.middleColor = value.createFloat3() }
-    func getMiddleLevel() -> Color { Color.createFrom(vector: levels.middleColor) }
-    func resetMiddleLevel() { levels.middleColor = simd_float3(1, 1, 1) }
-
-    func setMaximumLevel(_ value: Color) { levels.maximumColor = value.createFloat3() }
-    func getMaximumLevel() -> Color { Color.createFrom(vector: levels.maximumColor) }
-    func resetMaximumLevel() { levels.maximumColor = simd_float3(1, 1, 1) }
-
-    func setMinimumOutputLevel(_ value: Color) { levels.minOutputColor = value.createFloat3() }
-    func getMinimumOutputLevel() -> Color { Color.createFrom(vector: levels.minOutputColor) }
-    func resetMinimumOutputLevel() { levels.minOutputColor = simd_float3(0, 0, 0) }
-
-    func setMaximumOutputLevel(_ value: Color) { levels.maxOutputColor = value.createFloat3() }
-    func getMaximumOutputLevel() -> Color { Color.createFrom(vector: levels.maxOutputColor) }
-    func resetMaximumOutputLevel() { levels.maxOutputColor = simd_float3(1, 1, 1) }
-
     func setMinimumRGBLevel(_ value: Float) { rgbLevels.minimumLevel = value }
     func getMinimumRGBLevel() -> Float { rgbLevels.minimumLevel }
     func resetMinimumRGBLevel() { rgbLevels.minimumLevel = 0 }
@@ -266,7 +245,7 @@ struct AnofilmFilter: Codable {
         self.rgbAdjustment = try container.decode(MTIRGBAdjustmentFilter.self, forKey: .rgbAdjustment)
         let claheBlueprint = try container.decode(MTICLAHEFilterBluePrint.self, forKey: .clahe)
         self.clahe = claheBlueprint.createMTICLAHEFilter()
-        self.levels = try container.decode(MTILevelsAdjustmentFilter.self, forKey: .levels)
+        self.rgbLevels = try container.decode(MTIRGBLevelsAdjustmentFilter.self, forKey: .rgbLevels)
     }
 
     func encode(to encoder: Encoder) throws {
@@ -287,14 +266,14 @@ struct AnofilmFilter: Codable {
         try container.encode(vignette, forKey: .vignette)
         try container.encode(rgbAdjustment, forKey: .rgbAdjustment)
         try container.encode(clahe.createBlueprint(), forKey: .clahe)
-        try container.encode(levels, forKey: .levels)
+        try container.encode(rgbLevels, forKey: .rgbLevels)
     }
 
     private enum CodingKeys: String, CodingKey {
         case name, brightness, contrast, saturation, exposure, vibrance
         case whiteBalance, gamma, haze, highlightsAndShadows
         case sepiaTone, tint, highlightShadowTint, vignette, rgbAdjustment
-        case clahe, levels
+        case clahe, rgbLevels
     }
 
     var description: String {
@@ -330,11 +309,11 @@ struct AnofilmFilter: Codable {
         CLAHE Clip Limit:  \(clahe.clipLimit)
         CLAHE Grid Tile Width:  \(clahe.tileGridSize.width)
         CLAHE Grid Tile Height: \(clahe.tileGridSize.height)
-        Minimum Level Color: \(levels.minimumColor.toColor())
-        Middle Level Color: \(levels.middleColor.toColor())
-        Maximum Level Color: \(levels.maximumColor.toColor())
-        Minimum Output Level Color: \(levels.minOutputColor.toColor())
-        Maximum Output Level Color: \(levels.maxOutputColor.toColor())
+        RGB Minimum Level:  \(rgbLevels.minimumLevel)
+        RGB Middle Level:  \(rgbLevels.middleLevel)
+        RGB Maximum Level:  \(rgbLevels.maximumLevel)
+        RGB Minimum Output Level:  \(rgbLevels.minimumOutputLevel)
+        RGB Maximum Output Level:  \(rgbLevels.maximumOutputLevel)
         """
     }
 }

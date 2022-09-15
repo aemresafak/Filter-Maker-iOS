@@ -282,41 +282,6 @@ class FilterEditViewModel: ObservableObject {
     func getClaheTileHeight() -> UInt { filter.getClaheTileHeight() }
     func resetClaheTileHeight() { filter.resetClaheTileHeight() }
     
-    func setMinimumLevelColor(_ color: Color) {
-        filter.setMinimumLevel(color)
-        updateOutputImage()
-    }
-    func getMinimumLevelColor() -> Color { filter.getMinimumLevel() }
-    func resetMinimumLevelColor() { filter.resetMinimumLevel() }
-    
-    func setMiddleLevelColor(_ color: Color) {
-        filter.setMiddleLevel(color)
-        updateOutputImage()
-    }
-    func getMiddleLevelColor() -> Color { filter.getMiddleLevel() }
-    func resetMiddleLevelColor() { filter.resetMiddleLevel() }
-    
-    func setMaximumLevelColor(_ color: Color) {
-        filter.setMaximumLevel(color)
-        updateOutputImage()
-    }
-    func getMaximumLevelColor() -> Color { filter.getMaximumLevel() }
-    func resetMaximumLevelColor()  { filter.resetMaximumLevel() }
-    
-    func setMinimumOutputLevelColor(_ color: Color) {
-        filter.setMinimumOutputLevel(color)
-        updateOutputImage()
-    }
-    func getMinimumOutputLevelColor() -> Color { filter.getMinimumOutputLevel() }
-    func resetMinimumOutputLevelColor() { filter.resetMinimumOutputLevel() }
-    
-    func setMaximumOutputLevelColor(_ color: Color) {
-        filter.setMaximumOutputLevel(color)
-        updateOutputImage()
-    }
-    func getMaximumOutputLevelColor() -> Color { filter.getMaximumOutputLevel() }
-    func resetMaximumOutputLevelColor() { filter.resetMaximumOutputLevel() }
-    
     func setMinimumRGBLevel(_ value: Float) {
         filter.setMinimumRGBLevel(value)
         updateOutputImage()
