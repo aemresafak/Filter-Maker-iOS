@@ -30,6 +30,7 @@ struct AnofilmFilter: Codable, Identifiable {
     private var rgbLevels = MTIRGBLevelsAdjustmentFilter()
     private var redLevels = MTIRedLevelsAdjustment()
     private var greenLevels = MTIGreenLevelsAdjustment()
+    private var blueLevels = MTIBlueLevelsAdjustment()
 
     init(name: String = "") {
         self.name = name
@@ -217,6 +218,27 @@ struct AnofilmFilter: Codable, Identifiable {
     func setMaximumOutputGreenLevel(_ value: Float) { greenLevels.maximumOutputLevel = value }
     func getMaximumOutputGreenLevel() -> Float { greenLevels.maximumOutputLevel }
     func resetMaximumOutputGreenLevel() { greenLevels.maximumOutputLevel = 1 }
+    
+    func setMinimumBlueLevel(_ value: Float) { blueLevels.minimumLevel = value }
+    func getMinimumBlueLevel() -> Float { blueLevels.minimumLevel }
+    func resetMinimumBlueLevel() { blueLevels.minimumLevel = 0 }
+
+
+    func setMiddleBlueLevel(_ value: Float) { blueLevels.middleLevel = value }
+    func getMiddleBlueLevel() -> Float { blueLevels.middleLevel }
+    func resetMiddleBlueLevel() { blueLevels.middleLevel = 1 }
+
+    func setMaximumBlueLevel(_ value: Float) { blueLevels.maximumLevel = value }
+    func getMaximumBlueLevel() -> Float { blueLevels.maximumLevel }
+    func resetMaximumBlueLevel() { blueLevels.maximumLevel = 1 }
+
+    func setMinimumOutputBlueLevel(_ value: Float) { blueLevels.minimumOutputLevel = value }
+    func getMinimumOutputBlueLevel() -> Float { blueLevels.minimumOutputLevel }
+    func resetMinimumOutputBlueLevel() { blueLevels.minimumOutputLevel = 0 }
+
+    func setMaximumOutputBlueLevel(_ value: Float) { blueLevels.maximumOutputLevel = value }
+    func getMaximumOutputBlueLevel() -> Float { blueLevels.maximumOutputLevel }
+    func resetMaximumOutputBlueLevel() { blueLevels.maximumOutputLevel = 1 }
 
     /// returns filtered version of image
     func filterImage(image: MTIImage?) -> MTIImage? {
@@ -245,7 +267,7 @@ struct AnofilmFilter: Codable, Identifiable {
         }
 
         let output = FilterGraph.makeImage { output in
-            intermediateOutput2 => rgbLevels => redLevels => greenLevels => output
+            intermediateOutput2 => rgbLevels => redLevels => greenLevels => blueLevels => output
         }
 
 
@@ -292,6 +314,7 @@ struct AnofilmFilter: Codable, Identifiable {
         self.rgbLevels = try container.decode(MTIRGBLevelsAdjustmentFilter.self, forKey: .rgbLevels)
         self.redLevels = try container.decode(MTIRedLevelsAdjustment.self, forKey: .redLevels)
         self.greenLevels = try container.decode(MTIGreenLevelsAdjustment.self, forKey: .greenLevels)
+        self.blueLevels = try container.decode(MTIBlueLevelsAdjustment.self, forKey: .blueLevels)
     }
 
     func encode(to encoder: Encoder) throws {
@@ -315,13 +338,14 @@ struct AnofilmFilter: Codable, Identifiable {
         try container.encode(rgbLevels, forKey: .rgbLevels)
         try container.encode(redLevels, forKey: .redLevels)
         try container.encode(greenLevels, forKey: .greenLevels)
+        try container.encode(blueLevels, forKey: .blueLevels)
     }
 
     private enum CodingKeys: String, CodingKey {
         case name, brightness, contrast, saturation, exposure, vibrance
         case whiteBalance, gamma, haze, highlightsAndShadows
         case sepiaTone, tint, highlightShadowTint, vignette, rgbAdjustment
-        case clahe, rgbLevels, redLevels, greenLevels
+        case clahe, rgbLevels, redLevels, greenLevels, blueLevels
     }
 
     var description: String {
@@ -372,6 +396,11 @@ struct AnofilmFilter: Codable, Identifiable {
         Green Maximum Level:  \(greenLevels.maximumLevel)
         Green Minimum Output Level:  \(greenLevels.minimumOutputLevel)
         Green Maximum Output Level:  \(greenLevels.maximumOutputLevel)
+        Blue Minimum Level:  \(blueLevels.minimumLevel)
+        Blue Middle Level:  \(blueLevels.middleLevel)
+        Blue Maximum Level:  \(blueLevels.maximumLevel)
+        Blue Minimum Output Level:  \(blueLevels.minimumOutputLevel)
+        Blue Maximum Output Level:  \(blueLevels.maximumOutputLevel)
         """
     }
 }
