@@ -470,6 +470,15 @@ class FilterEditViewModel: ObservableObject {
     func getMaximumOutputBlueLevel() -> Float { filter.getMaximumOutputBlueLevel() }
     func resetMaximumOutputBlueLevel() { filter.resetMaximumOutputBlueLevel() }
     
+    
+    func showOriginalImage() {
+        outputImage = originalImage
+    }
+    
+    func showFilteredImage() {
+        updateOutputImage()
+    }
+    
     private func updateOutputImage() {
         outputImage = filter.filterImage(image: originalImage)
     }

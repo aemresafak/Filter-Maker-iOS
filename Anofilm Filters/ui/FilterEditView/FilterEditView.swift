@@ -30,6 +30,7 @@ struct FilterEditView: View {
             ZStack {
                 VStack {
                     FilterImageView(imageToDisplay: $filterEditViewModel.outputImage)
+                        .gesture(imageViewPressGesture)
                     editContent
                         .padding()
                         .frame(
@@ -139,11 +140,6 @@ struct FilterEditView: View {
         }.padding()
 
     }
-
-
-
-
-
 
 
     private var editBrightnessView: some View {
@@ -580,8 +576,15 @@ struct FilterEditView: View {
         ImagePicker(imageWithOrientation: $imageChosen)
     }
 
-
-
+    private var imageViewPressGesture: some Gesture {
+        DragGesture(minimumDistance: 0)
+            .onChanged { _ in
+                filterEditViewModel.showOriginalImage()
+            }
+            .onEnded { _ in
+                filterEditViewModel.showFilteredImage()
+            }
+    }
 
 
 }
