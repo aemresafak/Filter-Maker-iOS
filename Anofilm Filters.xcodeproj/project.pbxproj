@@ -26,6 +26,7 @@
 		E49532DF28D3C73A0049887E /* TripleThumbSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49532DE28D3C73A0049887E /* TripleThumbSlider.swift */; };
 		E49532E128D467270049887E /* MTIRedLevelsAdjustment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49532E028D467270049887E /* MTIRedLevelsAdjustment.swift */; };
 		E49532E328D46D4C0049887E /* MTIGreenLevelsAdjustment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49532E228D46D4C0049887E /* MTIGreenLevelsAdjustment.swift */; };
+		E49532E528D470540049887E /* MTIBlueLevelsAdjustment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49532E428D470540049887E /* MTIBlueLevelsAdjustment.swift */; };
 		E49654E828C9C9CA0069A13F /* ToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49654E728C9C9CA0069A13F /* ToastMessage.swift */; };
 		E497668728CB2D9300E9EB11 /* ImageSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E497668628CB2D9300E9EB11 /* ImageSaver.swift */; };
 		E497668928CB340600E9EB11 /* PhotosLibraryPermissonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E497668828CB340600E9EB11 /* PhotosLibraryPermissonManager.swift */; };
@@ -83,6 +84,7 @@
 		E49532DE28D3C73A0049887E /* TripleThumbSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripleThumbSlider.swift; sourceTree = "<group>"; };
 		E49532E028D467270049887E /* MTIRedLevelsAdjustment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTIRedLevelsAdjustment.swift; sourceTree = "<group>"; };
 		E49532E228D46D4C0049887E /* MTIGreenLevelsAdjustment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTIGreenLevelsAdjustment.swift; sourceTree = "<group>"; };
+		E49532E428D470540049887E /* MTIBlueLevelsAdjustment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTIBlueLevelsAdjustment.swift; sourceTree = "<group>"; };
 		E49654E728C9C9CA0069A13F /* ToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastMessage.swift; sourceTree = "<group>"; };
 		E497668628CB2D9300E9EB11 /* ImageSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSaver.swift; sourceTree = "<group>"; };
 		E497668828CB340600E9EB11 /* PhotosLibraryPermissonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosLibraryPermissonManager.swift; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 				E4AC6E4628D3676E0037F6D7 /* MTIRGBLevelsAdjustmentFilter.swift */,
 				E49532E028D467270049887E /* MTIRedLevelsAdjustment.swift */,
 				E49532E228D46D4C0049887E /* MTIGreenLevelsAdjustment.swift */,
+				E49532E428D470540049887E /* MTIBlueLevelsAdjustment.swift */,
 			);
 			path = customfilters;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 				E49ED08928C657EF00C68007 /* AnofilmFilter.swift in Sources */,
 				E49532E328D46D4C0049887E /* MTIGreenLevelsAdjustment.swift in Sources */,
 				E49ED07528C6560F00C68007 /* Anofilm_FiltersApp.swift in Sources */,
+				E49532E528D470540049887E /* MTIBlueLevelsAdjustment.swift in Sources */,
 				E42D3DFB28C7ACE90018C9FE /* MTICustomColorMatrixFilter.swift in Sources */,
 				E42D3DF328C79EFE0018C9FE /* MTIHighlightsAndShadowsFilter.swift in Sources */,
 				E4AC6E4528D332720037F6D7 /* UIImageExtensions.swift in Sources */,
