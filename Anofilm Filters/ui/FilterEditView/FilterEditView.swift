@@ -108,6 +108,8 @@ struct FilterEditView: View {
             editGreenLevelsAdjustmentView
         case .blueLevelsAdjustment:
             editBlueLevelsAdjustmentView
+        case .grain:
+            editGrainView
         }
     }
 
@@ -396,8 +398,10 @@ struct FilterEditView: View {
             minimumOutputLevel: Binding(get: { filterEditViewModel.getMinimumOutputBlueLevel() }, set: { filterEditViewModel.setMinimumOutputBlueLevel($0) }),
             maximumOutputLevel: Binding(get: { filterEditViewModel.getMaximumOutputBlueLevel() }, set: { filterEditViewModel.setMaximumOutputBlueLevel($0) })
         )
+    }
 
-
+    private var editGrainView: some View {
+        createEditViewWithSlider(editName: "Grain", value: Binding(get: { filterEditViewModel.getGrainAmount() }, set: { filterEditViewModel.setGrainAmount($0) }), range: 0...1, resetValue: 0)
     }
 
     func createEditStepper<Value: Strideable & LosslessStringConvertible>(_ title: String, value: Binding<Value>, range: ClosedRange<Value>, resetValue: Value) -> some View {
@@ -412,7 +416,6 @@ struct FilterEditView: View {
             }
         }
     }
-
 
 
     private func createHorizontalSliderWithColor(color: Color, value: Binding<Float>) -> some View {
@@ -579,11 +582,11 @@ struct FilterEditView: View {
     private var imageViewPressGesture: some Gesture {
         DragGesture(minimumDistance: 0)
             .onChanged { _ in
-                filterEditViewModel.showOriginalImage()
-            }
+            filterEditViewModel.showOriginalImage()
+        }
             .onEnded { _ in
-                filterEditViewModel.showFilteredImage()
-            }
+            filterEditViewModel.showFilteredImage()
+        }
     }
 
 

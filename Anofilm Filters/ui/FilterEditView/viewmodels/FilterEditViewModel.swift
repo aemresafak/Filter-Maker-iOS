@@ -44,7 +44,7 @@ class FilterEditViewModel: ObservableObject {
             updateOutputImage()
         }
     }
-    
+
     private var isFilterUpdated = false
     private var restoreData: Data?
     var storedFilter: AnofilmFilter? {
@@ -53,10 +53,10 @@ class FilterEditViewModel: ObservableObject {
         } else {
             return nil
         }
-        
+
     }
-    
-    
+
+
     init() {
         outputImage = self.originalImage
         vignetteColor = filter.getVignetteColor()
@@ -65,7 +65,7 @@ class FilterEditViewModel: ObservableObject {
         shadowTintColor = filter.getShadowTintColor()
         updateOutputImage()
     }
-    
+
     func updateFilter(filter: AnofilmFilter) {
         if isFilterUpdated {
             return
@@ -80,7 +80,7 @@ class FilterEditViewModel: ObservableObject {
         isFilterUpdated = true
         restoreData = try? JSONEncoder().encode(filter)
     }
-    
+
 
     func saveImageToDocuments(onSaveCallback: (() -> Void)? = nil) {
         Task {
@@ -105,9 +105,9 @@ class FilterEditViewModel: ObservableObject {
         }
 
     }
-    
 
-    
+
+
     /// Change brightness of filter, brightness ranges from -1 to 1 with 0 being default  value
     func setBrightness(_ value: Float) {
         filter.setBrightness(value)
@@ -292,196 +292,194 @@ class FilterEditViewModel: ObservableObject {
     }
     func getRedAdjustment() -> Float { filter.getRedAdjustment() }
     func resetRedAdjustment() { filter.resetRedAdjustment() }
-    
+
     func setGreenAdjustment(_ value: Float) {
         filter.setGreenAdjustment(value)
         updateOutputImage()
     }
     func getGreenAdjustment() -> Float { filter.getGreenAdjustment() }
     func resetGreenAdjustment() { filter.resetGreenAdjustment() }
-    
+
     func setBlueAdjustment(_ value: Float) {
         filter.setBlueAdjustment(value)
         updateOutputImage()
     }
     func getBlueAdjustment() -> Float { filter.getBlueAdjustment() }
     func resetBlueAdjustment() { filter.resetBlueAdjustment() }
-    
+
     func setClaheClipLimit(_ value: Float) {
         filter.setClaheClipLimit(value)
         updateOutputImage()
     }
     func getClaheClipLimit() -> Float { filter.getClaheClipLimit() }
     func resetClaheClipLimit() { filter.resetClaheClipLimit() }
-    
+
     func setClaheTileWidth(_ value: UInt) {
         filter.setClaheTileWidth(value)
         updateOutputImage()
     }
     func getClaheTileWidth() -> UInt { filter.getClaheTileWidth() }
     func resetClaheTileWidth() { filter.resetClaheTileWidth() }
-    
+
     func setClaheTileHeight(_ value: UInt) {
         filter.setClaheTileHeight(value)
         updateOutputImage()
     }
     func getClaheTileHeight() -> UInt { filter.getClaheTileHeight() }
     func resetClaheTileHeight() { filter.resetClaheTileHeight() }
-    
+
     func setMinimumRGBLevel(_ value: Float) {
         filter.setMinimumRGBLevel(value)
         updateOutputImage()
     }
     func getMinimumRGBLevel() -> Float { filter.getMinimumRGBLevel() }
     func resetMinimumRGBLevel() { filter.resetMinimumRGBLevel() }
-    
+
     func setMiddleRGBLevel(_ value: Float) {
         filter.setMiddleRGBLevel(value)
         updateOutputImage()
     }
     func getMiddleRGBLevel() -> Float { filter.getMiddleRGBLevel() }
     func resetMiddleRGBLevel() { filter.resetMiddleRGBLevel() }
-    
+
     func setMaximumRGBLevel(_ value: Float) {
         filter.setMaximumRGBLevel(value)
         updateOutputImage()
     }
     func getMaximumRGBLevel() -> Float { filter.getMaximumRGBLevel() }
     func resetMaximumRGBLevel() { filter.resetMaximumRGBLevel() }
-    
+
     func setMinimumOutputRGBLevel(_ value: Float) {
         filter.setMinimumOutputRGBLevel(value)
         updateOutputImage()
     }
     func getMinimumOutputRGBLevel() -> Float { filter.getMinimumOutputRGBLevel() }
     func resetMinimumOutputRGBLevel() { filter.resetMinimumOutputRGBLevel() }
-    
+
     func setMaximumOutputRGBLevel(_ value: Float) {
         filter.setMaximumOutputRGBLevel(value)
         updateOutputImage()
     }
     func getMaximumOutputRGBLevel() -> Float { filter.getMaximumOutputRGBLevel() }
     func resetMaximumOutputRGBLevel() { filter.resetMaximumOutputRGBLevel() }
-    
-    
-    
+
+
+
     func setMinimumRedLevel(_ value: Float) {
         filter.setMinimumRedLevel(value)
         updateOutputImage()
     }
     func getMinimumRedLevel() -> Float { filter.getMinimumRedLevel() }
     func resetMinimumRedLevel() { filter.resetMinimumRedLevel() }
-    
+
     func setMiddleRedLevel(_ value: Float) {
         filter.setMiddleRedLevel(value)
         updateOutputImage()
     }
     func getMiddleRedLevel() -> Float { filter.getMiddleRedLevel() }
     func resetMiddleRedLevel() { filter.resetMiddleRedLevel() }
-    
+
     func setMaximumRedLevel(_ value: Float) {
         filter.setMaximumRedLevel(value)
         updateOutputImage()
     }
     func getMaximumRedLevel() -> Float { filter.getMaximumRedLevel() }
     func resetMaximumRedLevel() { filter.resetMaximumRedLevel() }
-    
+
     func setMinimumOutputRedLevel(_ value: Float) {
         filter.setMinimumOutputRedLevel(value)
         updateOutputImage()
     }
     func getMinimumOutputRedLevel() -> Float { filter.getMinimumOutputRedLevel() }
     func resetMinimumOutputRedLevel() { filter.resetMinimumOutputRedLevel() }
-    
+
     func setMaximumOutputRedLevel(_ value: Float) {
         filter.setMaximumOutputRedLevel(value)
         updateOutputImage()
     }
     func getMaximumOutputRedLevel() -> Float { filter.getMaximumOutputRedLevel() }
     func resetMaximumOutputRedLevel() { filter.resetMaximumOutputRedLevel() }
-    
+
     func setMinimumGreenLevel(_ value: Float) {
         filter.setMinimumGreenLevel(value)
         updateOutputImage()
     }
     func getMinimumGreenLevel() -> Float { filter.getMinimumGreenLevel() }
     func resetMinimumGreenLevel() { filter.resetMinimumGreenLevel() }
-    
+
     func setMiddleGreenLevel(_ value: Float) {
         filter.setMiddleGreenLevel(value)
         updateOutputImage()
     }
     func getMiddleGreenLevel() -> Float { filter.getMiddleGreenLevel() }
     func resetMiddleGreenLevel() { filter.resetMiddleGreenLevel() }
-    
+
     func setMaximumGreenLevel(_ value: Float) {
         filter.setMaximumGreenLevel(value)
         updateOutputImage()
     }
     func getMaximumGreenLevel() -> Float { filter.getMaximumGreenLevel() }
     func resetMaximumGreenLevel() { filter.resetMaximumGreenLevel() }
-    
+
     func setMinimumOutputGreenLevel(_ value: Float) {
         filter.setMinimumOutputGreenLevel(value)
         updateOutputImage()
     }
     func getMinimumOutputGreenLevel() -> Float { filter.getMinimumOutputGreenLevel() }
     func resetMinimumOutputGreenLevel() { filter.resetMinimumOutputGreenLevel() }
-    
+
     func setMaximumOutputGreenLevel(_ value: Float) {
         filter.setMaximumOutputGreenLevel(value)
         updateOutputImage()
     }
     func getMaximumOutputGreenLevel() -> Float { filter.getMaximumOutputGreenLevel() }
     func resetMaximumOutputGreenLevel() { filter.resetMaximumOutputGreenLevel() }
-    
+
     func setMinimumBlueLevel(_ value: Float) {
         filter.setMinimumBlueLevel(value)
         updateOutputImage()
     }
     func getMinimumBlueLevel() -> Float { filter.getMinimumBlueLevel() }
     func resetMinimumBlueLevel() { filter.resetMinimumBlueLevel() }
-    
+
     func setMiddleBlueLevel(_ value: Float) {
         filter.setMiddleBlueLevel(value)
         updateOutputImage()
     }
     func getMiddleBlueLevel() -> Float { filter.getMiddleBlueLevel() }
     func resetMiddleBlueLevel() { filter.resetMiddleBlueLevel() }
-    
+
     func setMaximumBlueLevel(_ value: Float) {
         filter.setMaximumBlueLevel(value)
         updateOutputImage()
     }
     func getMaximumBlueLevel() -> Float { filter.getMaximumBlueLevel() }
     func resetMaximumBlueLevel() { filter.resetMaximumBlueLevel() }
-    
+
     func setMinimumOutputBlueLevel(_ value: Float) {
         filter.setMinimumOutputBlueLevel(value)
         updateOutputImage()
     }
     func getMinimumOutputBlueLevel() -> Float { filter.getMinimumOutputBlueLevel() }
     func resetMinimumOutputBlueLevel() { filter.resetMinimumOutputBlueLevel() }
-    
+
     func setMaximumOutputBlueLevel(_ value: Float) {
         filter.setMaximumOutputBlueLevel(value)
         updateOutputImage()
     }
     func getMaximumOutputBlueLevel() -> Float { filter.getMaximumOutputBlueLevel() }
     func resetMaximumOutputBlueLevel() { filter.resetMaximumOutputBlueLevel() }
-    
-    
-    func showOriginalImage() {
-        outputImage = originalImage
-    }
-    
-    func showFilteredImage() {
+
+    func setGrainAmount(_ value: Float) {
+        filter.setGrainAmount(value)
         updateOutputImage()
     }
-    
-    private func updateOutputImage() {
-        outputImage = filter.filterImage(image: originalImage)
-    }
+    func getGrainAmount() -> Float { filter.getGrainAmount() }
+    func resetGrainAmount() { filter.resetGrainAmount() }
+
+    func showOriginalImage() { outputImage = originalImage }
+    func showFilteredImage() { updateOutputImage() }
+    private func updateOutputImage() { outputImage = filter.filterImage(image: originalImage) }
 
     func changeOriginalImage(with image: UIImage?, orientation: UIImage.Orientation?) {
         if let image = image {
