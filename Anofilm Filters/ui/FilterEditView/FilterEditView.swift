@@ -96,6 +96,8 @@ struct FilterEditView: View {
             editShadowTintView
         case .vignette:
             editVignetteView
+        case .secondaryVignette:
+            editSecondaryVignetteView
         case .rgbAdjustment:
             editRGBAdjustmentView
         case .clahe:
@@ -323,6 +325,40 @@ struct FilterEditView: View {
             ColorPicker(
                 "Pick Vignette Color",
                 selection: $filterEditViewModel.vignetteColor
+            )
+
+        }.padding()
+    }
+    
+    private var editSecondaryVignetteView: some View {
+        ScrollView {
+            createEditViewWithSlider(
+                editName: "SecondaryVignette Center X",
+                value: Binding(get: { filterEditViewModel.getSecondaryVignetteCenterX() }, set: { filterEditViewModel.setSecondaryVignetteCenterX($0) }),
+                range: 0...1,
+                resetValue: 0.5
+            )
+            createEditViewWithSlider(
+                editName: "SecondaryVignette Center Y",
+                value: Binding(get: { filterEditViewModel.getSecondaryVignetteCenterY() }, set: { filterEditViewModel.setSecondaryVignetteCenterY($0) }),
+                range: 0...1,
+                resetValue: 0.5
+            )
+            createEditViewWithSlider(
+                editName: "SecondaryVignette Start",
+                value: Binding(get: { filterEditViewModel.getSecondaryVignetteStart() }, set: { filterEditViewModel.setSecondaryVignetteStart($0) }),
+                range: 0...1,
+                resetValue: 0.5
+            )
+            createEditViewWithSlider(
+                editName: "SecondaryVignette End",
+                value: Binding(get: { filterEditViewModel.getSecondaryVignetteEnd() }, set: { filterEditViewModel.setSecondaryVignetteEnd($0) }),
+                range: 0...1,
+                resetValue: 0.75
+            )
+            ColorPicker(
+                "Pick SecondaryVignette Color",
+                selection: $filterEditViewModel.secondaryVignetteColor
             )
 
         }.padding()

@@ -26,6 +26,12 @@ class FilterEditViewModel: ObservableObject {
             updateOutputImage()
         }
     }
+    @Published var secondaryVignetteColor: Color = Color.black {
+        didSet {
+            filter.setSecondaryVignetteColor(secondaryVignetteColor)
+            updateOutputImage()
+        }
+    }
     @Published var tintColor: Color = Color.white {
         didSet {
             filter.setTintColor(tintColor)
@@ -44,6 +50,7 @@ class FilterEditViewModel: ObservableObject {
             updateOutputImage()
         }
     }
+
 
     private var isFilterUpdated = false
     private var restoreData: Data?
@@ -284,6 +291,42 @@ class FilterEditViewModel: ObservableObject {
     }
     func getVignetteEnd() -> Float { filter.getVignetteEnd() }
     func resetVignetteEnd() { filter.resetVignetteEnd() }
+
+    func setSecondaryVignetteCenterX(_ value: Float) {
+        filter.setSecondaryVignetteCenterX(value)
+        updateOutputImage()
+    }
+    func getSecondaryVignetteCenterX() -> Float { filter.getSecondaryVignetteCenterX() }
+    func resetSecondaryVignetteCenterX() { filter.resetSecondaryVignetteCenterX() }
+
+
+    func setSecondaryVignetteCenterY(_ value: Float) {
+        filter.setSecondaryVignetteCenterY(value)
+        updateOutputImage()
+    }
+    func getSecondaryVignetteCenterY() -> Float { filter.getSecondaryVignetteCenterY() }
+    func resetSecondaryVignetteCenterY() { filter.resetSecondaryVignetteCenterY() }
+
+    func setSecondaryVignetteColor(_ color: Color) {
+        filter.setSecondaryVignetteColor(color)
+        updateOutputImage()
+    }
+    func getSecondaryVignetteColor() -> Color { filter.getSecondaryVignetteColor() }
+
+    func setSecondaryVignetteStart(_ value: Float) {
+        filter.setSecondaryVignetteStart(value)
+        updateOutputImage()
+    }
+    func getSecondaryVignetteStart() -> Float { filter.getSecondaryVignetteStart() }
+    func resetSecondaryVignetteStart() { filter.resetSecondaryVignetteStart() }
+
+    func setSecondaryVignetteEnd(_ value: Float) {
+        filter.setSecondaryVignetteEnd(value)
+        updateOutputImage()
+    }
+    func getSecondaryVignetteEnd() -> Float { filter.getSecondaryVignetteEnd() }
+    func resetSecondaryVignetteEnd() { filter.resetSecondaryVignetteEnd() }
+
 
 
     func setRedAdjustment(_ value: Float) {

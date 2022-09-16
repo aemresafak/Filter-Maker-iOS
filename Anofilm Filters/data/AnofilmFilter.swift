@@ -32,6 +32,7 @@ struct AnofilmFilter: Codable, Identifiable {
     private var greenLevels = MTIGreenLevelsAdjustment()
     private var blueLevels = MTIBlueLevelsAdjustment()
     private var grain = MTIGrainFilter()
+    private var secondaryVignette = MTIVignetteFilter()
 
     init(name: String = "") {
         self.name = name
@@ -132,6 +133,26 @@ struct AnofilmFilter: Codable, Identifiable {
     func setVignetteEnd(_ value: Float) { vignette.vignetteEnd = value }
     func getVignetteEnd() -> Float { vignette.vignetteEnd }
     func resetVignetteEnd() { vignette.vignetteEnd = 1 }
+    
+    func setSecondaryVignetteCenterX(_ value: Float) { secondaryVignette.vignetteCenter.x = value }
+    func getSecondaryVignetteCenterX() -> Float { secondaryVignette.vignetteCenter.x }
+    func resetSecondaryVignetteCenterX() { secondaryVignette.vignetteCenter.x = 0.5 }
+
+    func setSecondaryVignetteCenterY(_ value: Float) { secondaryVignette.vignetteCenter.y = value }
+    func getSecondaryVignetteCenterY() -> Float { secondaryVignette.vignetteCenter.y }
+    func resetSecondaryVignetteCenterY() { secondaryVignette.vignetteCenter.y = 0.5 }
+
+    func setSecondaryVignetteColor(_ color: Color) { secondaryVignette.vignetteColor = color.createFloat3() }
+    func getSecondaryVignetteColor() -> Color { Color.createFrom(vector: secondaryVignette.vignetteColor) }
+
+    func setSecondaryVignetteStart(_ value: Float) { secondaryVignette.vignetteStart = value }
+    func getSecondaryVignetteStart() -> Float { secondaryVignette.vignetteStart }
+    func resetSecondaryVignetteStart() { secondaryVignette.vignetteStart = 1 }
+
+    func setSecondaryVignetteEnd(_ value: Float) { secondaryVignette.vignetteEnd = value }
+    func getSecondaryVignetteEnd() -> Float { secondaryVignette.vignetteEnd }
+    func resetSecondaryVignetteEnd() { secondaryVignette.vignetteEnd = 1 }
+
 
     func setRedAdjustment(_ value: Float) { rgbAdjustment.redAdjustment = value }
     func getRedAdjustment() -> Float { rgbAdjustment.redAdjustment }
@@ -273,7 +294,7 @@ struct AnofilmFilter: Codable, Identifiable {
 
         let output = FilterGraph.makeImage { output in
             intermediateOutput2 => rgbLevels => redLevels =>
-            grain => greenLevels => blueLevels => output
+            grain => greenLevels => blueLevels => secondaryVignette => output
         }
 
 
@@ -322,6 +343,7 @@ struct AnofilmFilter: Codable, Identifiable {
         self.greenLevels = try container.decode(MTIGreenLevelsAdjustment.self, forKey: .greenLevels)
         self.blueLevels = try container.decode(MTIBlueLevelsAdjustment.self, forKey: .blueLevels)
         self.grain = try container.decode(MTIGrainFilter.self, forKey: .grain)
+        self.secondaryVignette = try container.decode(MTIVignetteFilter.self, forKey: .secondaryVignette)
     }
 
     func encode(to encoder: Encoder) throws {
@@ -347,12 +369,13 @@ struct AnofilmFilter: Codable, Identifiable {
         try container.encode(greenLevels, forKey: .greenLevels)
         try container.encode(blueLevels, forKey: .blueLevels)
         try container.encode(grain, forKey: .grain)
+        try container.encode(secondaryVignette, forKey: .secondaryVignette)
     }
 
     private enum CodingKeys: String, CodingKey {
         case name, brightness, contrast, saturation, exposure, vibrance
         case whiteBalance, gamma, haze, highlightsAndShadows
-        case sepiaTone, tint, highlightShadowTint, vignette, rgbAdjustment
+        case sepiaTone, tint, highlightShadowTint, vignette, secondaryVignette, rgbAdjustment
         case clahe, rgbLevels, redLevels, greenLevels, blueLevels, grain
     }
 
@@ -383,6 +406,11 @@ struct AnofilmFilter: Codable, Identifiable {
         Vignette Color Description:    \(getVignetteColor().description)
         Vignette Start:    \(getVignetteStart())
         Vignette End:    \(getVignetteEnd())
+        Secondary Vignette Center X:    \(getSecondaryVignetteCenterX())
+        Secondary Vignette Center Y:    \(getSecondaryVignetteCenterY())
+        Secondary Vignette Color Description:    \(getSecondaryVignetteColor().description)
+        Secondary Vignette Start:    \(getSecondaryVignetteStart())
+        Secondary Vignette End:    \(getSecondaryVignetteEnd())
         Red Adjustment:  \(getRedAdjustment())
         Green Adjustment:  \(getGreenAdjustment())
         Blue Adjustment:  \(getBlueAdjustment())
