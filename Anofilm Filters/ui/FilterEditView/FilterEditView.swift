@@ -103,6 +103,8 @@ struct FilterEditView: View {
             editRGBLevelsAdjustmentView
         case .redLevelsAdjustment:
             editRedLevelsAdjustmentView
+        case .greenLevelsAdjustment:
+            editGreenLevelsAdjustmentView
         }
     }
 
@@ -374,6 +376,17 @@ struct FilterEditView: View {
                 maximumLevel: Binding(get: { filterEditViewModel.getMaximumRedLevel() }, set: { filterEditViewModel.setMaximumRedLevel($0) }),
                 minimumOutputLevel: Binding(get: { filterEditViewModel.getMinimumOutputRedLevel() }, set: { filterEditViewModel.setMinimumOutputRedLevel($0) }),
                 maximumOutputLevel: Binding(get: { filterEditViewModel.getMaximumOutputRedLevel() }, set: { filterEditViewModel.setMaximumOutputRedLevel($0) })
+            )
+    }
+
+    
+    private var editGreenLevelsAdjustmentView: some View {
+        LevelsAdjustmentView(
+                minimumLevel: Binding(get: { filterEditViewModel.getMinimumGreenLevel() }, set: { filterEditViewModel.setMinimumGreenLevel($0) }),
+                middleLevel: Binding(get: { filterEditViewModel.getMiddleGreenLevel() }, set: { filterEditViewModel.setMiddleGreenLevel($0) }),
+                maximumLevel: Binding(get: { filterEditViewModel.getMaximumGreenLevel() }, set: { filterEditViewModel.setMaximumGreenLevel($0) }),
+                minimumOutputLevel: Binding(get: { filterEditViewModel.getMinimumOutputGreenLevel() }, set: { filterEditViewModel.setMinimumOutputGreenLevel($0) }),
+                maximumOutputLevel: Binding(get: { filterEditViewModel.getMaximumOutputGreenLevel() }, set: { filterEditViewModel.setMaximumOutputGreenLevel($0) })
             )
     }
 
