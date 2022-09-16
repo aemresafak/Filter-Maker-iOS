@@ -23,6 +23,7 @@
 		E48CFFD728C86FDD004EB25C /* FilterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48CFFD628C86FDD004EB25C /* FilterItem.swift */; };
 		E48CFFD928C872D3004EB25C /* AnofilmFilterExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48CFFD828C872D3004EB25C /* AnofilmFilterExtensions.swift */; };
 		E48CFFDB28C87FB0004EB25C /* CustomizableDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48CFFDA28C87FB0004EB25C /* CustomizableDialog.swift */; };
+		E491D6C628D4B420002124D7 /* MTIGrainFilter.metal in Sources */ = {isa = PBXBuildFile; fileRef = E491D6C528D4B420002124D7 /* MTIGrainFilter.metal */; };
 		E49532DF28D3C73A0049887E /* TripleThumbSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49532DE28D3C73A0049887E /* TripleThumbSlider.swift */; };
 		E49532E128D467270049887E /* MTIRedLevelsAdjustment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49532E028D467270049887E /* MTIRedLevelsAdjustment.swift */; };
 		E49532E328D46D4C0049887E /* MTIGreenLevelsAdjustment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49532E228D46D4C0049887E /* MTIGreenLevelsAdjustment.swift */; };
@@ -81,6 +82,7 @@
 		E48CFFD628C86FDD004EB25C /* FilterItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterItem.swift; sourceTree = "<group>"; };
 		E48CFFD828C872D3004EB25C /* AnofilmFilterExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnofilmFilterExtensions.swift; sourceTree = "<group>"; };
 		E48CFFDA28C87FB0004EB25C /* CustomizableDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizableDialog.swift; sourceTree = "<group>"; };
+		E491D6C528D4B420002124D7 /* MTIGrainFilter.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = MTIGrainFilter.metal; sourceTree = "<group>"; };
 		E49532DE28D3C73A0049887E /* TripleThumbSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripleThumbSlider.swift; sourceTree = "<group>"; };
 		E49532E028D467270049887E /* MTIRedLevelsAdjustment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTIRedLevelsAdjustment.swift; sourceTree = "<group>"; };
 		E49532E228D46D4C0049887E /* MTIGreenLevelsAdjustment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTIGreenLevelsAdjustment.swift; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 				E49532E028D467270049887E /* MTIRedLevelsAdjustment.swift */,
 				E49532E228D46D4C0049887E /* MTIGreenLevelsAdjustment.swift */,
 				E49532E428D470540049887E /* MTIBlueLevelsAdjustment.swift */,
+				E491D6C528D4B420002124D7 /* MTIGrainFilter.metal */,
 			);
 			path = customfilters;
 			sourceTree = "<group>";
@@ -482,6 +485,7 @@
 				E49532DF28D3C73A0049887E /* TripleThumbSlider.swift in Sources */,
 				E49532E128D467270049887E /* MTIRedLevelsAdjustment.swift in Sources */,
 				E4A12DC028D1B74B001AF77B /* MTILevelsAdjustmentFilter.swift in Sources */,
+				E491D6C628D4B420002124D7 /* MTIGrainFilter.metal in Sources */,
 				E48CFFD228C86E11004EB25C /* FiltersView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
