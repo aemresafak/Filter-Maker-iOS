@@ -112,6 +112,8 @@ struct FilterEditView: View {
             editBlueLevelsAdjustmentView
         case .grain:
             editGrainView
+        case .infrared:
+            editInfraredFilterView
         }
     }
 
@@ -438,6 +440,18 @@ struct FilterEditView: View {
 
     private var editGrainView: some View {
         createEditViewWithSlider(editName: "Grain", value: Binding(get: { filterEditViewModel.getGrainAmount() }, set: { filterEditViewModel.setGrainAmount($0) }), range: 0...100, resetValue: 0)
+    }
+    
+    private var editInfraredFilterView: some View {
+        VStack {
+            Text(filterEditViewModel.applyInfrared == true ? "Infrared is applied." : "Infrared is not applied.")
+            Button {
+                filterEditViewModel.applyInfrared.toggle()
+            } label: {
+                Text(filterEditViewModel.applyInfrared == true ? "Disable Infrared Filter" : "Enable Infrared Filter")
+            }
+
+        }
     }
 
     func createEditStepper<Value: Strideable & LosslessStringConvertible>(_ title: String, value: Binding<Value>, range: ClosedRange<Value>, resetValue: Value) -> some View {

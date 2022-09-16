@@ -12,6 +12,7 @@ import MetalPetal
 struct AnofilmFilter: Codable, Identifiable {
     var id: UUID = UUID()
     var name: String
+    var applyInfrared: Bool = false
     private var brightness = MTIBrightnessFilter()
     private var contrast = MTIContrastFilter()
     private var saturation = MTISaturationFilter()
@@ -33,6 +34,7 @@ struct AnofilmFilter: Codable, Identifiable {
     private var blueLevels = MTIBlueLevelsAdjustment()
     private var grain = MTIGrainFilter()
     private var secondaryVignette = MTIVignetteFilter()
+    
 
     init(name: String = "") {
         self.name = name
@@ -268,8 +270,15 @@ struct AnofilmFilter: Codable, Identifiable {
 
     /// returns filtered version of image
     func filterImage(image: MTIImage?) -> MTIImage? {
-        guard let image = image else {
+        
+        guard var image = image else {
             return nil
+        }
+        
+        if applyInfrared {
+            guard let infraredImage = MTIInfraRedFilter.filter(image: image) else { return nil }
+            infraredImage.unpremultiplyingAlpha()
+            image = infraredImage
         }
 
         let intermediateOutput = FilterGraph.makeImage(builder: { output in
@@ -344,6 +353,7 @@ struct AnofilmFilter: Codable, Identifiable {
         self.blueLevels = try container.decode(MTIBlueLevelsAdjustment.self, forKey: .blueLevels)
         self.grain = try container.decode(MTIGrainFilter.self, forKey: .grain)
         self.secondaryVignette = try container.decode(MTIVignetteFilter.self, forKey: .secondaryVignette)
+        self.applyInfrared = try container.decode(Bool.self, forKey: .infrared)
     }
 
     func encode(to encoder: Encoder) throws {
@@ -370,10 +380,11 @@ struct AnofilmFilter: Codable, Identifiable {
         try container.encode(blueLevels, forKey: .blueLevels)
         try container.encode(grain, forKey: .grain)
         try container.encode(secondaryVignette, forKey: .secondaryVignette)
+        try container.encode(applyInfrared, forKey: .infrared)
     }
 
     private enum CodingKeys: String, CodingKey {
-        case name, brightness, contrast, saturation, exposure, vibrance
+        case name, infrared, brightness, contrast, saturation, exposure, vibrance
         case whiteBalance, gamma, haze, highlightsAndShadows
         case sepiaTone, tint, highlightShadowTint, vignette, secondaryVignette, rgbAdjustment
         case clahe, rgbLevels, redLevels, greenLevels, blueLevels, grain
@@ -438,6 +449,7 @@ struct AnofilmFilter: Codable, Identifiable {
         Blue Minimum Output Level:  \(blueLevels.minimumOutputLevel)
         Blue Maximum Output Level:  \(blueLevels.maximumOutputLevel)
         Grain:  \(getGrainAmount())
+        Infrared applied is: \(applyInfrared)
         """
     }
 }

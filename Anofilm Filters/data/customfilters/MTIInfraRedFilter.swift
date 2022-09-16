@@ -18,6 +18,13 @@ struct MTIInfraRedFilter {
         return redBlueSwappedImage
     }
     
+    static func filter(image: MTIImage) -> MTIImage? {
+        guard let blendedImage = blendImageWithItsInverted(image: image) else { return nil }
+        guard let redBlueSwappedImage = redBlueChannelsSwappedVersion(of: blendedImage) else { return nil }
+        
+        return redBlueSwappedImage
+    }
+    
     private static func redBlueChannelsSwappedVersion(of image: MTIImage) -> MTIImage? {
         let filter = MTISwapRedBlueChannelsFilter()
         filter.inputImage = image
@@ -34,6 +41,16 @@ struct MTIInfraRedFilter {
         let colorBlendFilter = MTIBlendFilter(blendMode: .color)
         colorBlendFilter.inputImage = invertedImage
         colorBlendFilter.inputBackgroundImage = originalImage
+        return colorBlendFilter.outputImage
+    }
+    
+    private static func blendImageWithItsInverted(image: MTIImage) -> MTIImage? {
+        let invertFilter = MTIColorInvertFilter()
+        invertFilter.inputImage = image
+        guard let invertedImage = invertFilter.outputImage else { return nil }
+        let colorBlendFilter = MTIBlendFilter(blendMode: .color)
+        colorBlendFilter.inputImage = invertedImage
+        colorBlendFilter.inputBackgroundImage = image
         return colorBlendFilter.outputImage
     }
     

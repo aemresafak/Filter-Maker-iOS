@@ -50,6 +50,13 @@ class FilterEditViewModel: ObservableObject {
             updateOutputImage()
         }
     }
+    
+    @Published var applyInfrared: Bool = false {
+        didSet {
+            filter.applyInfrared = self.applyInfrared
+            updateOutputImage()
+        }
+    }
 
 
     private var isFilterUpdated = false
