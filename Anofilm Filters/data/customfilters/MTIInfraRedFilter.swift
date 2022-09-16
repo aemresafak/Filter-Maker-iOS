@@ -10,13 +10,18 @@ import UIKit
 import MetalPetal
 
 struct MTIInfraRedFilter {
-
-    static private var anofilmFilter = AnofilmFilter()
-    
-   
+       
     static func filter(image: UIImage, orientation: UIImage.Orientation = UIImage.Orientation.up) -> MTIImage? {
         guard let blendedImage = blendImageWithItsInverted(image: image, orientation: orientation) else { return nil }
-        return blendedImage
+        guard let redBlueSwappedImage = redBlueChannelsSwappedVersion(of: blendedImage) else { return nil }
+        
+        return redBlueSwappedImage
+    }
+    
+    private static func redBlueChannelsSwappedVersion(of image: MTIImage) -> MTIImage? {
+        let filter = MTISwapRedBlueChannelsFilter()
+        filter.inputImage = image
+        return filter.outputImage
     }
     
     

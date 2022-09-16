@@ -30,6 +30,8 @@
 		E49532E328D46D4C0049887E /* MTIGreenLevelsAdjustment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49532E228D46D4C0049887E /* MTIGreenLevelsAdjustment.swift */; };
 		E49532E528D470540049887E /* MTIBlueLevelsAdjustment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49532E428D470540049887E /* MTIBlueLevelsAdjustment.swift */; };
 		E495494228D4F7CB007A3770 /* MTIInfraRedFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E495494128D4F7CB007A3770 /* MTIInfraRedFilter.swift */; };
+		E495494428D4FDFD007A3770 /* MTISwapRedBlueChannels.metal in Sources */ = {isa = PBXBuildFile; fileRef = E495494328D4FDFD007A3770 /* MTISwapRedBlueChannels.metal */; };
+		E495494628D4FE9C007A3770 /* MTISwapRedBlueChannelsFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E495494528D4FE9C007A3770 /* MTISwapRedBlueChannelsFilter.swift */; };
 		E49654E828C9C9CA0069A13F /* ToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49654E728C9C9CA0069A13F /* ToastMessage.swift */; };
 		E497668728CB2D9300E9EB11 /* ImageSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E497668628CB2D9300E9EB11 /* ImageSaver.swift */; };
 		E497668928CB340600E9EB11 /* PhotosLibraryPermissonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E497668828CB340600E9EB11 /* PhotosLibraryPermissonManager.swift */; };
@@ -91,6 +93,8 @@
 		E49532E228D46D4C0049887E /* MTIGreenLevelsAdjustment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTIGreenLevelsAdjustment.swift; sourceTree = "<group>"; };
 		E49532E428D470540049887E /* MTIBlueLevelsAdjustment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTIBlueLevelsAdjustment.swift; sourceTree = "<group>"; };
 		E495494128D4F7CB007A3770 /* MTIInfraRedFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTIInfraRedFilter.swift; sourceTree = "<group>"; };
+		E495494328D4FDFD007A3770 /* MTISwapRedBlueChannels.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = MTISwapRedBlueChannels.metal; sourceTree = "<group>"; };
+		E495494528D4FE9C007A3770 /* MTISwapRedBlueChannelsFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTISwapRedBlueChannelsFilter.swift; sourceTree = "<group>"; };
 		E49654E728C9C9CA0069A13F /* ToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastMessage.swift; sourceTree = "<group>"; };
 		E497668628CB2D9300E9EB11 /* ImageSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSaver.swift; sourceTree = "<group>"; };
 		E497668828CB340600E9EB11 /* PhotosLibraryPermissonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosLibraryPermissonManager.swift; sourceTree = "<group>"; };
@@ -309,6 +313,8 @@
 				E491D6C528D4B420002124D7 /* MTIGrainFilter.metal */,
 				E491D6C928D4B949002124D7 /* MTIGrainFilter.swift */,
 				E495494128D4F7CB007A3770 /* MTIInfraRedFilter.swift */,
+				E495494328D4FDFD007A3770 /* MTISwapRedBlueChannels.metal */,
+				E495494528D4FE9C007A3770 /* MTISwapRedBlueChannelsFilter.swift */,
 			);
 			path = customfilters;
 			sourceTree = "<group>";
@@ -464,6 +470,7 @@
 				E49ED08F28C6589A00C68007 /* FilterEditViewModel.swift in Sources */,
 				E49ED08428C6577C00C68007 /* ImagePicker.swift in Sources */,
 				E49ED0AE28C77A6300C68007 /* MTIHazeFilter.swift in Sources */,
+				E495494628D4FE9C007A3770 /* MTISwapRedBlueChannelsFilter.swift in Sources */,
 				E495494228D4F7CB007A3770 /* MTIInfraRedFilter.swift in Sources */,
 				E42D3E0628C7D2A60018C9FE /* MTIHighlightShadowTintFilter.metal in Sources */,
 				E49ED09328C65DA200C68007 /* FilterImageView.swift in Sources */,
@@ -494,6 +501,7 @@
 				E49532E128D467270049887E /* MTIRedLevelsAdjustment.swift in Sources */,
 				E4A12DC028D1B74B001AF77B /* MTILevelsAdjustmentFilter.swift in Sources */,
 				E491D6C628D4B420002124D7 /* MTIGrainFilter.metal in Sources */,
+				E495494428D4FDFD007A3770 /* MTISwapRedBlueChannels.metal in Sources */,
 				E48CFFD228C86E11004EB25C /* FiltersView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
