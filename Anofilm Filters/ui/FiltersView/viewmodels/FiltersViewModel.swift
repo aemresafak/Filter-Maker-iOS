@@ -19,7 +19,7 @@ class FiltersViewModel: ObservableObject {
     }
 
     func getFiltersURL() throws -> URL {
-        let url = try FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+        let url = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
         return url.appendingPathComponent("filters.json")
     }
 
