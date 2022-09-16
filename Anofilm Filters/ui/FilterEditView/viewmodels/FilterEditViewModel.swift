@@ -364,6 +364,43 @@ class FilterEditViewModel: ObservableObject {
     func resetMaximumOutputRGBLevel() { filter.resetMaximumOutputRGBLevel() }
     
     
+    
+    func setMinimumRedLevel(_ value: Float) {
+        filter.setMinimumRedLevel(value)
+        updateOutputImage()
+    }
+    func getMinimumRedLevel() -> Float { filter.getMinimumRedLevel() }
+    func resetMinimumRedLevel() { filter.resetMinimumRedLevel() }
+    
+    func setMiddleRedLevel(_ value: Float) {
+        filter.setMiddleRedLevel(value)
+        updateOutputImage()
+    }
+    func getMiddleRedLevel() -> Float { filter.getMiddleRedLevel() }
+    func resetMiddleRedLevel() { filter.resetMiddleRedLevel() }
+    
+    func setMaximumRedLevel(_ value: Float) {
+        filter.setMaximumRedLevel(value)
+        updateOutputImage()
+    }
+    func getMaximumRedLevel() -> Float { filter.getMaximumRedLevel() }
+    func resetMaximumRedLevel() { filter.resetMaximumRedLevel() }
+    
+    func setMinimumOutputRedLevel(_ value: Float) {
+        filter.setMinimumOutputRedLevel(value)
+        updateOutputImage()
+    }
+    func getMinimumOutputRedLevel() -> Float { filter.getMinimumOutputRedLevel() }
+    func resetMinimumOutputRedLevel() { filter.resetMinimumOutputRedLevel() }
+    
+    func setMaximumOutputRedLevel(_ value: Float) {
+        filter.setMaximumOutputRedLevel(value)
+        updateOutputImage()
+    }
+    func getMaximumOutputRedLevel() -> Float { filter.getMaximumOutputRedLevel() }
+    func resetMaximumOutputRedLevel() { filter.resetMaximumOutputRedLevel() }
+    
+    
     private func updateOutputImage() {
         outputImage = filter.filterImage(image: originalImage)
     }

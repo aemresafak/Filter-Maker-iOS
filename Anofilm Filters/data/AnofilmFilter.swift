@@ -188,13 +188,13 @@ struct AnofilmFilter: Codable, Identifiable {
     func getMaximumRedLevel() -> Float { redLevels.maximumLevel}
     func resetMaximumRedLevel() { redLevels.maximumLevel = 1}
     
-    func setMinimumRedLevelOutput(_ value: Float) { redLevels.minimumOutputLevel = value}
-    func getMinimumRedLevelOutput() -> Float { redLevels.minimumOutputLevel}
-    func resetMinimumRedLevelOutput() { redLevels.minimumOutputLevel = 0}
+    func setMinimumOutputRedLevel(_ value: Float) { redLevels.minimumOutputLevel = value}
+    func getMinimumOutputRedLevel() -> Float { redLevels.minimumOutputLevel}
+    func resetMinimumOutputRedLevel() { redLevels.minimumOutputLevel = 0}
     
-    func setMaximumRedLevelOutput(_ value: Float) { redLevels.maximumOutputLevel = value}
-    func getMaximumRedLevelOutput() -> Float { redLevels.maximumOutputLevel}
-    func resetMaximumRedLevelOutput() { redLevels.maximumOutputLevel = 1}
+    func setMaximumOutputRedLevel(_ value: Float) { redLevels.maximumOutputLevel = value}
+    func getMaximumOutputRedLevel() -> Float { redLevels.maximumOutputLevel}
+    func resetMaximumOutputRedLevel() { redLevels.maximumOutputLevel = 1}
     
     /// returns filtered version of image
     func filterImage(image: MTIImage?) -> MTIImage? {

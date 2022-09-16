@@ -18,12 +18,12 @@ class MTIRedLevelsAdjustment: MTILevelsAdjustmentFilter {
     }
     var middleLevel: Float = 1 {
         willSet {
-            middleColor = simd_float3(newValue, 0, 0)
+            middleColor = simd_float3(newValue, 1, 1)
         }
     }
     var maximumLevel: Float = 1 {
         willSet {
-            maximumColor = simd_float3(newValue, 0, 0)
+            maximumColor = simd_float3(newValue, 1, 1)
         }
     }
 
@@ -35,7 +35,7 @@ class MTIRedLevelsAdjustment: MTILevelsAdjustmentFilter {
 
     var maximumOutputLevel: Float = 1 {
         willSet {
-            maxOutputColor = simd_float3(newValue, 0, 0)
+            maxOutputColor = simd_float3(newValue, 1, 1)
         }
     }
 

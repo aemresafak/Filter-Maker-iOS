@@ -99,8 +99,10 @@ struct FilterEditView: View {
             editRGBAdjustmentView
         case .clahe:
             editClaheView
-        case .rgbLevelsAdjustmentView:
+        case .rgbLevelsAdjustment:
             editRGBLevelsAdjustmentView
+        case .redLevelsAdjustment:
+            editRedLevelsAdjustmentView
         }
     }
 
@@ -363,6 +365,16 @@ struct FilterEditView: View {
             minimumOutputLevel: Binding(get: { filterEditViewModel.getMinimumOutputRGBLevel() }, set: { filterEditViewModel.setMinimumOutputRGBLevel($0) }),
             maximumOutputLevel: Binding(get: { filterEditViewModel.getMaximumOutputRGBLevel() }, set: { filterEditViewModel.setMaximumOutputRGBLevel($0) })
         )
+    }
+    
+    private var editRedLevelsAdjustmentView: some View {
+        LevelsAdjustmentView(
+                minimumLevel: Binding(get: { filterEditViewModel.getMinimumRedLevel() }, set: { filterEditViewModel.setMinimumRedLevel($0) }),
+                middleLevel: Binding(get: { filterEditViewModel.getMiddleRedLevel() }, set: { filterEditViewModel.setMiddleRedLevel($0) }),
+                maximumLevel: Binding(get: { filterEditViewModel.getMaximumRedLevel() }, set: { filterEditViewModel.setMaximumRedLevel($0) }),
+                minimumOutputLevel: Binding(get: { filterEditViewModel.getMinimumOutputRedLevel() }, set: { filterEditViewModel.setMinimumOutputRedLevel($0) }),
+                maximumOutputLevel: Binding(get: { filterEditViewModel.getMaximumOutputRedLevel() }, set: { filterEditViewModel.setMaximumOutputRedLevel($0) })
+            )
     }
 
     func createEditStepper<Value: Strideable & LosslessStringConvertible>(_ title: String, value: Binding<Value>, range: ClosedRange<Value>, resetValue: Value) -> some View {
