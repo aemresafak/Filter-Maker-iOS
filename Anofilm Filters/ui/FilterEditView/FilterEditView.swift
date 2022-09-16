@@ -248,7 +248,7 @@ struct FilterEditView: View {
         VStack {
             ColorPicker(
                 "Pick color for Tint",
-                selection: Binding(get: { filterEditViewModel.getTintColor() }, set: { filterEditViewModel.setTintColor($0) })
+                selection: $filterEditViewModel.tintColor
             )
             createEditViewWithSlider(
                 editName: "Tint Intensity",
@@ -263,7 +263,7 @@ struct FilterEditView: View {
         VStack {
             ColorPicker(
                 "Pick color for Highlight Tint",
-                selection: Binding(get: { filterEditViewModel.getHighlightTintColor() }, set: { filterEditViewModel.setHighlightTintColor($0) })
+                selection: $filterEditViewModel.highlightTintColor
             )
             createEditViewWithSlider(
                 editName: "Highlight Tint Intensity",
@@ -278,7 +278,7 @@ struct FilterEditView: View {
         VStack {
             ColorPicker(
                 "Pick color for Shadow Tint",
-                selection: Binding(get: { filterEditViewModel.getShadowTintColor() }, set: { filterEditViewModel.setShadowTintColor($0) })
+                selection: $filterEditViewModel.shadowTintColor
             )
             createEditViewWithSlider(
                 editName: "Shadow Tint Intensity",
@@ -318,7 +318,7 @@ struct FilterEditView: View {
             )
             ColorPicker(
                 "Pick Vignette Color",
-                selection: Binding(get: { filterEditViewModel.getVignetteColor() }, set: { filterEditViewModel.setVignetteColor($0) })
+                selection: $filterEditViewModel.vignetteColor
             )
 
         }.padding()

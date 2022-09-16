@@ -20,6 +20,30 @@ class FilterEditViewModel: ObservableObject {
     @Published var outputImage: MTIImage?
     @Published var editType = EditType.brightness
     @Published var filterName: String = ""
+    @Published var vignetteColor: Color = Color.black {
+        didSet {
+            filter.setVignetteColor(vignetteColor)
+            updateOutputImage()
+        }
+    }
+    @Published var tintColor: Color = Color.white {
+        didSet {
+            filter.setTintColor(tintColor)
+            updateOutputImage()
+        }
+    }
+    @Published var highlightTintColor: Color = Color.white {
+        didSet {
+            filter.setHighlightTintColor(highlightTintColor)
+            updateOutputImage()
+        }
+    }
+    @Published var shadowTintColor: Color = Color.white {
+        didSet {
+            filter.setShadowTintColor(shadowTintColor)
+            updateOutputImage()
+        }
+    }
     
     private var isFilterUpdated = false
     private var restoreData: Data?
@@ -35,6 +59,10 @@ class FilterEditViewModel: ObservableObject {
     
     init() {
         outputImage = self.originalImage
+        vignetteColor = filter.getVignetteColor()
+        tintColor = filter.getTintColor()
+        highlightTintColor = filter.getHighlightTintColor()
+        shadowTintColor = filter.getShadowTintColor()
         updateOutputImage()
     }
     
@@ -45,6 +73,10 @@ class FilterEditViewModel: ObservableObject {
         self.filter = filter
         updateOutputImage()
         filterName = filter.name
+        vignetteColor = filter.getVignetteColor()
+        tintColor = filter.getTintColor()
+        highlightTintColor = filter.getHighlightTintColor()
+        shadowTintColor = filter.getShadowTintColor()
         isFilterUpdated = true
         restoreData = try? JSONEncoder().encode(filter)
     }
