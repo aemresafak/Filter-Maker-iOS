@@ -29,6 +29,7 @@ struct AnofilmFilter: Codable, Identifiable {
     private var clahe = MTICLAHEFilter()
     private var rgbLevels = MTIRGBLevelsAdjustmentFilter()
     private var redLevels = MTIRedLevelsAdjustment()
+    private var greenLevels = MTIGreenLevelsAdjustment()
 
     init(name: String = "") {
         self.name = name
@@ -170,32 +171,53 @@ struct AnofilmFilter: Codable, Identifiable {
     func setMinimumOutputRGBLevel(_ value: Float) { rgbLevels.minimumOutputLevel = value }
     func getMinimumOutputRGBLevel() -> Float { rgbLevels.minimumOutputLevel }
     func resetMinimumOutputRGBLevel() { rgbLevels.minimumOutputLevel = 0 }
-    
+
     func setMaximumOutputRGBLevel(_ value: Float) { rgbLevels.maximumOutputLevel = value }
     func getMaximumOutputRGBLevel() -> Float { rgbLevels.maximumOutputLevel }
     func resetMaximumOutputRGBLevel() { rgbLevels.maximumOutputLevel = 1 }
-    
-    func setMinimumRedLevel(_ value: Float) { redLevels.minimumLevel = value}
-    func getMinimumRedLevel() -> Float { redLevels.minimumLevel}
-    func resetMinimumRedLevel() { redLevels.minimumLevel = 0}
-    
-    
-    func setMiddleRedLevel(_ value: Float) { redLevels.middleLevel = value}
-    func getMiddleRedLevel() -> Float { redLevels.middleLevel}
-    func resetMiddleRedLevel() { redLevels.middleLevel = 1}
-    
-    func setMaximumRedLevel(_ value: Float) { redLevels.maximumLevel = value}
-    func getMaximumRedLevel() -> Float { redLevels.maximumLevel}
-    func resetMaximumRedLevel() { redLevels.maximumLevel = 1}
-    
-    func setMinimumOutputRedLevel(_ value: Float) { redLevels.minimumOutputLevel = value}
-    func getMinimumOutputRedLevel() -> Float { redLevels.minimumOutputLevel}
-    func resetMinimumOutputRedLevel() { redLevels.minimumOutputLevel = 0}
-    
-    func setMaximumOutputRedLevel(_ value: Float) { redLevels.maximumOutputLevel = value}
-    func getMaximumOutputRedLevel() -> Float { redLevels.maximumOutputLevel}
-    func resetMaximumOutputRedLevel() { redLevels.maximumOutputLevel = 1}
-    
+
+    func setMinimumRedLevel(_ value: Float) { redLevels.minimumLevel = value }
+    func getMinimumRedLevel() -> Float { redLevels.minimumLevel }
+    func resetMinimumRedLevel() { redLevels.minimumLevel = 0 }
+
+
+    func setMiddleRedLevel(_ value: Float) { redLevels.middleLevel = value }
+    func getMiddleRedLevel() -> Float { redLevels.middleLevel }
+    func resetMiddleRedLevel() { redLevels.middleLevel = 1 }
+
+    func setMaximumRedLevel(_ value: Float) { redLevels.maximumLevel = value }
+    func getMaximumRedLevel() -> Float { redLevels.maximumLevel }
+    func resetMaximumRedLevel() { redLevels.maximumLevel = 1 }
+
+    func setMinimumOutputRedLevel(_ value: Float) { redLevels.minimumOutputLevel = value }
+    func getMinimumOutputRedLevel() -> Float { redLevels.minimumOutputLevel }
+    func resetMinimumOutputRedLevel() { redLevels.minimumOutputLevel = 0 }
+
+    func setMaximumOutputRedLevel(_ value: Float) { redLevels.maximumOutputLevel = value }
+    func getMaximumOutputRedLevel() -> Float { redLevels.maximumOutputLevel }
+    func resetMaximumOutputRedLevel() { redLevels.maximumOutputLevel = 1 }
+
+    func setMinimumGreenLevel(_ value: Float) { greenLevels.minimumLevel = value }
+    func getMinimumGreenLevel() -> Float { greenLevels.minimumLevel }
+    func resetMinimumGreenLevel() { greenLevels.minimumLevel = 0 }
+
+
+    func setMiddleGreenLevel(_ value: Float) { greenLevels.middleLevel = value }
+    func getMiddleGreenLevel() -> Float { greenLevels.middleLevel }
+    func resetMiddleGreenLevel() { greenLevels.middleLevel = 1 }
+
+    func setMaximumGreenLevel(_ value: Float) { greenLevels.maximumLevel = value }
+    func getMaximumGreenLevel() -> Float { greenLevels.maximumLevel }
+    func resetMaximumGreenLevel() { greenLevels.maximumLevel = 1 }
+
+    func setMinimumOutputGreenLevel(_ value: Float) { greenLevels.minimumOutputLevel = value }
+    func getMinimumOutputGreenLevel() -> Float { greenLevels.minimumOutputLevel }
+    func resetMinimumOutputGreenLevel() { greenLevels.minimumOutputLevel = 0 }
+
+    func setMaximumOutputGreenLevel(_ value: Float) { greenLevels.maximumOutputLevel = value }
+    func getMaximumOutputGreenLevel() -> Float { greenLevels.maximumOutputLevel }
+    func resetMaximumOutputGreenLevel() { greenLevels.maximumOutputLevel = 1 }
+
     /// returns filtered version of image
     func filterImage(image: MTIImage?) -> MTIImage? {
         guard let image = image else {
@@ -223,7 +245,7 @@ struct AnofilmFilter: Codable, Identifiable {
         }
 
         let output = FilterGraph.makeImage { output in
-            intermediateOutput2 => rgbLevels => redLevels => output
+            intermediateOutput2 => rgbLevels => redLevels => greenLevels => output
         }
 
 
@@ -269,6 +291,7 @@ struct AnofilmFilter: Codable, Identifiable {
         self.clahe = claheBlueprint.createMTICLAHEFilter()
         self.rgbLevels = try container.decode(MTIRGBLevelsAdjustmentFilter.self, forKey: .rgbLevels)
         self.redLevels = try container.decode(MTIRedLevelsAdjustment.self, forKey: .redLevels)
+        self.greenLevels = try container.decode(MTIGreenLevelsAdjustment.self, forKey: .greenLevels)
     }
 
     func encode(to encoder: Encoder) throws {
@@ -291,13 +314,14 @@ struct AnofilmFilter: Codable, Identifiable {
         try container.encode(clahe.createBlueprint(), forKey: .clahe)
         try container.encode(rgbLevels, forKey: .rgbLevels)
         try container.encode(redLevels, forKey: .redLevels)
+        try container.encode(greenLevels, forKey: .greenLevels)
     }
 
     private enum CodingKeys: String, CodingKey {
         case name, brightness, contrast, saturation, exposure, vibrance
         case whiteBalance, gamma, haze, highlightsAndShadows
         case sepiaTone, tint, highlightShadowTint, vignette, rgbAdjustment
-        case clahe, rgbLevels, redLevels
+        case clahe, rgbLevels, redLevels, greenLevels
     }
 
     var description: String {
@@ -343,6 +367,11 @@ struct AnofilmFilter: Codable, Identifiable {
         Red Maximum Level:  \(redLevels.maximumLevel)
         Red Minimum Output Level:  \(redLevels.minimumOutputLevel)
         Red Maximum Output Level:  \(redLevels.maximumOutputLevel)
+        Green Minimum Level:  \(greenLevels.minimumLevel)
+        Green Middle Level:  \(greenLevels.middleLevel)
+        Green Maximum Level:  \(greenLevels.maximumLevel)
+        Green Minimum Output Level:  \(greenLevels.minimumOutputLevel)
+        Green Maximum Output Level:  \(greenLevels.maximumOutputLevel)
         """
     }
 }
