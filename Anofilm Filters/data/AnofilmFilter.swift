@@ -28,6 +28,7 @@ struct AnofilmFilter: Codable, Identifiable {
     private var rgbAdjustment = MTIRGBAdjustmentFilter()
     private var clahe = MTICLAHEFilter()
     private var rgbLevels = MTIRGBLevelsAdjustmentFilter()
+    private var redLevels = MTIRedLevelsAdjustment()
 
     init(name: String = "") {
         self.name = name
@@ -201,7 +202,7 @@ struct AnofilmFilter: Codable, Identifiable {
         }
 
         let output = FilterGraph.makeImage { output in
-            intermediateOutput2 => rgbLevels => output
+            intermediateOutput2 => rgbLevels => redLevels => output
         }
 
 
