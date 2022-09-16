@@ -31,6 +31,7 @@ struct AnofilmFilter: Codable, Identifiable {
     private var redLevels = MTIRedLevelsAdjustment()
     private var greenLevels = MTIGreenLevelsAdjustment()
     private var blueLevels = MTIBlueLevelsAdjustment()
+    private var grain = MTIGrainFilter()
 
     init(name: String = "") {
         self.name = name
@@ -239,6 +240,10 @@ struct AnofilmFilter: Codable, Identifiable {
     func setMaximumOutputBlueLevel(_ value: Float) { blueLevels.maximumOutputLevel = value }
     func getMaximumOutputBlueLevel() -> Float { blueLevels.maximumOutputLevel }
     func resetMaximumOutputBlueLevel() { blueLevels.maximumOutputLevel = 1 }
+    
+    func setGrainAmount(_ value: Float) { grain.amount = value }
+    func getGrainAmount() -> Float { grain.amount }
+    func resetGrainAmount() { grain.amount = 0}
 
     /// returns filtered version of image
     func filterImage(image: MTIImage?) -> MTIImage? {
@@ -267,7 +272,8 @@ struct AnofilmFilter: Codable, Identifiable {
         }
 
         let output = FilterGraph.makeImage { output in
-            intermediateOutput2 => rgbLevels => redLevels => greenLevels => blueLevels => output
+            intermediateOutput2 => rgbLevels => redLevels =>
+            grain => greenLevels => blueLevels => output
         }
 
 
@@ -315,6 +321,7 @@ struct AnofilmFilter: Codable, Identifiable {
         self.redLevels = try container.decode(MTIRedLevelsAdjustment.self, forKey: .redLevels)
         self.greenLevels = try container.decode(MTIGreenLevelsAdjustment.self, forKey: .greenLevels)
         self.blueLevels = try container.decode(MTIBlueLevelsAdjustment.self, forKey: .blueLevels)
+        self.grain = try container.decode(MTIGrainFilter.self, forKey: .grain)
     }
 
     func encode(to encoder: Encoder) throws {
@@ -339,13 +346,14 @@ struct AnofilmFilter: Codable, Identifiable {
         try container.encode(redLevels, forKey: .redLevels)
         try container.encode(greenLevels, forKey: .greenLevels)
         try container.encode(blueLevels, forKey: .blueLevels)
+        try container.encode(grain, forKey: .grain)
     }
 
     private enum CodingKeys: String, CodingKey {
         case name, brightness, contrast, saturation, exposure, vibrance
         case whiteBalance, gamma, haze, highlightsAndShadows
         case sepiaTone, tint, highlightShadowTint, vignette, rgbAdjustment
-        case clahe, rgbLevels, redLevels, greenLevels, blueLevels
+        case clahe, rgbLevels, redLevels, greenLevels, blueLevels, grain
     }
 
     var description: String {
@@ -401,6 +409,7 @@ struct AnofilmFilter: Codable, Identifiable {
         Blue Maximum Level:  \(blueLevels.maximumLevel)
         Blue Minimum Output Level:  \(blueLevels.minimumOutputLevel)
         Blue Maximum Output Level:  \(blueLevels.maximumOutputLevel)
+        Grain:  \(getGrainAmount())
         """
     }
 }
