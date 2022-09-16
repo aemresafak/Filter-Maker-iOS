@@ -13,7 +13,7 @@ class MTIGrainFilter: MTIUnaryImageRenderingFilter, Codable {
     var amount: Float = 0
     
     override var parameters: [String: Any] {
-        return ["amount": amount]
+        return ["strength": amount]
     }
 
     override class func fragmentFunctionDescriptor() -> MTIFunctionDescriptor {

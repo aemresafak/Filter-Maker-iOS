@@ -401,7 +401,7 @@ struct FilterEditView: View {
     }
 
     private var editGrainView: some View {
-        createEditViewWithSlider(editName: "Grain", value: Binding(get: { filterEditViewModel.getGrainAmount() }, set: { filterEditViewModel.setGrainAmount($0) }), range: 0...1, resetValue: 0)
+        createEditViewWithSlider(editName: "Grain", value: Binding(get: { filterEditViewModel.getGrainAmount() }, set: { filterEditViewModel.setGrainAmount($0) }), range: 0...100, resetValue: 0)
     }
 
     func createEditStepper<Value: Strideable & LosslessStringConvertible>(_ title: String, value: Binding<Value>, range: ClosedRange<Value>, resetValue: Value) -> some View {
