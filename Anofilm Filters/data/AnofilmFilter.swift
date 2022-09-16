@@ -174,7 +174,28 @@ struct AnofilmFilter: Codable, Identifiable {
     func setMaximumOutputRGBLevel(_ value: Float) { rgbLevels.maximumOutputLevel = value }
     func getMaximumOutputRGBLevel() -> Float { rgbLevels.maximumOutputLevel }
     func resetMaximumOutputRGBLevel() { rgbLevels.maximumOutputLevel = 1 }
-
+    
+    func setMinimumRedLevel(_ value: Float) { redLevels.minimumLevel = value}
+    func getMinimumRedLevel() -> Float { redLevels.minimumLevel}
+    func resetMinimumRedLevel() { redLevels.minimumLevel = 0}
+    
+    
+    func setMiddleRedLevel(_ value: Float) { redLevels.middleLevel = value}
+    func getMiddleRedLevel() -> Float { redLevels.middleLevel}
+    func resetMiddleRedLevel() { redLevels.middleLevel = 1}
+    
+    func setMaximumRedLevel(_ value: Float) { redLevels.maximumLevel = value}
+    func getMaximumRedLevel() -> Float { redLevels.maximumLevel}
+    func resetMaximumRedLevel() { redLevels.maximumLevel = 1}
+    
+    func setMinimumRedLevelOutput(_ value: Float) { redLevels.minimumOutputLevel = value}
+    func getMinimumRedLevelOutput() -> Float { redLevels.minimumOutputLevel}
+    func resetMinimumRedLevelOutput() { redLevels.minimumOutputLevel = 0}
+    
+    func setMaximumRedLevelOutput(_ value: Float) { redLevels.maximumOutputLevel = value}
+    func getMaximumRedLevelOutput() -> Float { redLevels.maximumOutputLevel}
+    func resetMaximumRedLevelOutput() { redLevels.maximumOutputLevel = 1}
+    
     /// returns filtered version of image
     func filterImage(image: MTIImage?) -> MTIImage? {
         guard let image = image else {
@@ -247,6 +268,7 @@ struct AnofilmFilter: Codable, Identifiable {
         let claheBlueprint = try container.decode(MTICLAHEFilterBluePrint.self, forKey: .clahe)
         self.clahe = claheBlueprint.createMTICLAHEFilter()
         self.rgbLevels = try container.decode(MTIRGBLevelsAdjustmentFilter.self, forKey: .rgbLevels)
+        self.redLevels = try container.decode(MTIRedLevelsAdjustment.self, forKey: .redLevels)
     }
 
     func encode(to encoder: Encoder) throws {
@@ -268,13 +290,14 @@ struct AnofilmFilter: Codable, Identifiable {
         try container.encode(rgbAdjustment, forKey: .rgbAdjustment)
         try container.encode(clahe.createBlueprint(), forKey: .clahe)
         try container.encode(rgbLevels, forKey: .rgbLevels)
+        try container.encode(redLevels, forKey: .redLevels)
     }
 
     private enum CodingKeys: String, CodingKey {
         case name, brightness, contrast, saturation, exposure, vibrance
         case whiteBalance, gamma, haze, highlightsAndShadows
         case sepiaTone, tint, highlightShadowTint, vignette, rgbAdjustment
-        case clahe, rgbLevels
+        case clahe, rgbLevels, redLevels
     }
 
     var description: String {
@@ -315,6 +338,11 @@ struct AnofilmFilter: Codable, Identifiable {
         RGB Maximum Level:  \(rgbLevels.maximumLevel)
         RGB Minimum Output Level:  \(rgbLevels.minimumOutputLevel)
         RGB Maximum Output Level:  \(rgbLevels.maximumOutputLevel)
+        Red Minimum Level:  \(redLevels.minimumLevel)
+        Red Middle Level:  \(redLevels.middleLevel)
+        Red Maximum Level:  \(redLevels.maximumLevel)
+        Red Minimum Output Level:  \(redLevels.minimumOutputLevel)
+        Red Maximum Output Level:  \(redLevels.maximumOutputLevel)
         """
     }
 }
