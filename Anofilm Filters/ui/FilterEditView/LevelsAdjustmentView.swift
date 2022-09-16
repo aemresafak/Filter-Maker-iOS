@@ -27,7 +27,7 @@ struct LevelsAdjustmentView: View {
             levelsAdjustmentView
                 .padding()
             outputLevelsAdjustmentView
-                .padding()
+                .padding(24)
             Spacer()
                 .frame(height: 60)
         }

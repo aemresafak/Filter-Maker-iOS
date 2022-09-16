@@ -20,7 +20,7 @@ struct FilterEditView: View {
     @State private var imageChosen: (image: UIImage?, orientation: UIImage.Orientation?)?
 
     var filterIndex: Int = -1
-    
+
     @StateObject var filterEditViewModel: FilterEditViewModel = FilterEditViewModel()
     @EnvironmentObject var filtersViewModel: FiltersViewModel
 
@@ -57,9 +57,9 @@ struct FilterEditView: View {
             .sheet(isPresented: $showFiltersSheet, onDismiss: nil, content: createFiltersList)
             .sheet(isPresented: $showImagePickerSheet, onDismiss: nil, content: createImagePicker)
             .onChange(of: imageChosen?.image, perform: { newValue in
-                filterEditViewModel.changeOriginalImage(with: imageChosen?.image, orientation: imageChosen?.orientation)
-            })
-           
+            filterEditViewModel.changeOriginalImage(with: imageChosen?.image, orientation: imageChosen?.orientation)
+        })
+
 
     }
 
@@ -105,6 +105,8 @@ struct FilterEditView: View {
             editRedLevelsAdjustmentView
         case .greenLevelsAdjustment:
             editGreenLevelsAdjustmentView
+        case .blueLevelsAdjustment:
+            editBlueLevelsAdjustmentView
         }
     }
 
@@ -368,26 +370,38 @@ struct FilterEditView: View {
             maximumOutputLevel: Binding(get: { filterEditViewModel.getMaximumOutputRGBLevel() }, set: { filterEditViewModel.setMaximumOutputRGBLevel($0) })
         )
     }
-    
+
     private var editRedLevelsAdjustmentView: some View {
         LevelsAdjustmentView(
-                minimumLevel: Binding(get: { filterEditViewModel.getMinimumRedLevel() }, set: { filterEditViewModel.setMinimumRedLevel($0) }),
-                middleLevel: Binding(get: { filterEditViewModel.getMiddleRedLevel() }, set: { filterEditViewModel.setMiddleRedLevel($0) }),
-                maximumLevel: Binding(get: { filterEditViewModel.getMaximumRedLevel() }, set: { filterEditViewModel.setMaximumRedLevel($0) }),
-                minimumOutputLevel: Binding(get: { filterEditViewModel.getMinimumOutputRedLevel() }, set: { filterEditViewModel.setMinimumOutputRedLevel($0) }),
-                maximumOutputLevel: Binding(get: { filterEditViewModel.getMaximumOutputRedLevel() }, set: { filterEditViewModel.setMaximumOutputRedLevel($0) })
-            )
+            minimumLevel: Binding(get: { filterEditViewModel.getMinimumRedLevel() }, set: { filterEditViewModel.setMinimumRedLevel($0) }),
+            middleLevel: Binding(get: { filterEditViewModel.getMiddleRedLevel() }, set: { filterEditViewModel.setMiddleRedLevel($0) }),
+            maximumLevel: Binding(get: { filterEditViewModel.getMaximumRedLevel() }, set: { filterEditViewModel.setMaximumRedLevel($0) }),
+            minimumOutputLevel: Binding(get: { filterEditViewModel.getMinimumOutputRedLevel() }, set: { filterEditViewModel.setMinimumOutputRedLevel($0) }),
+            maximumOutputLevel: Binding(get: { filterEditViewModel.getMaximumOutputRedLevel() }, set: { filterEditViewModel.setMaximumOutputRedLevel($0) })
+        )
     }
 
-    
+
     private var editGreenLevelsAdjustmentView: some View {
         LevelsAdjustmentView(
-                minimumLevel: Binding(get: { filterEditViewModel.getMinimumGreenLevel() }, set: { filterEditViewModel.setMinimumGreenLevel($0) }),
-                middleLevel: Binding(get: { filterEditViewModel.getMiddleGreenLevel() }, set: { filterEditViewModel.setMiddleGreenLevel($0) }),
-                maximumLevel: Binding(get: { filterEditViewModel.getMaximumGreenLevel() }, set: { filterEditViewModel.setMaximumGreenLevel($0) }),
-                minimumOutputLevel: Binding(get: { filterEditViewModel.getMinimumOutputGreenLevel() }, set: { filterEditViewModel.setMinimumOutputGreenLevel($0) }),
-                maximumOutputLevel: Binding(get: { filterEditViewModel.getMaximumOutputGreenLevel() }, set: { filterEditViewModel.setMaximumOutputGreenLevel($0) })
-            )
+            minimumLevel: Binding(get: { filterEditViewModel.getMinimumGreenLevel() }, set: { filterEditViewModel.setMinimumGreenLevel($0) }),
+            middleLevel: Binding(get: { filterEditViewModel.getMiddleGreenLevel() }, set: { filterEditViewModel.setMiddleGreenLevel($0) }),
+            maximumLevel: Binding(get: { filterEditViewModel.getMaximumGreenLevel() }, set: { filterEditViewModel.setMaximumGreenLevel($0) }),
+            minimumOutputLevel: Binding(get: { filterEditViewModel.getMinimumOutputGreenLevel() }, set: { filterEditViewModel.setMinimumOutputGreenLevel($0) }),
+            maximumOutputLevel: Binding(get: { filterEditViewModel.getMaximumOutputGreenLevel() }, set: { filterEditViewModel.setMaximumOutputGreenLevel($0) })
+        )
+    }
+
+    private var editBlueLevelsAdjustmentView: some View {
+        LevelsAdjustmentView(
+            minimumLevel: Binding(get: { filterEditViewModel.getMinimumBlueLevel() }, set: { filterEditViewModel.setMinimumBlueLevel($0) }),
+            middleLevel: Binding(get: { filterEditViewModel.getMiddleBlueLevel() }, set: { filterEditViewModel.setMiddleBlueLevel($0) }),
+            maximumLevel: Binding(get: { filterEditViewModel.getMaximumBlueLevel() }, set: { filterEditViewModel.setMaximumBlueLevel($0) }),
+            minimumOutputLevel: Binding(get: { filterEditViewModel.getMinimumOutputBlueLevel() }, set: { filterEditViewModel.setMinimumOutputBlueLevel($0) }),
+            maximumOutputLevel: Binding(get: { filterEditViewModel.getMaximumOutputBlueLevel() }, set: { filterEditViewModel.setMaximumOutputBlueLevel($0) })
+        )
+
+
     }
 
     func createEditStepper<Value: Strideable & LosslessStringConvertible>(_ title: String, value: Binding<Value>, range: ClosedRange<Value>, resetValue: Value) -> some View {

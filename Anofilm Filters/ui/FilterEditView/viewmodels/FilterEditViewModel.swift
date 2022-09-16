@@ -435,6 +435,40 @@ class FilterEditViewModel: ObservableObject {
     func getMaximumOutputGreenLevel() -> Float { filter.getMaximumOutputGreenLevel() }
     func resetMaximumOutputGreenLevel() { filter.resetMaximumOutputGreenLevel() }
     
+    func setMinimumBlueLevel(_ value: Float) {
+        filter.setMinimumBlueLevel(value)
+        updateOutputImage()
+    }
+    func getMinimumBlueLevel() -> Float { filter.getMinimumBlueLevel() }
+    func resetMinimumBlueLevel() { filter.resetMinimumBlueLevel() }
+    
+    func setMiddleBlueLevel(_ value: Float) {
+        filter.setMiddleBlueLevel(value)
+        updateOutputImage()
+    }
+    func getMiddleBlueLevel() -> Float { filter.getMiddleBlueLevel() }
+    func resetMiddleBlueLevel() { filter.resetMiddleBlueLevel() }
+    
+    func setMaximumBlueLevel(_ value: Float) {
+        filter.setMaximumBlueLevel(value)
+        updateOutputImage()
+    }
+    func getMaximumBlueLevel() -> Float { filter.getMaximumBlueLevel() }
+    func resetMaximumBlueLevel() { filter.resetMaximumBlueLevel() }
+    
+    func setMinimumOutputBlueLevel(_ value: Float) {
+        filter.setMinimumOutputBlueLevel(value)
+        updateOutputImage()
+    }
+    func getMinimumOutputBlueLevel() -> Float { filter.getMinimumOutputBlueLevel() }
+    func resetMinimumOutputBlueLevel() { filter.resetMinimumOutputBlueLevel() }
+    
+    func setMaximumOutputBlueLevel(_ value: Float) {
+        filter.setMaximumOutputBlueLevel(value)
+        updateOutputImage()
+    }
+    func getMaximumOutputBlueLevel() -> Float { filter.getMaximumOutputBlueLevel() }
+    func resetMaximumOutputBlueLevel() { filter.resetMaximumOutputBlueLevel() }
     
     private func updateOutputImage() {
         outputImage = filter.filterImage(image: originalImage)
