@@ -10,6 +10,7 @@ import SwiftUI
 struct CustomizableDialog<Content: View>: View {
     
     @Binding var showDialog: Bool
+    var onDismiss: (() -> Void)?
     
     @ViewBuilder var content:  () -> Content
     
@@ -20,6 +21,7 @@ struct CustomizableDialog<Content: View>: View {
                     .foregroundColor(DrawingConstants.blurColor)
                     .ignoresSafeArea()
                     .onTapGesture {
+                        onDismiss?.self()
                         showDialog = false
                     }
                 content()
