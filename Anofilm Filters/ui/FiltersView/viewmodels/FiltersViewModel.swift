@@ -30,7 +30,12 @@ class FiltersViewModel: ObservableObject {
         return index ?? -1
     }
 
-
+    func importFilter(jsonString: String) -> Bool {
+        guard let json = jsonString.data(using: .utf8) else { return false }
+        guard let filter = try? JSONDecoder().decode(AnofilmFilter.self, from: json) else { return false }
+        filters.append(filter)
+        return true
+    }
 
     /// Saves filters to internal storage
     func saveFilters() {
