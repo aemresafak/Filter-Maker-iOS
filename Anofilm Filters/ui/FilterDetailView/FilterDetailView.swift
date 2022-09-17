@@ -49,7 +49,7 @@ struct FilterDetailView: View {
                 Label("Edit", systemImage: "pencil")
             }
             Button {
-                copyTextToClipboard(filter.description)
+                copyFilterJsonToClipboard(filter)
             } label: {
                 Label("Copy to clipboard", systemImage: "doc.on.doc")
                     .padding(.horizontal)
@@ -98,7 +98,7 @@ struct FilterDetailView: View {
             createColorCircle(color)
             Spacer()
         }
-    }
+    } 
 
     private func createColorCircle(_ color: Color) -> some View {
         Circle()
@@ -106,6 +106,16 @@ struct FilterDetailView: View {
             .frame(width: DrawingConstants.colorCircleDiameter, height: DrawingConstants.colorCircleDiameter)
     }
 
+    private func copyFilterJsonToClipboard(_ filter: AnofilmFilter) {
+        do {
+            let json = try JSONEncoder().encode(filter)
+            let jsonString = String(data: json, encoding: .utf8)
+            copyTextToClipboard(jsonString ?? "Filter could not be copied")
+        } catch {
+            copyTextToClipboard(error.localizedDescription)
+        }
+    }
+    
     private func copyTextToClipboard(_ text: String) {
         UIPasteboard.general.setValue(text, forPasteboardType: UTType.plainText.identifier)
         withAnimation {
