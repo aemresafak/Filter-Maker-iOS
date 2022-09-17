@@ -276,13 +276,9 @@
 			isa = PBXGroup;
 			children = (
 				E49ED08D28C6588700C68007 /* viewmodels */,
+				E4D850C228D5C0660074824D /* editcontent */,
 				E49ED08B28C6588300C68007 /* FilterEditView.swift */,
-				E49ECCDA28D38B2000C8FE58 /* LevelsAdjustmentView.swift */,
 				E49ED09228C65DA200C68007 /* FilterImageView.swift */,
-				E4D850BA28D5BAD30074824D /* EditContentView.swift */,
-				E4D850BC28D5BB770074824D /* SliderEditView.swift */,
-				E4D850BE28D5BC750074824D /* ColorSliderView.swift */,
-				E4D850C028D5BD230074824D /* EditStepperView.swift */,
 			);
 			path = FilterEditView;
 			sourceTree = "<group>";
@@ -345,6 +341,18 @@
 				E4ACE40C28C910D90069E17C /* FilterDetailView.swift */,
 			);
 			path = FilterDetailView;
+			sourceTree = "<group>";
+		};
+		E4D850C228D5C0660074824D /* editcontent */ = {
+			isa = PBXGroup;
+			children = (
+				E4D850BA28D5BAD30074824D /* EditContentView.swift */,
+				E4D850BC28D5BB770074824D /* SliderEditView.swift */,
+				E4D850C028D5BD230074824D /* EditStepperView.swift */,
+				E4D850BE28D5BC750074824D /* ColorSliderView.swift */,
+				E49ECCDA28D38B2000C8FE58 /* LevelsAdjustmentView.swift */,
+			);
+			path = editcontent;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
