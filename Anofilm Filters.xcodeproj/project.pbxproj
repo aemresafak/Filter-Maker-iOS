@@ -63,6 +63,10 @@
 		E4ACE40D28C910D90069E17C /* FilterDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4ACE40C28C910D90069E17C /* FilterDetailView.swift */; };
 		E4AD87A728CBE84700AA9B2D /* MTIRGBAdjustmentFilter.metal in Sources */ = {isa = PBXBuildFile; fileRef = E4AD87A628CBE84700AA9B2D /* MTIRGBAdjustmentFilter.metal */; };
 		E4AD87A928CBE8BB00AA9B2D /* MTIRGBAdjustmentFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AD87A828CBE8BB00AA9B2D /* MTIRGBAdjustmentFilter.swift */; };
+		E4D850BB28D5BAD30074824D /* EditContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D850BA28D5BAD30074824D /* EditContentView.swift */; };
+		E4D850BD28D5BB770074824D /* SliderEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D850BC28D5BB770074824D /* SliderEditView.swift */; };
+		E4D850BF28D5BC750074824D /* ColorSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D850BE28D5BC750074824D /* ColorSliderView.swift */; };
+		E4D850C128D5BD230074824D /* EditStepperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D850C028D5BD230074824D /* EditStepperView.swift */; };
 		F03A8599F8D64D64830792C6 /* Pods_Anofilm_Filters.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57F1A861853C4533DC978AD9 /* Pods_Anofilm_Filters.framework */; };
 /* End PBXBuildFile section */
 
@@ -127,6 +131,10 @@
 		E4ACE40C28C910D90069E17C /* FilterDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterDetailView.swift; sourceTree = "<group>"; };
 		E4AD87A628CBE84700AA9B2D /* MTIRGBAdjustmentFilter.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = MTIRGBAdjustmentFilter.metal; sourceTree = "<group>"; };
 		E4AD87A828CBE8BB00AA9B2D /* MTIRGBAdjustmentFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTIRGBAdjustmentFilter.swift; sourceTree = "<group>"; };
+		E4D850BA28D5BAD30074824D /* EditContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditContentView.swift; sourceTree = "<group>"; };
+		E4D850BC28D5BB770074824D /* SliderEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderEditView.swift; sourceTree = "<group>"; };
+		E4D850BE28D5BC750074824D /* ColorSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSliderView.swift; sourceTree = "<group>"; };
+		E4D850C028D5BD230074824D /* EditStepperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditStepperView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,6 +279,10 @@
 				E49ED08B28C6588300C68007 /* FilterEditView.swift */,
 				E49ECCDA28D38B2000C8FE58 /* LevelsAdjustmentView.swift */,
 				E49ED09228C65DA200C68007 /* FilterImageView.swift */,
+				E4D850BA28D5BAD30074824D /* EditContentView.swift */,
+				E4D850BC28D5BB770074824D /* SliderEditView.swift */,
+				E4D850BE28D5BC750074824D /* ColorSliderView.swift */,
+				E4D850C028D5BD230074824D /* EditStepperView.swift */,
 			);
 			path = FilterEditView;
 			sourceTree = "<group>";
@@ -452,6 +464,7 @@
 				E48CFFD928C872D3004EB25C /* AnofilmFilterExtensions.swift in Sources */,
 				E49ED09128C659E200C68007 /* EditType.swift in Sources */,
 				E42D3DF928C7AC190018C9FE /* MTICustomColorMatrixFilter.metal in Sources */,
+				E4D850BD28D5BB770074824D /* SliderEditView.swift in Sources */,
 				E497668728CB2D9300E9EB11 /* ImageSaver.swift in Sources */,
 				E49ED0A228C71D2C00C68007 /* MTIWhiteBalanceFilter.swift in Sources */,
 				E42D3DF128C79DF80018C9FE /* MTIHighlightsAndShadows.metal in Sources */,
@@ -494,11 +507,14 @@
 				E4AD87A728CBE84700AA9B2D /* MTIRGBAdjustmentFilter.metal in Sources */,
 				E49ED08C28C6588300C68007 /* FilterEditView.swift in Sources */,
 				E48CFFD728C86FDD004EB25C /* FilterItem.swift in Sources */,
+				E4D850C128D5BD230074824D /* EditStepperView.swift in Sources */,
 				E4A12DBA28D12BF8001AF77B /* MTICLAHEFilterBlueprint.swift in Sources */,
+				E4D850BF28D5BC750074824D /* ColorSliderView.swift in Sources */,
 				E4AC6E4728D3676E0037F6D7 /* MTIRGBLevelsAdjustmentFilter.swift in Sources */,
 				E48CFFD528C86E28004EB25C /* FiltersViewModel.swift in Sources */,
 				E49532DF28D3C73A0049887E /* TripleThumbSlider.swift in Sources */,
 				E49532E128D467270049887E /* MTIRedLevelsAdjustment.swift in Sources */,
+				E4D850BB28D5BAD30074824D /* EditContentView.swift in Sources */,
 				E4A12DC028D1B74B001AF77B /* MTILevelsAdjustmentFilter.swift in Sources */,
 				E491D6C628D4B420002124D7 /* MTIGrainFilter.metal in Sources */,
 				E495494428D4FDFD007A3770 /* MTISwapRedBlueChannels.metal in Sources */,
