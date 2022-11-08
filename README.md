@@ -21,7 +21,8 @@ Filter Maker is an iOS project that helps its users create re-usable filters. Us
 - Grain
 - Infrared
 
-<img src="https://user-images.githubusercontent.com/59789023/200592001-75925a99-eca4-4b71-8cc5-c2045373a720.jpeg" width="505">
+<img src="https://user-images.githubusercontent.com/59789023/200592001-75925a99-eca4-4b71-8cc5-c2045373a720.jpeg" width="30%">  <img src="https://user-images.githubusercontent.com/59789023/200593904-c1edf98f-48e6-47f9-8d4c-33a1146e9a52.jpeg" width="30%">
+
 
 ### Each filter comes with its custom UI
 
