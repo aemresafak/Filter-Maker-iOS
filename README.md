@@ -39,3 +39,10 @@ Filter Maker is an iOS project that helps its users create re-usable filters. Us
 ###### CLAHE:
 
 ###### RGBLevelsAdjustment
+
+### Other Features
+###### Filters can be shared between users
+- Users can share their filters by clicking Copy Filter To Clipboard method. This method copies the filter as JSON data. Users that want to import the filter can copy the json data and use import feature of the app to copy filter.
+HERE IS A PHOTO OF COPY:
+
+###### User can use their filter to filter any photo in their library and can save the filtered photo to their library.
