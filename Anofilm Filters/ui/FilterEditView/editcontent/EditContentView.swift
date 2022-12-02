@@ -190,7 +190,7 @@ struct EditContentView: View {
     }
 
     private var editHighlightTintView: some View {
-        let k = print("ahmet emre")
+        let k = print("selin")
         VStack {
             ColorPicker(
                 "Pick color for Highlight Tint",
