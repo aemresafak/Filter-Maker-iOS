@@ -27,18 +27,30 @@ Filter Maker is an iOS project that helps its users create re-usable filters. Us
 ### Each filter comes with its custom UI
 
 ###### Brightness:
+<img src="https://user-images.githubusercontent.com/59789023/207395325-81656fcd-1803-4337-aa4e-6f9711c65ce5.png" width="30%">
 
 ###### WhiteBalance:
+<img src="https://user-images.githubusercontent.com/59789023/207395625-c281f4de-902e-42c9-af29-a02ddaddf643.png" width="30%">
+
 
 ###### Tint:
+<img src="https://user-images.githubusercontent.com/59789023/207395770-4830d60c-bf99-4abd-b30f-60a983763209.png" width="30%">
 
 ###### Vignette:
+<img src="https://user-images.githubusercontent.com/59789023/207395781-90e89ee0-df9e-4cc9-9497-69f931ee68d8.png" width="30%">
 
 ###### RGB Colors Adjustment:
+<img src="https://user-images.githubusercontent.com/59789023/207395796-84efe7db-548d-4796-8aa5-3e751912eab6.png" width="30%">
+
 
 ###### CLAHE:
+<img src="https://user-images.githubusercontent.com/59789023/207395817-c15a595f-2501-4126-b412-f54421945ba3.png" width="30%">
+
 
 ###### RGBLevelsAdjustment
+<img src="https://user-images.githubusercontent.com/59789023/207395834-bab65f0b-3721-4a98-8f1a-babc2b4b6d75.png" width="30%">
+<img src="https://user-images.githubusercontent.com/59789023/207395855-e003ee54-f66c-456f-8b38-5108bb5e8100.png" width="30%">
+
 
 ### Other Features
 ###### Filters can be shared between users
