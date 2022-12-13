@@ -48,13 +48,17 @@ Filter Maker is an iOS project that helps its users create re-usable filters. Us
 
 
 ###### RGBLevelsAdjustment
-<img src="https://user-images.githubusercontent.com/59789023/207395834-bab65f0b-3721-4a98-8f1a-babc2b4b6d75.png" width="30%">
-<img src="https://user-images.githubusercontent.com/59789023/207395855-e003ee54-f66c-456f-8b38-5108bb5e8100.png" width="30%">
+<img src="https://user-images.githubusercontent.com/59789023/207395834-bab65f0b-3721-4a98-8f1a-babc2b4b6d75.png" width="30%"> <img src="https://user-images.githubusercontent.com/59789023/207395855-e003ee54-f66c-456f-8b38-5108bb5e8100.png" width="30%">
 
 
 ### Other Features
 ###### Filters can be shared between users
 - Users can share their filters by clicking Copy Filter To Clipboard method. This method copies the filter as JSON data. Users that want to import the filter can copy the json data and use import feature of the app to copy filter.
-HERE IS A PHOTO OF COPY:
+
+<img src="https://user-images.githubusercontent.com/59789023/207396795-3184e0a1-1d3e-4cf1-9b3b-980ba9922085.png" width="30%"> <img src="https://user-images.githubusercontent.com/59789023/207396834-cd96fa5a-24fe-413e-bbdc-f92ae9700639.png" width="30%">
+
 
 ###### User can use their filter to filter any photo in their library and can save the filtered photo to their library.
+<img src="https://user-images.githubusercontent.com/59789023/207396988-5a047bbe-11d0-4346-9dfc-34e5def94231.png" width="30%">
+
+
