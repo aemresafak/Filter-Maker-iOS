@@ -1,5 +1,7 @@
 # Filter-Maker-iOS
 Filter Maker is an iOS project that helps its users create re-usable filters. Users can choose among 15+ filter types to create their own custom filters.
+Go to the bottom to check the technical details.
+
 ### Filters Supported
 - Brightness
 - Contrast
@@ -61,4 +63,13 @@ Filter Maker is an iOS project that helps its users create re-usable filters. Us
 ###### User can use their filter to filter any photo in their library and can save the filtered photo to their library.
 <img src="https://user-images.githubusercontent.com/59789023/207396988-5a047bbe-11d0-4346-9dfc-34e5def94231.png" width="30%">
 
+
+### Technical Details
+  This project is mostly implemented using Swift programming language and SwiftUI library. For implementing filters, MetalPetal library was used. Some custom filters were created using Metal programming language. This project follows MVVM architecture standards, each screen comes with its ViewModel.
+ 
+###### Some of the Other Concepts in This Project
+- Permission Handling (For accessing and writing to PhotosLibrary)
+- Creating custom views from scratch
+- Codable protocol, saving filters as JSON to internal storage
+  
 
